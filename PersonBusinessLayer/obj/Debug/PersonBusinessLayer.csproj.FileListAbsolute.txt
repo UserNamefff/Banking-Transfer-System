@@ -1,0 +1,6 @@
+C:\Users\a\source\repos\PersonBusinessLayer\obj\Debug\PersonBusinessLayer.csproj.AssemblyReference.cache
+C:\Users\a\source\repos\PersonBusinessLayer\obj\Debug\PersonBusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\a\source\repos\PersonBusinessLayer\bin\Debug\PersonBusinessLayer.dll
+C:\Users\a\source\repos\PersonBusinessLayer\bin\Debug\PersonBusinessLayer.pdb
+C:\Users\a\source\repos\PersonBusinessLayer\obj\Debug\PersonBusinessLayer.dll
+C:\Users\a\source\repos\PersonBusinessLayer\obj\Debug\PersonBusinessLayer.pdb
