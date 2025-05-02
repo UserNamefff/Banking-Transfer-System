@@ -62,11 +62,11 @@ namespace DataAccessLayerr
             return isFound;
         }
 
-        public static int AddNewCity(int CityID, ref int CountryID, ref string CityName)
+        public static int AddNewCity( int CountryID,  string CityName)
         {
             //this function will return the new City id if succeeded and -1 if not.
          
-            int Cityid = 0;
+            int Cityid = -1;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
@@ -75,7 +75,7 @@ namespace DataAccessLayerr
             SqlCommand command = new SqlCommand(query, connection);
             
             command.Parameters.AddWithValue("@CountryID", CountryID);
-            command.Parameters.AddWithValue("@CityID", CityID);
+            //command.Parameters.AddWithValue("@CityID", CityID);
             command.Parameters.AddWithValue("@CityName", CityName);
             
 
@@ -155,7 +155,7 @@ namespace DataAccessLayerr
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Citys";
+            string query = "SELECT City.CityID ,City.CityName ,C.CountryName FROM Cities City INNer Join Countries C ON City.CountryID = C.CountryID ";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -176,7 +176,7 @@ namespace DataAccessLayerr
 
             }
 
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 // Console.WriteLine("Error: " + ex.Message);
             }
@@ -195,7 +195,7 @@ namespace DataAccessLayerr
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"Delete CityID 
+            string query = @"Delete Cities
                                 where CityID = @CityID";
 
             SqlCommand command = new SqlCommand(query, connection);
@@ -292,6 +292,7 @@ namespace DataAccessLayerr
             return isFound;
         }
 
+       
 
 
     }

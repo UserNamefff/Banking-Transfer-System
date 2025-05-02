@@ -51,6 +51,8 @@
     <Compile Include="clsNonClients.cs" />
     <Compile Include="clsPerson1.cs" />
     <Compile Include="clsTransactions.cs" />
+    <Compile Include="clsTransactionStatus.cs" />
+    <Compile Include="clsTransaction_type.cs" />
     <Compile Include="clsUser.cs" />
     <Compile Include="clsRemittanceTransactions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

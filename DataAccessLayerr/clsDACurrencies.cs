@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayerr
 {
-    class clsDACurrencies
+    public class clsDACurrencies
     {
         public static bool GetCurrencyInfoByID(int CurrencyID, ref string CurrencyCode, ref double Rate, ref int CountryID)
         {
@@ -225,7 +225,7 @@ namespace DataAccessLayerr
             return dt;
 
         }
-
+        
         public static bool DeleteCurrency(int CurrencyID)
         {
 

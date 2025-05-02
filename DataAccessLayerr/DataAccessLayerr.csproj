@@ -54,6 +54,9 @@
     <Compile Include="clsDARemittanceTransfer.cs" />
     <Compile Include="clsDataAccessSettings.cs" />
     <Compile Include="clsDATransactions.cs" />
+    <Compile Include="clsDATransactionStatus.cs" />
+    <Compile Include="clsDATrasactionTypes.cs" />
+    <Compile Include="clsRegions.cs" />
     <Compile Include="clsUsersAccessData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

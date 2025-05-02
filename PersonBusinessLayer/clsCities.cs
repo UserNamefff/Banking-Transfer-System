@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using DataAccessLayerr;
 namespace UsersBussncessLayerLib
 {
     class clsCities
@@ -77,28 +79,22 @@ namespace UsersBussncessLayerLib
             //Deleting data from database will be here ...
         }
 
-        public Boolean AddNewCity(string Namecity, int CountryID)
-        {
-
-            //Add New City and add its to database will be here ...
+        public bool AddNewCity(string Namecity, int CountryID)
+        {   //Add New City and add its to database will be here ...
+            
+            this.CityID = clsDACities.AddNewCity(this.CountryID, this.NameCity);
             return false;
         }
         
-        public Boolean AddNewCity(int CityID,string Namecity, int CountryID)
-        {
-            //Add New City and add its to database will be here ...
-            return false;
-        }
-
-        public clsCities GetAllCities()
+        public DataTable GetAllCities()
         {
             //Get All Cities will be here ..
-            return null;
+            return clsDACities.GetAllCities();
         }
 
         public clsCities Find(string NameCity)
         {
-            return null;
+            return clsDACities;
         }
 
 

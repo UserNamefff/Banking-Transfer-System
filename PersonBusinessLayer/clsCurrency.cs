@@ -7,6 +7,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace UsersBussncessLayerLib
 {
     public class clsCurrency
@@ -99,25 +100,24 @@ namespace UsersBussncessLayerLib
         {
             return false;
         }
-        public static DataTable GetAllCurrencyData()
-        {
-            //Get All People data of currency from db will be here
-            return null;
-        }
-
 
         public static clsCurrency FindCurrencyInfoByID(int CurrencyID)
         {
 
-            return new clsCurrency();
+            return null;
         }
+
+
 
         public static clsCurrency FindByCurrencyCode (string Code)
         {
             return null;
         }
         
-
+        public static DataTable GetAllCurrencies()
+        {
+            return clsDACurrencies.GetAllCurrencies();
+        }
 
     }
 }
