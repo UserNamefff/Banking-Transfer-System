@@ -11,7 +11,7 @@ namespace DataAccessLayerr
     public class clsCountryDataAccess
     {
 
-        public static bool GetCountryByID(int ID, ref string CountryCode, ref string CountyrName)
+        public static bool GetCountryByID(int ID, ref string CountryCode, ref string CountryName)
         {
             bool isFound = false;
 
@@ -32,12 +32,53 @@ namespace DataAccessLayerr
                 {
                     isFound = true;
                     CountryCode = (string)Reader["CountryCode"];
-                    CountyrName = (string)Reader["CountyrName"];
+                    CountryName = (string)Reader["CountryName"];
 
                 }
 
             }
-            catch (Exception ex)
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            finally
+            {
+                conn.Close();
+            }
+
+            return isFound;
+        }
+
+        public static bool GetCountryByID(string CountryName, ref string CountryCode, ref  int ID)
+        {
+            bool isFound = false;
+
+            string Query = @"Select * From Countries WHERE CountryName =@CountryName ";
+
+            SqlConnection conn = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            SqlCommand cmd = new SqlCommand(Query, conn);
+
+            cmd.Parameters.AddWithValue("@CountryName", CountryName);
+
+            try
+            {
+                conn.Open();
+                SqlDataReader Reader = cmd.ExecuteReader();
+
+                if (Reader.Read())
+                {
+                    isFound = true;
+                    ID = (int)Reader["CountryID"];
+                    CountryCode = (string)Reader["CountryCode"];
+                   // CountryCode = (string)Reader["CountryCode"];
+
+                }
+                Reader.Close();
+
+            }
+            catch (SqlException ex)
             {
 
             }
@@ -49,6 +90,7 @@ namespace DataAccessLayerr
 
             return isFound;
         }
+
 
         public static int  AddNewCountry(  string CountryCode, string CountryName)
         {

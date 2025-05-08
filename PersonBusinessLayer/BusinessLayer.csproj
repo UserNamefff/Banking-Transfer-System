@@ -45,11 +45,13 @@
     <Compile Include="clsBranches.cs" />
     <Compile Include="clsCities.cs" />
     <Compile Include="clsClient.cs" />
+    <Compile Include="clsManageAccounts.cs" />
     <Compile Include="clsCountry.cs" />
     <Compile Include="clsCurrency.cs" />
     <Compile Include="clsGlobl.cs" />
     <Compile Include="clsNonClients.cs" />
     <Compile Include="clsPerson1.cs" />
+    <Compile Include="clsRegions.cs" />
     <Compile Include="clsTransactions.cs" />
     <Compile Include="clsTransactionStatus.cs" />
     <Compile Include="clsTransaction_type.cs" />

@@ -1,27 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccessLayerr
 {
-    public class clsDACities
-    {
+   public  class clsDARegions
+   {
 
-        public static bool GetCityInfoByCityID(int CityID, ref int CountryID, ref string CityName)
+
+        public static bool GetRegionInfoByRegionID(int RegionID, ref int CityID, ref string RegionName)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Cities WHERE CityID = @CityID";
+            string query = "SELECT * FROM Regions WHERE RegionID = @RegionID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@CityID", CityID);
+            command.Parameters.AddWithValue("@RegionID", RegionID);
 
             try
             {
@@ -33,60 +34,9 @@ namespace DataAccessLayerr
                     // The record was found
                     isFound = true;
 
-                    CountryID = (int)reader["CountryID"];
                     CityID = (int)reader["CityID"];
-                    CityName = (string)reader["CityName"];
-                    
-
-                }
-                else
-                {
-                    // The record was not found
-                    isFound = false;
-                }
-
-                reader.Close();
-
-
-            }
-            catch (Exception ex)
-            {
-                //Console.WriteLine("Error: " + ex.Message);
-                isFound = false;
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return isFound;
-        }
-
-        public static bool GetCityInfoByCityID(string CityName, ref int CountryID, ref int CityID)
-        {
-            bool isFound = false;
-
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = "SELECT * FROM Cities WHERE CityID = @CityID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@CityID", CityID);
-
-            try
-            {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    // The record was found
-                    isFound = true;
-
-                    CountryID = (int)reader["CountryID"];
-                    CityID = (int)reader["CityID"];
-                    CityName = (string)reader["CityName"];
+                    //CityID = (int)reader["CityID"];
+                    RegionName = (string)reader["RegionName"];
 
 
                 }
@@ -114,23 +64,75 @@ namespace DataAccessLayerr
         }
 
 
+        public static bool GetRegionInfoByRegionID(string RegionName, ref int CityID, ref int RegionID )
+        {
+            bool isFound = false;
 
-        public static int AddNewCity( int CountryID,  string CityName)
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT * FROM Regions WHERE RegionID = @RegionID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@RegionID", RegionID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // The record was found
+                    isFound = true;
+
+                    CityID = (int)reader["CityID"];
+                    //CityID = (int)reader["CityID"];
+                    RegionName = (string)reader["RegionName"];
+
+
+                }
+                else
+                {
+                    // The record was not found
+                    isFound = false;
+                }
+
+                reader.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
+
+        public static int AddNewRegion( int CityID,  string RegionName)
         {
             //this function will return the new City id if succeeded and -1 if not.
-         
+
             int Cityid = -1;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO Citys (CityID,CountryID, CityName);SELECT SCOPE_IDENTITY();";
+            string query = @"INSERT INTO Citys (CityID, CityName)
+                             Values(@CityID, @CityName); SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
             
-            command.Parameters.AddWithValue("@CountryID", CountryID);
+            command.Parameters.AddWithValue("@CityID", CityID);
             //command.Parameters.AddWithValue("@CityID", CityID);
-            command.Parameters.AddWithValue("@CityName", CityName);
-            
+            command.Parameters.AddWithValue("@RegionName", RegionName);
+
 
             try
             {
@@ -158,28 +160,28 @@ namespace DataAccessLayerr
             }
 
             return Cityid;
-            
+
         }
 
-        public static bool UpdateCity(int CityID, int CountryID,  string CityName)
+        public static bool UpdateRegion(int RegionID, int CityID, string RegionName)
         {
 
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            
-            string query = @"Update  Cities  
-                            set CityName = @CityName, 
-                                CountryID = @CountryID 
-                                where CityID = @CityID ";
+
+            string query = @"Update  Regions  
+                            set RegionName = @RegionName, 
+                                CityID = @CityID 
+                                where RegionID = @RegionID ";
 
 
 
             SqlCommand command = new SqlCommand(query, connection);
-            
+
+            command.Parameters.AddWithValue("@RegionID",  RegionID);
             command.Parameters.AddWithValue("@CityID", CityID);
-            command.Parameters.AddWithValue("@AccountNumber", CountryID);
-            command.Parameters.AddWithValue("@Documente_Type", CityName);
-            
+            command.Parameters.AddWithValue("@RegionName", RegionName);
+
 
 
             try
@@ -202,13 +204,13 @@ namespace DataAccessLayerr
             return (rowsAffected > 0);
         }
 
-        public static DataTable GetAllCities()
+        public static DataTable GetAllRegions()
         {
 
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT City.CityID ,City.CityName ,C.CountryName FROM Cities City INNer Join Countries C ON City.CountryID = C.CountryID ";
+            string query = "SELECT  R.RegionID,R.RegionName ,C.CityName FROM Regions R INNer Join Cities C ON R.CityID = C.CityID ";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -242,18 +244,18 @@ namespace DataAccessLayerr
 
         }
 
-        public static bool DeleteCity(int CityID)
+        public static bool DeleteRegion(int RegionID)
         {
             int rowsAffected = 0;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"Delete Cities
-                                where CityID = @CityID";
+            string query = @"Delete Regions
+                                where RegionID = @RegionID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@CityID", CityID);
+            command.Parameters.AddWithValue("@RegionID", RegionID);
 
             try
             {
@@ -277,17 +279,17 @@ namespace DataAccessLayerr
 
         }
 
-        public static bool IsCityExist(int CityID)
+        public static bool IsRegionExist(int RegionID)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT Found=1 FROM Cities WHERE CityID = @CityID";
+            string query = "SELECT Found=1 FROM Regions WHERE RegionID = @RegionID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@CityID", CityID);
+            command.Parameters.AddWithValue("@RegionID", RegionID);
 
             try
             {
@@ -311,17 +313,17 @@ namespace DataAccessLayerr
             return isFound;
         }
 
-        public static bool IsCityExistByCityName(string CityName)
+        public static bool IsRegionExistByRegionName(string RegionName)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT Found=1 FROM Cities WHERE CityName = @CityName";
+            string query = "SELECT Found=1 FROM Regions WHERE RegionName = @RegionName";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@CityName", CityName);
+            command.Parameters.AddWithValue("@RegionName", RegionName);
 
             try
             {
@@ -332,7 +334,7 @@ namespace DataAccessLayerr
 
                 reader.Close();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 //Console.WriteLine("Error: " + ex.Message);
                 isFound = false;
@@ -345,8 +347,42 @@ namespace DataAccessLayerr
             return isFound;
         }
 
-       
+
+        public static DataTable GetAllRegionss()
+        {
+            DataTable dt = new DataTable();
+
+            SqlConnection conn = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "Select *From Regions";
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            try
+            {
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+               
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                
+                reader.Close();
+
+            }
+            catch (SqlException ex)
+            {
+               dt = null;
+            }
+
+            finally
+            {
+                conn.Close();
+            }
+            return dt;
+        }
 
 
-    }
+   }
 }

@@ -24,7 +24,7 @@ namespace DataAccessLayerr
         }
 
         public static bool GetTransactionInfoByTransactionID(int TransactionNumber,ref int TransactionID, ref int SenderID, ref int RecierverID,ref int SourceBranchID,
-            ref int TargeteBranchID, ref string Transaction_Status_ID 
+            ref int TargeteBranchID, ref int  Transaction_Status_ID, ref int Transaction_type
             , ref double FeeAmount , ref int CurrencyID , ref double TransferAmount , ref DateTime Date_Transaction,ref bool isSenderClient, ref bool isRecierverClient,ref int ClientRecierverID,ref int ClientSenderID, ref string Description)
         {
             bool isFound = false;
@@ -47,13 +47,14 @@ namespace DataAccessLayerr
                     //The record was found
                     isFound = true;
                     
-                    Transaction_Status_ID = (string)reader["Transaction_Status_ID"];
+                    Transaction_Status_ID = (int)reader["Transaction_Status_ID"];
                     FeeAmount = (double)reader["FeeAmount"];
                     CurrencyID = (int)reader["CurrencyID"];
                     SenderID = (int)reader["SenderID"];
                     RecierverID = (int)reader["RecierverID"];
                     SourceBranchID = (int)reader["SourceBranchID"];
                     TargeteBranchID = (int)reader["TargeteBranchID"];
+                    Transaction_type = (int)reader["Transaction_type"];
                     TransferAmount = (double)reader["TransferAmount"];
                     Date_Transaction = (DateTime)reader["Date_Transaction"];
                     ClientSenderID = (int)reader["TargeteBranchID"];
@@ -93,7 +94,7 @@ namespace DataAccessLayerr
         }
         
         public static int AddNewTransaction( int TransactionNumber,  int SenderID,  int RecierverID,  int SourceBranchID,
-             int TargeteBranchID, string Transaction_Status_ID
+             int TargeteBranchID, int  Transaction_Status_ID,  int Transaction_type
             ,  double FeeAmount, int CurrencyID,  double TransferAmount,  DateTime Date_Transaction, bool isClientRecierver, bool isClientSender, int ClientRecierverID, int ClientSenderID, string Description)
         {
             //this function will return the new Transaction id if succeeded and -1 if not.
@@ -102,28 +103,27 @@ namespace DataAccessLayerr
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO Transactions (TransactionNumber,SenderID,RecierverID,SourceBranchID,TargeteBranchID, Transaction_Status_ID ,TransferAmount,FeeAmount,CurrencyID,Date_Transaction,isClientRecierver,isClientSender,ClientRecierverID,ClientSenderID,Description)
-                                    Values(@TransactionNumber,@SenderID,@RecierverID,@SourceBranchID,@TargeteBranchID, @Transaction_Status_ID ,@TransferAmount,@FeeAmount,@CurrencyID,@Date_Transaction,@isClientRecierver,@isClientSender,@Description);SELECT SCOPE_IDENTITY();";
+            //string query = @"INSERT INTO Transactions (TransactionNumber,SenderID,RecierverID,SourceBranchID,TargeteBranchID, Transaction_Status_ID ,TransferAmount,FeeAmount,CurrencyID,Date_Transaction,isClientRecierver,isClientSender,ClientRecierverID,ClientSenderID,Description)
+            //                        Values(@TransactionNumber,@SenderID,@RecierverID,@SourceBranchID,@TargeteBranchID, @Transaction_Status_ID ,@TransferAmount,@FeeAmount,@CurrencyID,@Date_Transaction,@isClientRecierver,@isClientSender,@Description);SELECT SCOPE_IDENTITY();";
 
-                string query1 = @"INSERT INTO [Transactions]
-               ([TransactionNumber]
-               ,[SenderID]
-               ,[RecierverID]
-               ,[SourceBranchID]
-               ,[TargeteBranchID]
-               ,[Transaction_Status_ID]
-               ,[TransferAmount]
-               ,[FeeAmount]
-               ,[CurrencyID]
-               ,[Date_Transaction]
-               ,[Transaction_type]
-               ,[isClientRecierver]
-               ,[isClientSender]
-               ,[ClientSenderID]
-               ,[ClientRecierverID]
-               ,[Description])
-         VALUES (@TransactionNumber, 
-			    @SenderID,   @RecierverID, @SourceBranchID,@TargeteBranchID, @Transaction_Status_ID, 
+                string query = @"INSERT INTO Transactions
+               (TransactionNumber
+               ,SenderID
+               ,RecierverID
+               ,SourceBranchID
+               ,TargeteBranchID
+               ,Transaction_Status_ID
+               ,TransferAmount
+               ,FeeAmount
+               ,CurrencyID
+               ,Date_Transaction
+               ,Transaction_type
+               ,isClientRecierver
+               ,isClientSender
+               ,ClientSenderID
+               ,ClientRecierverID
+               ,Description)
+         VALUES (@TransactionNumber,@SenderID,@RecierverID, @SourceBranchID,@TargeteBranchID, @Transaction_Status_ID, 
 			    @TransferAmount, @FeeAmount,@CurrencyID,@Date_Transaction,@Transaction_type, 
 			    @isClientRecierver, @isClientSender,@ClientSenderID,@ClientRecierverID,@Description)";
 
@@ -146,6 +146,7 @@ namespace DataAccessLayerr
             command.Parameters.AddWithValue("@SourceBranchID", SourceBranchID);
             command.Parameters.AddWithValue("@TransferAmount", TransferAmount);
             command.Parameters.AddWithValue("@Date_Transaction", Date_Transaction);
+            command.Parameters.AddWithValue("@Transaction_type",  Transaction_type);
             
             command.Parameters.AddWithValue("@ClientSenderID", ClientSenderID);
             command.Parameters.AddWithValue("@ClientRecierverID", ClientRecierverID);
@@ -185,7 +186,7 @@ namespace DataAccessLayerr
         }
 
         public static bool UpdateTransaction(int TransactionID,  int TransactionNumber,  int SenderID,  int RecierverID,  int SourceBranchID,
-             int TargeteBranchID, string Transaction_Status_ID
+             int TargeteBranchID, int  Transaction_Status_ID,  int Transaction_type
             ,  double FeeAmount, int CurrencyID,  double TransferAmount,  DateTime Date_Transaction, bool isClientRecierver, bool isClientSender, int ClientRecierverID, int ClientSenderID,  string Description)
         {
 
@@ -201,7 +202,7 @@ namespace DataAccessLayerr
                                 TargeteBranchID=@TargeteBranchID,
                                 SourceBranchID=@SourceBranchID,
                                 FeeAmount = @FeeAmount,
-                                CurrencyID = @CurrencyID,
+                                CurrencyID = @CurrencyID,Transaction_type =@Transaction_type,
                                 Date_Transaction = @Date_Transaction ,
                                 Description = @Description , isClientSender=@isClientSender ,
                                 isClientRecierver =@isClientRecierver ,
@@ -232,6 +233,7 @@ namespace DataAccessLayerr
             command.Parameters.AddWithValue("@ClientRecierverID", ClientRecierverID);
             command.Parameters.AddWithValue("@isClientSender", isClientSender);
             command.Parameters.AddWithValue("@isClientRecierver", isClientRecierver);
+            command.Parameters.AddWithValue("@Transaction_type", Transaction_type);
 
             command.Parameters.AddWithValue("@Date_Transaction", Date_Transaction);
             command.Parameters.AddWithValue("@Description", Description);
@@ -258,7 +260,7 @@ namespace DataAccessLayerr
         }
 
 
-        public bool UpdateTransactionStatus(int TransactionID,int TransactionStatusID)
+        public static bool UpdateTransactionStatus(int TransactionID,int TransactionStatusID)
         {
             int RowsAffected = 0;
 
@@ -340,7 +342,7 @@ namespace DataAccessLayerr
             /*
              
             int TransactionNumber,ref int TransactionID, ref int SenderID, ref int RecierverID,ref int SourceBranchID,
-            ref int TargeteBranchID, ref string Transaction_Status_ID 
+            ref int TargeteBranchID, ref int  Transaction_Status_ID 
             , ref double FeeAmount , ref int CurrencyID , ref double TransferAmount , ref DateTime Date_Transaction, ref string Description 
 
              */
@@ -419,17 +421,17 @@ namespace DataAccessLayerr
 
         }
 
-        public static bool IsTransactionExist(int TransactionID)
+        public static bool IsTransactionExist(int TransactionNumber)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT Found=1 FROM Transactions WHERE TransactionID = @TransactionID";
+            string query = "SELECT Found=1 FROM Transactions WHERE TransactionNumber = @TransactionNumber";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@TransactionID", TransactionID);
+            command.Parameters.AddWithValue("@TransactionNumber", TransactionNumber);
 
             try
             {

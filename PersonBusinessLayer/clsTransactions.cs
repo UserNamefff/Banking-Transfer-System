@@ -21,7 +21,7 @@ namespace UsersBussncessLayerLib
         private int      _RecierverID;
         private int      _SourceBranchID;
         private int      _TargeteBranchID;
-        private string   _Transaction_Status_ID;
+        private int   _Transaction_Status_ID;
         private double   _FeeAmount;
         private int      _CurrencyID;
         private double   _TransferAmount;
@@ -31,7 +31,7 @@ namespace UsersBussncessLayerLib
         private bool _isClientSender;
         private int _ClientRecierverID;
         private int _ClientSenderID;
-          
+        public  int Transacion_type{ set; get; }
 
         public enMode _eMode;
         public clsCurrency currency;
@@ -45,7 +45,7 @@ namespace UsersBussncessLayerLib
             this._RecierverID          = 0;
             this._SourceBranchID       = 0;
             this._TargeteBranchID      = 0;
-            this._Transaction_Status_ID= "";
+            this._Transaction_Status_ID= 0;
             this._FeeAmount            = 0.0;
             this._CurrencyID           = 0;
             this._TransferAmount       = 0.0 ;
@@ -57,8 +57,20 @@ namespace UsersBussncessLayerLib
             _eMode = enMode.eSendTransfer;
 
         }
-         
-        private clsTransactions(int TransactionID,int TransactionNumber,int SenderID,int RecierverID,int SourceBranchID,int TargeteBranchID,string Transaction_Status_ID, double TransferAmount,
+        Random random = new Random();
+        
+        private int _GetUniqueTransactionNumber()
+        {
+            clsDATransactions.IsTransactionExist(this._TransactionNumber);
+            do
+            {
+                this.TransactionNumber = random.Next(1000, 20000);
+
+            } while (clsDATransactions.IsTransactionExist(this._TransactionNumber));
+
+            return this._TransactionNumber;
+        }
+        private clsTransactions(int TransactionID,int TransactionNumber,int SenderID,int RecierverID,int SourceBranchID,int TargeteBranchID,int Transaction_Status_ID, double TransferAmount,
                                 double FeeAmount, int CurrencyID, bool isClientRecierver, bool isClientSender, int ClientSenderID ,int ClientRecierverID , string Description)
         {
             this._isClientRecierver = isClientRecierver;
@@ -100,9 +112,11 @@ namespace UsersBussncessLayerLib
             get { return _isClientSender; }
 
         }
-        public int TransactionNumber
+        private int TransactionNumber
         {
+            
             get { return _TransactionNumber; }
+
             set { _TransactionNumber = value; }
         }
         public int SenderID
@@ -125,7 +139,7 @@ namespace UsersBussncessLayerLib
             get { return _TargeteBranchID; }
             set { _TargeteBranchID = value; }
         }
-        public string Transaction_Status_ID
+        public int Transaction_Status_ID
         {
             get{ return _Transaction_Status_ID; }
             set { _Transaction_Status_ID = value; }
@@ -162,22 +176,25 @@ namespace UsersBussncessLayerLib
         }
         private bool _SendTransfer()
         {
-            this._TransactionID = clsDATransactions.AddNewTransaction(this._TransactionNumber,this._SenderID,this._RecierverID,
-            this._SourceBranchID,this._TargeteBranchID,this._Transaction_Status_ID,this._FeeAmount,
+            this._TransactionID = clsDATransactions.AddNewTransaction(this._GetUniqueTransactionNumber(), this._SenderID,this._RecierverID,
+            this._SourceBranchID,this._TargeteBranchID,this._Transaction_Status_ID,this.Transacion_type,this._FeeAmount,
             this._CurrencyID,this._TransferAmount,this._Date_Transaction,  this._isClientSender ,this._isClientRecierver, this._ClientRecierverID, this._ClientSenderID, this._Description);
             return (this._TransactionID != -1);
         }
+
+        //private int 
         public static clsTransactions Find(int TransactionNumber )
         {
             int TransactionID = 0;
             int SenderID = 0;  int RecierverID = 0;int SourceBranchID = 0; int TargeteBranchID =0;
-            string Transaction_Status_ID = "";double FeeAmount = 0.0; int    CurrencyID = 0;
+            int Transaction_Status_ID = 0;double FeeAmount = 0.0; int    CurrencyID = 0;
             double TransferAmount = 0.0; string Description = ""; DateTime Date_Transaction = DateTime.Now;
             bool isClientSender = false, isClientRecierver = false;
             int ClientSenderID = 0, ClientRecierverID = 0;
-            
-           if ( clsDATransactions.GetTransactionInfoByTransactionID(TransactionNumber,ref TransactionID, ref SenderID, ref RecierverID, ref SourceBranchID, ref TargeteBranchID,
-               ref Transaction_Status_ID, ref FeeAmount, ref CurrencyID, ref TransferAmount,ref Date_Transaction,ref isClientSender,ref isClientRecierver, ref ClientRecierverID,ref ClientSenderID, ref Description))
+            int Transaction_type = 0;
+
+            if (clsDATransactions.GetTransactionInfoByTransactionID(TransactionNumber, ref TransactionID, ref SenderID, ref RecierverID, ref SourceBranchID, ref TargeteBranchID,
+                ref Transaction_Status_ID, ref Transaction_type, ref FeeAmount, ref CurrencyID, ref TransferAmount,ref Date_Transaction,ref isClientSender,ref isClientRecierver, ref ClientRecierverID,ref ClientSenderID, ref Description))
            {
                 
                      
@@ -190,7 +207,7 @@ namespace UsersBussncessLayerLib
         private bool _UpdateTransfer()
         {
             return clsDATransactions.UpdateTransaction(this.TransactionID,this._TransactionNumber, this._SenderID, this._RecierverID,
-            this._SourceBranchID, this._TargeteBranchID, this._Transaction_Status_ID, this._FeeAmount,
+            this._SourceBranchID, this._TargeteBranchID, this._Transaction_Status_ID,this.Transacion_type, this._FeeAmount,
             this._CurrencyID, this._TransferAmount, this._Date_Transaction, this._isClientSender, this._isClientRecierver, this._ClientRecierverID, this._ClientSenderID, this._Description);
         }
         private bool _RemittanceTransfer()

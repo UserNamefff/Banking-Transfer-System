@@ -42,12 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsCountryDataAccess.cs" />
-    <Compile Include="clsClientsDataAccess.cs" />
+    <Compile Include="clsAccountsDataAccess.cs" />
     <Compile Include="clsDAAccount_to_Acount_Transfer.cs" />
     <Compile Include="clsDAAccount_to_Cach_Transfer.cs" />
     <Compile Include="clsDABoxToUsers.cs" />
     <Compile Include="clsDABranches.cs" />
     <Compile Include="clsDACities.cs" />
+    <Compile Include="clsDAClients.cs" />
     <Compile Include="clsDACurrencies.cs" />
     <Compile Include="clsDANonClients.cs" />
     <Compile Include="clsDAPersons.cs" />
@@ -56,7 +57,7 @@
     <Compile Include="clsDATransactions.cs" />
     <Compile Include="clsDATransactionStatus.cs" />
     <Compile Include="clsDATrasactionTypes.cs" />
-    <Compile Include="clsRegions.cs" />
+    <Compile Include="clsDARegions.cs" />
     <Compile Include="clsUsersAccessData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

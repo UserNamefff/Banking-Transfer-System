@@ -64,6 +64,61 @@ namespace DataAccessLayerr
 
             return isFound;
         }
+
+        public static bool GetBoxInfoByBoxID(string BoxName, int UserID, ref int BoxID , ref double BoxBalence, ref double Revenues, ref string BoxType, ref DateTime Date)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT * FROM Boxes WHERE BoxName = @BoxName";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@BoxName", BoxName);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    //The record was found
+                    isFound = true;
+
+                    BoxID = (int)reader["BoxID"];
+                    BoxBalence = (double)reader["BoxBalence"];
+                    Revenues = (int)reader["Revenues"];
+                    BoxType = (string)reader["BoxType"];
+                    Date = (DateTime)reader["Date"];
+
+
+                }
+                else
+                {
+                    // The record was not found
+                    isFound = false;
+                }
+
+                reader.Close();
+
+
+            }
+            catch (SqlException ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
+
         public static int AddNewBox( int UserID,string BoxName,  double BoxBalence,  double Revenues,  string BoxType, DateTime Date)
         {
             //this function will return the new Box id if succeeded and -1 if not.

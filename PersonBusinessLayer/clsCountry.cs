@@ -129,6 +129,24 @@ namespace UsersBussncessLayerLib
             return null;
         }
 
+          public static clsCountry Find(string CountryName)
+        {
+            _enMode Mode = _enMode.UpdateMode; 
+            
+            int CountryID = -1;
+            string CountryCode = "";
+            
+            bool isFount = clsCountryDataAccess.GetCountryByID(CountryName, ref CountryCode , ref  CountryID);
+
+            if (isFount)
+            {
+                return new clsCountry(_enMode.UpdateMode,CountryID,CountryCode,CountryName );
+            }
+
+            return null;
+        }
+
+
         public static DataTable GetAllCountries()  
         {
             DataTable dt = clsCountryDataAccess.GetAllCountries();

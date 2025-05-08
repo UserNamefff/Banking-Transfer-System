@@ -1,5 +1,7 @@
-﻿using System;
+﻿using DataAccessLayerr;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,16 +12,23 @@ namespace UsersBussncessLayerLib
 {
     public class clsPerson1
     {
-        private int _ID;
+        public enum enMode { eAdd = 1, eUpdate, eDelete,  eEmpty }
+
+        private int _ID ;
         private string _FName;
         private string _LName;
         private string _MName;
         private string _Email;
         private string _PhoneNumber;
         private string _Gender;
+        private string _Address;
+        private int _CountryID;
+        private DateTime _DateOfBirth;
+        private string _ImagePath     ;
 
-
-        public clsPerson1(int ID, string FName, string LName, string MName, string PhoneNumber, string Email, string Gender)
+        enMode eMode;
+        private clsPerson1(int ID, string FName, string LName, string MName, string PhoneNumber, string Email, 
+            string Gender, string Address,int CountryID,DateTime DateOfBirth, string ImagePath)
         {
             this._ID = ID;
             this._FName = FName;
@@ -28,142 +37,200 @@ namespace UsersBussncessLayerLib
             this._Email = Email;
             this._PhoneNumber = PhoneNumber;
             this._Gender = Gender;
+            this._Address = Address;
+            this._ImagePath = ImagePath;
+            this._DateOfBirth = DateOfBirth;
+            this._CountryID = CountryID;
+            eMode = enMode.eUpdate;
         }
 
-        public clsPerson1( string FName, string LName, string MName, string PhoneNumber, string Email,string Gender)
+        public clsPerson1()
         {
-            //this._ID = ID;
-            this._FName = FName;
-            this._LName = LName;
-            this._MName = MName;
-            this._PhoneNumber = PhoneNumber;
-            this._Email=Email;
-            this._Gender = Gender;
+            this._ID = -1;
+            this._FName = "";
+            this._LName = "";
+            this._MName = "";
+            this._PhoneNumber = "";
+            this._Email="";
+            this._Gender = "";
+            this._Address = "";
+            this._ImagePath = "";
+            this._DateOfBirth = DateTime.Now;
+            this._CountryID = 0;
+            eMode = enMode.eAdd;
         }
 
-        public clsPerson1(string FName, string LName, string MName, string PhoneNumber, string Gender)
-        {
-            // this._ID = ID;
-            this._FName = FName;
-            this._LName = LName;
-            this._MName = MName;
-
-            this._PhoneNumber = PhoneNumber;
-            this._Gender = Gender;
-        }
-
-        public clsPerson1(string FName, string LName, string PhoneNumber, string Gender)
-        {
-            // this._ID = ID;
-            this._FName = FName;
-            this._LName = LName;
-            this._PhoneNumber = PhoneNumber;
-            this._Gender = Gender;
-        }
-
-        public clsPerson1(string FName, string LName, string PhoneNumber)
-        {
-            //this._ID = ID;
-            this._FName = FName;
-            this._LName = LName;
-            this._PhoneNumber = PhoneNumber;
-
-        }
-
+        
         public int ID
         {
-            get { return this._ID; }
+            get{return _ID; }
         }
         
         public string FName
         {
-            get { return this._FName; }
-            set { _FName = FName; }
+            set{ _FName = value; } get{return _FName; }
         }
         
         public string LName
         {
-            get { return this._LName; }
-            set { _FName = LName; }
+            set { _LName = value; }
+            get { return _LName; }
 
         }
         
         public string MName
         {
-            get { return this._MName; }
-            set { _MName = MName; }
+            set { _MName = value; }
+            get { return _MName; }
         }
+        
+
+        //the value of _Email will be null ;Email is null 
+        //public string Email
+        //{
+        //    set{_Email = Email; }
+        //    get { return _Email; }
+        //} 
         
         public string Email
         {
-            get { return this._Email; }
-            set { _Email = Email; }
+            set{_Email = value; }
+            get { return _Email; }
         }
         
+
         public string PhoneNumber
         {
-            get { return this._PhoneNumber; }
-            set { _PhoneNumber = PhoneNumber; }
+
+            set { _PhoneNumber = value; }
+            get { return _PhoneNumber; }
 
         }
         
         public string Gender
         {
             get { return this._Gender; }
-            set { _Gender = Gender; }
+            set { _Gender = value; }
         }
 
-        public void Save ()
+        public string Adrress 
+        { 
+            set { _Address = value; } 
+            get { return _Address; }
+        }
+        public int  CountryID { set { _CountryID = value; } get { return _CountryID; } }
+        public DateTime DateOfBirth { get{ return _DateOfBirth; } set { _DateOfBirth = value; } }
+        public string ImagePath { 
+            get{ return _ImagePath; } 
+            set{ _ImagePath = value;  }
+        }
+
+        public bool Save()
         {
-            //Saving data into database will be here ...
-        }
 
-        public void Update()
+            switch (eMode)
+            {
+                case enMode.eAdd:
+                {
+                    if(_Add())
+                    {
+                         eMode = enMode.eUpdate;
+                        return true;
+                    }
+                }
+                      break;
+                
+                case enMode.eEmpty:
+                {
+                    return false;
+                      break;
+                }
+                    
+                case enMode.eUpdate:
+                {
+                    if(Update())
+                    {
+                       return true;
+
+                    }
+                        break;
+                }
+
+            }
+
+            return false;
+        }
+        private bool _Add()
+        {
+            this._ID = clsDAPersons.AddNewPerson(this._FName, this._LName, this._Email, this._PhoneNumber, this._Address, this._DateOfBirth, this._CountryID, this._ImagePath,this._Gender);
+
+            return this._ID != 0;
+        }
+        public bool Update()
         {
             //Updating data into database will be here ...
+            return clsDAPersons.UpdatePerson(this._ID,this._FName,this._LName,this._Email,this._PhoneNumber,this._Address,this._DateOfBirth,this._CountryID,this._ImagePath,this.Gender);
         }
-
-        public void Delete()
+        public bool Delete()
         {
             //Deleting data from database will be here ...
+            return clsDAPersons.DeletePerson(this._ID);
         }
-        
-        public List<clsPerson1> GetAllPeopleData()
+        public DataTable GetAllPeople()
         {
             //Get All People data from db will be here
-            return null;
+            return clsDAPersons.GetAllPersons();
         }
-
-        public clsPerson1 GetPerson()
+        public clsPerson1 Find(int PersonID)
         {
+            int ID;
+            string FName = "";
+            string LName = "";
+            
+            string PhoneNumber = "";
+            string Email = "";
+            string Gender = "";
+            string Address = ""; int CountryID= 0;
+            DateTime DateOfBirth= DateTime.Now;
+            string ImagePath = "";
+
+            bool isFound = clsDAPersons.GetPersonInfoByID(PersonID, ref FName, ref LName, ref Email, ref PhoneNumber, ref Address, ref DateOfBirth, ref CountryID, ref ImagePath,ref Gender);
+
+            if (isFound)
+            {
+                return new clsPerson1(PersonID,  FName,  LName,"",  Email, Gender,  PhoneNumber,  Address, CountryID,  DateOfBirth,  ImagePath);
+            }
             return null;
         }
-
         public static clsPerson1 FindByID(int  id)
         {
             //Search person into database will be here ...
             return null;
         } 
-        
         public clsPerson1 FindByFName(string  FisrtName)
         {
             //Search person into database will be here ...
-            return null;
-        }
 
-        public clsPerson1 FindByFNameAndLastName(string  FisrtName,string LastName)
-        {
-            //Search person into database will be here ...
-            return null;
-        }
-        
-        public clsPerson1 FindByFNameAndEmail(string  FisrtName,string Email)
-        {
-            //Search person into database will be here ...
-            return null;
-        }
+            int PersonID = 0;
+            string FName = "";
+            string LName = "";
 
-        
+            string PhoneNumber = "";
+            string Email = "";
+            string Gender = "";
+            string Address = ""; int CountryID = 0;
+            DateTime DateOfBirth = DateTime.Now;
+            string ImagePath = "";
+
+            bool isFound = clsDAPersons.GetPersonInfoByID(FisrtName, ref PersonID , ref LName, ref Email, ref PhoneNumber, ref Address, ref DateOfBirth, ref CountryID, ref ImagePath,ref Gender);
+
+            if (isFound)
+            {
+                return new clsPerson1(PersonID, FName, LName, "", Email, Gender, PhoneNumber, Address, CountryID, DateOfBirth, ImagePath);
+            }
+
+            return null;
+        }
 
     }
 }

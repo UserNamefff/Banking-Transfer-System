@@ -11,6 +11,47 @@ namespace DataAccessLayerr
 {
    public class clsDATrasactionTypes
    {
+        public static bool GetTransactionTypeByTransaction_type(string Transaction_typeName, ref int Transaction_typeID)
+        {
+
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT  *FROM Transaction_types Where Transaction_typeName = @Transaction_typeName ";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+
+            command.Parameters.AddWithValue("@Transaction_typeName", Transaction_typeName);
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    isFound = true;
+                    Transaction_typeID = (int)reader["Transaction_typeID"];
+                }
+
+                reader.Close();
+
+
+            }
+
+            catch (Exception ex)
+            {
+                // Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
         public static DataTable GetAllTransaction_types(bool FromORToAccount = true)
         {
             string Type = "";

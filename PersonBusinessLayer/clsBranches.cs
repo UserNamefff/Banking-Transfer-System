@@ -15,8 +15,8 @@ namespace UsersBussncessLayerLib
         public enum enMode { eAdd = 1,eUpdate ,eDelete ,eEmpty }
 
         string _BranchName;
-        int _BranchID;
-        int _CityID;
+        public int _BranchID { get; set; }
+        int _RegionID;
         enMode _eMode;
         DateTime _date;
         double _BranchBalence;
@@ -24,7 +24,7 @@ namespace UsersBussncessLayerLib
         clsBranches ()
         {
             _BranchID = 0;
-            _CityID = 0;
+            _RegionID = 0;
             _BranchName = string.Empty;
             _BranchBalence = 0.0;
             _date = DateTime.Now;
@@ -33,11 +33,11 @@ namespace UsersBussncessLayerLib
 
         }
 
-        private clsBranches (enMode Mode, int branchID,int CityID,string BranchName,double BranchBalence,DateTime date)
+        private clsBranches (enMode Mode, int branchID,int RegionID,string BranchName,double BranchBalence,DateTime date)
         {
             this._BranchID = branchID;
-            this._CityID = CityID;
-            this._BranchName = _BranchName;
+            this._RegionID = RegionID;
+            this._BranchName = BranchName;
             this._BranchBalence = BranchBalence;
             this._date =date;
             this._eMode = Mode;
@@ -46,13 +46,13 @@ namespace UsersBussncessLayerLib
         public int BranchID
         {
             get { return _BranchID; }
-            set { _BranchID = value; }
+           // set { _BranchID = value; }
         }
         
-        public int CityID
+        public int RegionID
         {
-            get { return _CityID; }
-            set { _CityID = value; }
+            get { return _RegionID; }
+            set { _RegionID = value; }
         }
         
         public string BranchName
@@ -76,28 +76,46 @@ namespace UsersBussncessLayerLib
         public static clsBranches Find(int branchID)
         {
             int BranchID = 0;
-            int CityID = 0;
+            int RegionID = 0;
             string BranchName = string.Empty;
             double BranchBalence = 0.0;
             DateTime date = DateTime.Now;
 
-            if(clsDABranches.GetBranchInfoByBranchID(branchID, ref CityID, ref BranchName, ref BranchBalence,ref date))
+            if(clsDABranches.GetBranchInfoByBranchID(branchID, ref RegionID, ref BranchName, ref BranchBalence,ref date))
             {
-                return new clsBranches(enMode.eUpdate,branchID, CityID, BranchName, BranchBalence, date);
+                return new clsBranches(enMode.eUpdate,branchID, RegionID, BranchName, BranchBalence, date);
             }
 
             return null;
         }
 
+        public static clsBranches Find(string branchName)
+        {
+            int BranchID = -1;
+            int RegionID = 0;
+            
+            double BranchBalence = 0.0;
+            DateTime date = DateTime.Now;
+
+            if (clsDABranches.GetBranchInfoByBranchName(branchName, ref RegionID,ref BranchID  , ref BranchBalence, ref date))
+            {
+                return new clsBranches(enMode.eUpdate, BranchID, RegionID, branchName, BranchBalence, date);
+            }
+
+            return null;
+        }
+
+
+
         private bool _Add()
         {
-            this._BranchID = clsDABranches.AddNewBranch(this._CityID, this._BranchName, this.BranchBalence,this._date); 
+            this._BranchID = clsDABranches.AddNewBranch(this._RegionID, this._BranchName, this.BranchBalence,this._date); 
             return (this._BranchID !=-1);
         }
 
         private bool _Update()
         {
-            return clsDABranches.UpdateBranch(this._BranchID, this._CityID, this._BranchName, this.BranchBalence);
+            return clsDABranches.UpdateBranch(this._BranchID, this._RegionID, this._BranchName, this.BranchBalence);
         }
 
         private bool _Delete ()

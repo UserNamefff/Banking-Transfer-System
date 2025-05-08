@@ -5,12 +5,13 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlTypes;
 
 namespace DataAccessLayerr
 {
     public class clsDABranches
     {
-        public static bool GetBranchInfoByBranchID(int BranchID, ref int CityID, ref string BranchName,ref double BranchBalence , ref DateTime date)
+        public static bool GetBranchInfoByBranchID(int BranchID, ref int AddressBranch, ref string BranchName,ref double Branch_Balence, ref DateTime date)
         {
             bool isFound = false;
 
@@ -32,11 +33,11 @@ namespace DataAccessLayerr
                     // The record was found
                     isFound = true;
 
-                    CityID = (int)reader["CityID"];
+                    AddressBranch = (int)reader["AddressBranch"];
                     BranchID = (int)reader["BranchID"];
                     BranchName = (string)reader["BranchName"];
-                    BranchName = (string)reader["BranchBalence"];
-                    date = (DateTime)reader["date"];
+                    Branch_Balence = (double)reader["Branch_Balence"];
+                   // date = (DateTime)reader["date"];
 
 
                 }
@@ -62,7 +63,60 @@ namespace DataAccessLayerr
 
             return isFound;
         }
+        public static bool GetBranchInfoByBranchName(string BranchName, ref int AddressBranch, ref int BranchID , ref double Branch_Balence, ref DateTime date)
+        { 
+            bool isFound = false;
+            
 
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT  *FROM Branches WHERE BranchName =@BranchName";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@BranchName", BranchName);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // The record was found
+                    isFound = true;
+
+                    //PhonNumber = (string)reader["PhonNumber"];
+                    AddressBranch = reader.GetInt32(reader.GetOrdinal("AddressBranch"));
+                    BranchID = reader.GetInt32(reader.GetOrdinal("BranchID"));
+                    Branch_Balence = Convert.ToDouble(reader.GetOrdinal("Branch_Balence"));
+
+                    //date = reader.GetDateTime(reader.GetOrdinal("date"));
+
+
+                }
+                else
+                {
+                    // The record was not found
+                    isFound = false;
+                }
+
+                reader.Close();
+
+
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
         public static int AddNewBranch(  int CityID,  string BranchName, double BranchBalence , DateTime date )
         {
             //this function will return the new Branch id if succeeded and -1 if not.
@@ -109,7 +163,6 @@ namespace DataAccessLayerr
             return Branchid;
 
         }
-
         public static bool UpdateBranch(int BranchID, int CityID, string BranchName, double BranchBalence)
         {
 
@@ -152,7 +205,6 @@ namespace DataAccessLayerr
 
             return (rowsAffected > 0);
         }
-
         public static DataTable GetAllBranches()
         {
 
@@ -192,7 +244,6 @@ namespace DataAccessLayerr
             return dt;
 
         }
-
         public static bool DeleteBranch(int BranchID)
         {
             int rowsAffected = 0;
@@ -227,7 +278,6 @@ namespace DataAccessLayerr
             return (rowsAffected > 0);
 
         }
-
         public static bool IsBranchExist(int BranchID)
         {
             bool isFound = false;
@@ -261,7 +311,6 @@ namespace DataAccessLayerr
 
             return isFound;
         }
-
         public static bool IsBranchExistByBranchName(string BranchName)
         {
             bool isFound = false;
@@ -295,7 +344,6 @@ namespace DataAccessLayerr
 
             return isFound;
         }
-
         public static bool UpdateBalenceOFBranch(int  BranchID, double NewBalence)
         {
             int rowsAffected = 0;
@@ -333,7 +381,6 @@ namespace DataAccessLayerr
 
             return rowsAffected > 0;
         }
-
 
     }
 }

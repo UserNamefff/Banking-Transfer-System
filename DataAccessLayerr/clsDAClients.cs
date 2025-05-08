@@ -1,29 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-using System.Security.Principal;
-
 namespace DataAccessLayerr
 {
-   public class clsClientsDataAccess
+    public class clsDAClients
     {
-
-        public static bool GetClientInfoByAccountNumber(string AccountNumber ,ref int PersonID ,ref int Account_type,ref int CurrenryID ,ref double Balence)
+    
+        public static bool GetClientInfoByClientID(int ClientID, ref int PersonID,ref string  TypeClient)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Clients WHERE AccountNumber = @AccountNumber";
+            string query = "SELECT * FROM Clients WHERE ClientID = @ClientID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@AccountNumber", AccountNumber);
+            command.Parameters.AddWithValue("@ClientID", ClientID);
 
             try
             {
@@ -35,10 +34,14 @@ namespace DataAccessLayerr
                     // The record was found
                     isFound = true;
 
+
+
+                    TypeClient = (string)reader["TypeClient"];
+                    //ClientID = (int)reader["ClientID"];
                     PersonID = (int)reader["PersonID"];
-                    Account_type = (int)reader["Account_type"];
-                    Balence = (double)reader["Balence"];
-                    CurrenryID = (int)reader["CurrenryID"];
+                    
+
+
 
 
                 }
@@ -65,27 +68,21 @@ namespace DataAccessLayerr
             return isFound;
         }
 
-        public static int AddNewClient(int PersonID, string AccountNumber,  int Account_type,  int CurrenryID,  double Balence)
+        public static int AddNewClient(int PersonID, string TypeClient)
         {
             //this function will return the new Client id if succeeded and -1 if not.
-            string AccountNumbr = "";
-             int Clientid = 0;
+            string ClientNumbr = "";
+            int Clientid = 0;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO Clients (PersonID, AccountNumber,Account_type,CurrenryID,Balence);SELECT SCOPE_IDENTITY();";
+            string query = @"INSERT INTO Clients  (PersonID, TypeClient)
+                              VALUES (@PersonID, @TypeClient ); SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
 
+            command.Parameters.AddWithValue("@TypeClient", TypeClient);
             command.Parameters.AddWithValue("@PersonID", PersonID);
-            command.Parameters.AddWithValue("@AccountNumber", AccountNumber);
-            command.Parameters.AddWithValue("@Documente_Type", Account_type);
-            command.Parameters.AddWithValue("@CurrenryID", CurrenryID);
-            command.Parameters.AddWithValue("@Balence", Balence);
-            
-            
-
-
 
             try
             {
@@ -94,9 +91,9 @@ namespace DataAccessLayerr
                 object result = command.ExecuteScalar();
 
 
-                if (result != null && int.TryParse(result.ToString() , out int insertedClientID))
+                if (result != null && int.TryParse(result.ToString(), out int insertedClientID))
                 {
-                    AccountNumbr = result.ToString();
+                    ClientNumbr = result.ToString();
                     Clientid = insertedClientID;
                 }
 
@@ -114,30 +111,31 @@ namespace DataAccessLayerr
             }
 
             return Clientid;
-           // return AccountNumbr; //string
+            // return ClientNumbr; //string
         }
 
-        public static bool UpdateClient(int ID, string AccountNumber, int Account_type, int CurrenryID, double Balence)
+        public static bool UpdateClient(int ClientID, int PersonID, string TypeClient)
         {
 
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            //PersonID, ,,,
+            //ClientID, ,,,
             string query = @"Update  Clients  
-                            set Account_type = @Account_type, 
-                                AccountNumber = @AccountNumber, 
-                                Balence = @Balence, 
+                            set TypeClient = @TypeClient, 
+                                PersonID = @PersonID, 
+                                ClientID = @ClientID
                                 where ClientID = @ClientID ";
 
-          
+
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@ClientID", ID);
-            command.Parameters.AddWithValue("@AccountNumber", AccountNumber);
-            command.Parameters.AddWithValue("@Documente_Type", Account_type);
-            command.Parameters.AddWithValue("@CurrenryID", CurrenryID);
-            command.Parameters.AddWithValue("@Balence", Balence);
+            //int ClientID,int ,string 
+            command.Parameters.AddWithValue("@ClientID", ClientID);
+            command.Parameters.AddWithValue("@TypeClient", TypeClient);
+            //command.Parameters.AddWithValue("@Client_type", Client_type);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+           
 
 
 
@@ -237,17 +235,17 @@ namespace DataAccessLayerr
 
         }
 
-        public static bool IsClientExist(int ID)
+        public static bool IsClientExist(int ClientID)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT Found=1 FROM Clients WHERE ClientID = @ClientID";
+            string query = "SELECT Found=1 FROM Clients WHERE ClientNumber = @ClientNumber";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@ClientID", ID);
+            command.Parameters.AddWithValue("@ClientNumber", ClientID);
 
             try
             {
@@ -272,42 +270,6 @@ namespace DataAccessLayerr
         }
 
 
-        public static bool Withdraw(string AccountNumber, double Balence)
-        {
-            int RowsAffected = 0;   
-            string Query = "Update Clients set Balence=@Balence where  AccountNumber =@AccountNumber ";
-
-            SqlConnection conn = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            SqlCommand command = new SqlCommand(Query, conn);
-            command.Parameters.AddWithValue("@Balence", Balence);
-            command.Parameters.AddWithValue("@AccountNumber", AccountNumber);
-
-            try
-            {
-                conn.Open();
-                RowsAffected = command.ExecuteNonQuery();
-
-            }
-
-            catch (Exception ex)
-            {
-                conn.Close();
-                return false;
-            }
-
-
-            return (RowsAffected >0 );
-        }
-
-
-        public static bool Deposite(string AccountNumber, double Balence)
-        {
-            return Withdraw(AccountNumber, Balence); 
-        }
-
-
-        
 
 
     }

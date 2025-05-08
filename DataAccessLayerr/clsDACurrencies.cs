@@ -10,7 +10,7 @@ namespace DataAccessLayerr
 {
     public class clsDACurrencies
     {
-        public static bool GetCurrencyInfoByID(int CurrencyID, ref string CurrencyCode, ref double Rate, ref int CountryID)
+        public static bool GetCurrencyInfoByID(int CurrencyID, ref string CurrencyName,ref string CurrencyCode, ref double Rate, ref int CountryID)
         {
             bool isFound = false;
 
@@ -61,6 +61,62 @@ namespace DataAccessLayerr
             return isFound;
         }
 
+        public static bool GetCurrencyInfoByID(string CurrencyCode, ref string CurrencyName, ref int CurrencyID , ref double Rate, ref int CountryID)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT * FROM Currencies WHERE CurrencyCode = @CurrencyCode";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@CurrencyCode", CurrencyCode);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // The record was found
+                    isFound = true;
+
+                    CurrencyName =  reader.GetString(reader.GetOrdinal("CurrencyName"));
+                    CurrencyID =  reader.GetInt32(reader.GetOrdinal("CurrencyID"));
+                    Rate =Convert.ToDouble( reader.GetOrdinal("Rate"));
+                    CountryID = reader.GetInt32(reader.GetOrdinal("CountryID"));
+                    
+                    
+
+
+
+                }
+                else
+                {
+                    // The record was not found
+                    isFound = false;
+                }
+
+                reader.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
+
         public static int AddNewCurrency(string CurrencyCode,  double Rate,string CurrencyName , int CountryID)
         {
             //this function will return the new Currency id if succeeded and -1 if not.
@@ -68,8 +124,8 @@ namespace DataAccessLayerr
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO Currencies (CurrencyCode, CurrencyName,CountryID, Rate, CountryID)
-                             VALUES (@CurrencyCode, @CurrencyName,@CountryID, @Rate, @CountryID);
+            string query = @"INSERT INTO Currencies (CurrencyName,CountryID, Rate, CountryID,CurrencyCode)
+                             VALUES (@CurrencyName,@CountryID, @Rate, @CountryID,@CurrencyCode);
                              SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);

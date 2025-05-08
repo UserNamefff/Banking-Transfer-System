@@ -71,23 +71,22 @@ namespace DataAccessLayerr
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO NonClients (FullName,  PhonNumber, Gender,CreatedDate)
-                             VALUES (@FullName,  @PhonNumber, @Gender,@CreatedDate);
+            string query = @"INSERT INTO NonClients (FirstName,  Phone_Number)
+                             VALUES (@FirstName,  @Phone_Number);
                              SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@FullName", FullName);
+            command.Parameters.AddWithValue("@FirstName", FullName);
             
-            command.Parameters.AddWithValue("@PhonNumber", PhonNumber);
             
-            command.Parameters.AddWithValue("@Gender", Gender);
+            //command.Parameters.AddWithValue("@Gender", Gender);
 
             if (PhonNumber != "" && PhonNumber != null)
                 
-                command.Parameters.AddWithValue("@PhonNumber", PhonNumber);
+                command.Parameters.AddWithValue("@Phone_Number", PhonNumber);
             else
-                command.Parameters.AddWithValue("@PhonNumber", System.DBNull.Value);
+                command.Parameters.AddWithValue("@Phone_Number", System.DBNull.Value);
 
             try
             {

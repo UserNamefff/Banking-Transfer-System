@@ -16,17 +16,19 @@ namespace UsersBussncessLayerLib
         public enum enMode { eAdd = 1 , eUpdate = 2 ,eDelete = 3 ,eEmpty = 4  }
 
         private enMode _eMode;
-        private int _CurrencyID; 
-        private int _CountryID; 
-        private string _CurrencyCode;
-        private string _CountryName; 
-        private double _Rate;
+        public int CurrencyID { get; set; }
+        private int _CountryID { get; set; }
+        public string _CurrencyCode { get; set; }
+        private string _CurrencyName { get; set; }
+        private string _CountryName { get; set; }
+        public double _Rate { get; set; }
 
-        
-        private clsCurrency(int CurrencyID, string currencyCode, float rate, int countryID)
+
+        private clsCurrency(int CurrencyID, string CurrencyName, string currencyCode, double  rate, int countryID)
         {
-            this._CurrencyID = CurrencyID;
+            this.CurrencyID = CurrencyID;
             this._CurrencyCode = currencyCode;
+            this._CurrencyName= CurrencyName;
             this._CountryID = countryID;
             this._Rate = rate;
             _eMode = enMode.eUpdate;
@@ -36,25 +38,14 @@ namespace UsersBussncessLayerLib
 
         public clsCurrency()
         {
-            this._CurrencyID = 0;
+            this.CurrencyID = 0;
             this._CurrencyCode = "";
             this._CountryID = 0;
             this._Rate = 0.0;
             _eMode = enMode.eAdd;
 
         }
-        public clsCurrency(string currencyCode, float rate, int countryID)
-        {
-            _eMode = enMode.eAdd;
-            this._CurrencyCode = currencyCode;
-            this._CountryID = countryID;
-            this._Rate = rate;
-        }
-
-
-
-
-
+        
         public void Save()
         {
             //Saving data of currency into database will be here ...
@@ -88,7 +79,8 @@ namespace UsersBussncessLayerLib
         {
             //Updating data of currency into database will be here ...
 
-            return false;
+
+            return clsDACurrencies.UpdateCurrency(this.CurrencyID, this._CurrencyCode, this._Rate,this._CurrencyName,this._CountryID);
         }
 
         public void Delete(int CurrencyID)
@@ -103,14 +95,37 @@ namespace UsersBussncessLayerLib
 
         public static clsCurrency FindCurrencyInfoByID(int CurrencyID)
         {
+            // int    CurrencyID = 0;
+             int    CountryID = 0;
+             string CurrencyCode = "";
+             string CurrencyName = "";
+            double Rate = 0.0;
+             
 
+            if(clsDACurrencies.GetCurrencyInfoByID(CurrencyID,ref CurrencyName, ref CurrencyCode,ref Rate,ref CountryID))
+            {
+                return new clsCurrency(CurrencyID, CurrencyName, CurrencyCode,  Rate,  CountryID);
+            }
             return null;
+            
         }
 
 
 
         public static clsCurrency FindByCurrencyCode (string Code)
         {
+             int    CurrencyID = 0;
+            int CountryID = 0;
+            string CurrencyName = "";
+            string CurrencyCode = "";
+            double Rate = 0.0;
+
+
+            if (clsDACurrencies.GetCurrencyInfoByID(Code, ref CurrencyName, ref CurrencyID, ref Rate, ref CountryID))
+            {
+                return new clsCurrency(CurrencyID, CurrencyName, CurrencyCode, Rate, CountryID);
+            }
+            
             return null;
         }
         

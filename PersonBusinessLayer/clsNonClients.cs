@@ -17,6 +17,7 @@ namespace UsersBussncessLayerLib
         private enMode _eMode;
         public clsNonClients()
         {
+            _eMode = enMode.Add;
             _ID = 0;
             _FullName = "";
             _PhoneNumber="";

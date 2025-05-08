@@ -1,7 +1,10 @@
 ﻿using DataAccessLayerr;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,10 +12,11 @@ using System.Threading.Tasks;
 
 namespace UsersBussncessLayerLib
 {
-    class clsUser  : clsPerson1
+    public class clsUser  
     {
-       public enum enMode { EmptyMode = 0, UpdateMode = 1, AddMode = 3 };
-        enMode _Mode;
+       public enum enMode { EmptyMode = 0, UpdateMode = 1, AddMode = 3,DeleteMode };
+        
+		enMode _Mode;
         private int _UserID;
         private int _PersonID;
         string _UserName;
@@ -26,35 +30,57 @@ namespace UsersBussncessLayerLib
 
         public clsPerson1 Person;
 
-        public  clsUser(string UserName , string Password,string FName,string LName, string MName, string PhonNumber , string Email,string Gender) : base(FName, LName, MName, PhonNumber, Email, Gender) 
+        public  clsUser(string UserName , string Password,string FName,string LName, string MName, string PhonNumber , string Email,string Gender) 
+        {
+             
+            // (int ID, string FName,  LName,  MName,  PhoneNumber ,  Email,  Gender)
+            this._UserID =-1;
+            this._UserName = UserName;
+            this._Password = Password;
+			this._Permissions = 0;
+            this._JobID = 0;
+			this._BranchID = 0;
+            
+            this.Person = clsPerson1.FindByID(this._PersonID);
+
+        }
+		
+		public  clsUser() 
         {
              
             // (int ID, string FName,  LName,  MName,  PhoneNumber ,  Email,  Gender)
             //this._ID +=1;
-            this._UserName = UserName;
-            this._Password = Password;
-			this.Person = clsPerson1.FindByID(this._PersonID);
+            this._UserID = -1;
+            this._UserName = "";
+            this._Password = "";
+            this._Permissions = 0;
+            this._JobID = 0;
+            this._BranchID = 0;
+            this._IsActive = false;
+
+            //this.Person = clsPerson1.FindByID(this._PersonID);
+
+            Mode = enMode.AddMode;
         }
 
-        clsUser(enMode Mode, string FirstName, string LastName,string Email, string Phone, string Gender , string UserName, string Password,int Permissions) :
-          base(FirstName, LastName, Email, Phone,Gender)
-
+        private clsUser(int UserID,int PersonID, string UserName, string Password,int Permissions, int JobID, int BranchID,  bool IsActive) 
         {
 
             _Mode = Mode;
             _UserName = UserName;
             _Password = Password;
             _Permissions = Permissions;
-
+            this._JobID = JobID;
+            this._BranchID = BranchID;
+            this._PersonID = PersonID;
+			this._IsActive = IsActive;
+			
         }
-
         public enum enMainMenuePermissions
         {
             eAll = -1, pListClients = 1, pAddNewClient = 2, pDeleteClient = 4,
             pUpdateClients = 8, pFindClient = 16, pTranactions = 32, pManageUsers = 64, pShowLogInRegister = 128
         };
-
-
         static stLoginRegisterRecord _ConvertLoginRegisterLineToRecord(stLoginRegisterRecord LoginRegisterRecord)
         {
             
@@ -67,19 +93,10 @@ namespace UsersBussncessLayerLib
             return LoginRegisterRecord;
 
         }
-
         static string EnctyptedPassword(string Password)
         {
 			return "";//clsUtil.EncryptText(Password);
         }
-
-
-	    public struct stLoginRegisterRecord
-        {
-            public string DateTime;
-			public int UserID;		
-
-        };
 
         public enMode Mode
         {
@@ -93,131 +110,192 @@ namespace UsersBussncessLayerLib
         }
         public string UserName
         {
-			set { _UserName = UserName; }
+			set { _UserName = value; }
 			get { return _UserName; }
         }
-
         public string Password
         {
-			set { _Password = Password; }
+			set { _Password = value; }
 			get { return _Password; }
         }
-
         public int Permissions
         {
-			set { _Permissions = Permissions; }
+			set { _Permissions = value; }
 			get { return _Permissions; }
         }
-
+		public int PersonID
+		{
+			set { _PersonID = value; }
+			get { return _PersonID; }
+		}
+        public int JobID
+		{
+			get { return _JobID; }
+			set { _JobID = value; }
+		}
+        public int BranchID
+		{
+			get {return _BranchID; } set{ _BranchID = value; }
+		}
+        public bool IsActive
+		{
+			get {return _IsActive; } set{_IsActive = value; }
+		}
         public Boolean IsEmpty()
 		{
 			return (enMode.EmptyMode == _Mode);
 		}
-
-        private void _Add()
+        private bool _Add()
         {
-			this._UserID = clsUsersAccessData.AddNewUser(this._UserID, this._PersonID,this.UserName, this._Password, this._Permissions, this._JobID, this._BranchID, this._IsActive);
-        }
+			this._UserID = clsUsersAccessData.AddNewUser( this._PersonID,this.UserName, this._Password, this._Permissions, this._JobID, this._BranchID, this._IsActive);
 
-       
+			return this._UserID != -1;
+		}
         public static clsUser GetAddNewUserObject(string UserName)
         {
-            return new clsUser(enMode.AddMode, "", "", "", "","", UserName, "", 0);
+			return null;
         }
-
-
         public static bool IsUserExist(int UserId)
 		{
-			clsUser User = clsUser.FindByUserID(UserId);
+			clsUser User = clsUser.Find(UserId);
 			return (User.IsEmpty());
 		}
-
         public enum enSaveResults { svFaildEmptyObject = 0, svSucceeded = 1, svFaildUserExists = 2 };
-        public enSaveResults Save()
+        public bool Save()
         {
 
             switch (_Mode)
             {
                 case enMode.AddMode:
-                    if (clsUser.IsUserExist(_UserID))
+                    if (_Add())
                     {
-                        return enSaveResults.svFaildUserExists;
+                        ;
+                        _Mode = enMode.UpdateMode;
+                        return true;
                     }
                     else
                     {
-                        _Add();
-                        _Mode = enMode.UpdateMode;
-                        return enSaveResults.svSucceeded;
+                        
 
                     }
                     break;
                 case enMode.EmptyMode:
                     if (IsEmpty())
                     {
-                        return enSaveResults.svFaildEmptyObject;
+                        return true;
                     }
 					break;
                 case enMode.UpdateMode:
-                    Update();
-                    return enSaveResults.svSucceeded;
+                    _Update();
+                    return true;
 					break;
             }
 
-            return enSaveResults.svSucceeded;
+            return false;
         }
-
         void RegisterLogin()
         {
             //insert data of Loggedin user into RegisterLogin table in db 
 
         }
-
-        private void _Update()
+        private bool _Update()
         {
             //Updating data into database will be here ...
-        }
 
-        private void _Delete()
+			return clsUsersAccessData.UpdateUser(this._UserID, this._PersonID, this.UserName, this._Password, this._Permissions, this._JobID, this._BranchID, this._IsActive);
+
+        }
+        private bool _Delete()
         {
             //Deleting data from database will be here ...
+		  return clsUsersAccessData.DeleteUser(this._UserID);
         }
-
-
-        public static clsUser FindByUserID(int UserId)
+        public static clsUser Find(int UserId)
         {
-			
-            return null;
+
+		 int _UserID;
+         int PersonID = 0;
+         string UserName = "";
+        string Password = "";
+        //string _EncryptedPassword ="";
+        int Permissions = 0;
+        int JobID = 0;
+        int BranchID = 0;
+        bool IsActive =false;
+        
+
+			if(clsUsersAccessData.GetUserInfoByUserID(UserId,ref PersonID,ref UserName,ref Password,ref Permissions,ref JobID,ref BranchID,ref IsActive))
+				return new clsUser(UserId,  PersonID, UserName,  Password,  Permissions,  JobID, BranchID,  IsActive);
+
+			else
+				return null;	
         }
 		
+		//To Login 
 		public static clsUser Find(string UserName,string Password)
         {
-            return null;
-        }
+            int _UserID = 0;
+            int PersonID = 0;
+            
+            //string _EncryptedPassword ="";
+            int Permissions = 0;
+            int JobID = 0;
+            int BranchID = 0;
+            bool IsActive = false;
 
-        public static List<clsUser> GetAllUsers()
+
+            if (clsUsersAccessData.GetUserInfoByUserNameAndPassword(UserName, Password,ref PersonID,ref _UserID, ref Permissions, ref JobID, ref BranchID, ref IsActive))
+                return new clsUser(_UserID, PersonID, UserName, Password, Permissions, JobID, BranchID, IsActive);
+
+            else
+                return null;
+        }
+        public static DataTable GetAllUsers()
         {
 			// get all user from database will be here ..
-            return new List<clsUser>();
+            return  clsUsersAccessData.GetAllUsers();
         }
-
         public Boolean AddNewUsers(clsUser user)
         {
 
             return false;
         }
+        public struct stLoginRegisterRecord
+        {
+			public int RegisterRecordID;
+            public DateTime Date;
+            public TimeSpan LoginTime;
+            public int UserID;
+			public TimeSpan LogoutTime;
 
-        public Boolean LogIn()
+        };
+        
+		stLoginRegisterRecord RegisterRecord = new stLoginRegisterRecord();
+        public bool LogIn()
         {
             //  Log in will be here ..
-            return false;
-        }
+            clsGlobl.user = this;
+            RegisterRecord.Date = DateTime.Now;
+            RegisterRecord.Date = RegisterRecord.Date.Date;
+            RegisterRecord.LoginTime = RegisterRecord.Date.TimeOfDay;
 
-        public Boolean Logout()
+			if (clsGlobl.user != null)
+			{
+				RegisterRecord.RegisterRecordID = clsUsersAccessData.RegisterLoginLogout(clsGlobl.user._UserID, RegisterRecord.Date, RegisterRecord.LoginTime);
+				return RegisterRecord.RegisterRecordID != -1;
+			}
+			else
+				{ return false; }
+
+        }
+        public bool Logout()
         {
-          //  Log out will be here ..
-            return false; 
-        }
+			//  Log out will be here ..
 
+			RegisterRecord.LogoutTime = RegisterRecord.Date.TimeOfDay;
+
+            return clsUsersAccessData.UpdateLoguotTime(clsGlobl.user._UserID, RegisterRecord.LogoutTime); 
+        }
         public bool  CheckAccessPermission(enMainMenuePermissions Permission)
         {
 
@@ -228,14 +306,10 @@ namespace UsersBussncessLayerLib
             else
                 return false;
         }
-
-       public static List<stLoginRegisterRecord> GetLoginRegisterList()
+        public static DataTable GetLoginRegisterList()
         {
-            List<stLoginRegisterRecord> lLoginRegisterRecord = new List<stLoginRegisterRecord>();
 
-            lLoginRegisterRecord.Add(new stLoginRegisterRecord());
-
-            return lLoginRegisterRecord;
+			return null;
         }
 
     }
