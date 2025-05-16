@@ -141,7 +141,7 @@ namespace PersonBusinessLayer
             //string RegionName = "";
             int CityID = 0;
 
-            clsDARegions.GetRegionInfoByRegionID(RegionID, ref CityID, ref RegionName);
+            clsDARegions.GetRegionInfoByRegionID(RegionName, ref CityID, ref  RegionID);
             return new clsRegions(RegionID, CityID, RegionName);
         }
 

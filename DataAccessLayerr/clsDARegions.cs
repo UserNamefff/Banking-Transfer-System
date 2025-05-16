@@ -18,7 +18,7 @@ namespace DataAccessLayerr
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Regions WHERE RegionID = @RegionID";
+            string query = "SELECT * FROM Region WHERE RegionID = @RegionID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -34,9 +34,9 @@ namespace DataAccessLayerr
                     // The record was found
                     isFound = true;
 
+                    RegionName = (string)reader["Name"];
                     CityID = (int)reader["CityID"];
                     //CityID = (int)reader["CityID"];
-                    RegionName = (string)reader["RegionName"];
 
 
                 }
@@ -70,11 +70,11 @@ namespace DataAccessLayerr
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Regions WHERE RegionID = @RegionID";
+            string query = "SELECT * FROM Region WHERE Name = @Name";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@RegionID", RegionID);
+            command.Parameters.AddWithValue("@Name", RegionName);
 
             try
             {
@@ -88,7 +88,7 @@ namespace DataAccessLayerr
 
                     CityID = (int)reader["CityID"];
                     //CityID = (int)reader["CityID"];
-                    RegionName = (string)reader["RegionName"];
+                    RegionID = (int)reader["RegionID"];
 
 
                 }

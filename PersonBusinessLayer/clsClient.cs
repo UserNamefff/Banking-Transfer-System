@@ -10,32 +10,29 @@ using DataAccessLayerr;
 using PersonBusinessLayer;
 namespace UsersBussncessLayerLib
 {
-    class clsClient : clsPerson1
+    public class clsClient 
     {
-         enum enMode { eAdd=1,eUpdate,eDelete ,eEmpty}
-        
+        enum enMode { eAdd=1,eUpdate,eDelete ,eEmpty}
+        clsPerson1 ClientIfo ;
         private clsClient(int personID, int clientID, string clientType)
         {
             eMode = enMode.eUpdate;
-
             this.PersonID   = personID;
             this.ClientID   = clientID;
             this.ClientType = clientType;
         }
-
         public clsClient()
         {
             eMode = enMode.eAdd;
             this.PersonID = 0;
             this.ClientID = 0;
             this.ClientType = "";
+            ClientIfo = new clsPerson1();
         }
-        
         public int PersonID { get; set; }
         public int ClientID { get; set; }
         public string ClientType { get; set; }
         static enMode eMode { get; set; }
-        
         public static clsClient Find(int ClientID)
         {
             int PersonID =0;
@@ -55,7 +52,6 @@ namespace UsersBussncessLayerLib
         {
             return clsDAClients.IsClientExist(ClientID);
         }
-
         private bool _Update()
         {
             //Updating data into database will be here ...
@@ -75,6 +71,16 @@ namespace UsersBussncessLayerLib
         {
             this.ClientID = clsDAClients.AddNewClient(this.PersonID,this.ClientType);
             return (this.ClientID != -1);
+        }
+        
+        public string GetClientName()
+        {
+            ClientIfo = clsPerson1.FindByID(this.ClientID);
+            if(ClientIfo !=null )
+            {
+                return ClientIfo.FName + " "+ClientIfo.LName;
+            }
+            return string.Empty;
         }
         public bool Save ()
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using DataAccessLayerr;
 using UsersBussncessLayerLib;
 
-namespace PersonBusinessLayer
+namespace UsersBussncessLayerLib
 {
     public class clsManageAccounts
     {
@@ -63,37 +63,44 @@ namespace PersonBusinessLayer
         public string AccountNumber
         {
             get { return _AccountNumber; }
+            set { _AccountNumber = value; }
 
         }
-
         public double Balence
         {
             set { _Balence = Balence; }
             get { return _Balence; }
         }
-
+        public int ClientID
+        {
+            get { return _ClientID; }
+            set { _ClientID = value; }
+        }
+        public string Type_Account
+        {
+            set { _Type_Account = value; }
+            get { return _Type_Account; }
+        }
         public string PineCode
         {
             get { return _PineCode; }
             set { _PineCode = PineCode; }
         }
-
+        public int CurrencyID
+        {
+            get { return _CurrnecyID; }
+            set { _CurrnecyID = value; }
+        }
         _enMode Mode
         {
             get { return _Mode; }
         }
-
         public bool IsEmpty()
         {
             return (_Mode == _enMode.EmptyMode);
         }
-
-
         //Fill Data Cliant from File and Call Function Print Data Of Client
-    
-
         enum enSaveResulte { svFailedsaveResulte = 0, svSuccessfulSaveResult = 1, svAddedSuccussFully = 2 };
-
         private bool _AddNew()
         {
 
@@ -132,18 +139,18 @@ namespace PersonBusinessLayer
             }
             return false;
         }
-
+        
         public static bool IsExistCleint(string AccountNumber)
         {
             
             return (clsAccountsDataAccess.IsAccountExist(AccountNumber));
         }
-
+       
         public static bool IsClientExist(int ID)
         {
             return clsAccountsDataAccess.IsAccountExist(ID);
         }
-
+       
         private bool  Update()
         {
             //Updating data into database will be here ...

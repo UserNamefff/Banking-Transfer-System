@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlTypes;
 
-namespace DataAccessLayerr
+namespace DataAccessLayerr                                                                                                                                                                                                                                                                      
 {
     public class clsDABranches
     {
@@ -37,9 +37,7 @@ namespace DataAccessLayerr
                     BranchID = (int)reader["BranchID"];
                     BranchName = (string)reader["BranchName"];
                     Branch_Balence = (double)reader["Branch_Balence"];
-                   // date = (DateTime)reader["date"];
-
-
+                    // date = (DateTime)reader["date"];
                 }
                 else
                 {
@@ -48,8 +46,6 @@ namespace DataAccessLayerr
                 }
 
                 reader.Close();
-
-
             }
             catch (Exception ex)
             {
@@ -63,17 +59,16 @@ namespace DataAccessLayerr
 
             return isFound;
         }
-        public static bool GetBranchInfoByBranchName(string BranchName, ref int AddressBranch, ref int BranchID , ref double Branch_Balence, ref DateTime date)
-        { 
+
+        public static bool GetBranchInfoByBranchName(string BranchName, ref int AddressBranch, ref int BranchID, ref double Branch_Balence, ref DateTime date)
+        {
             bool isFound = false;
-            
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT  *FROM Branches WHERE BranchName =@BranchName";
+            string query = "SELECT * FROM Branches WHERE BranchName = @BranchName";
 
             SqlCommand command = new SqlCommand(query, connection);
-
             command.Parameters.AddWithValue("@BranchName", BranchName);
 
             try
@@ -134,7 +129,6 @@ namespace DataAccessLayerr
             command.Parameters.AddWithValue("@BranchBalence", BranchBalence);
             command.Parameters.AddWithValue("@date", date);
 
-
             try
             {
                 connection.Open();
@@ -146,26 +140,21 @@ namespace DataAccessLayerr
                 {
                     Branchid = insertedBranchID;
                 }
-
             }
-
             catch (Exception ex)
             {
                 //Console.WriteLine("Error: " + ex.Message);
-
             }
-
             finally
             {
                 connection.Close();
             }
 
             return Branchid;
-
         }
+
         public static bool UpdateBranch(int BranchID, int CityID, string BranchName, double BranchBalence)
         {
-
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
@@ -175,8 +164,6 @@ namespace DataAccessLayerr
                                 BranchBalence = @BranchBalence
                                 where BranchID = @BranchID ";
 
-
-
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@BranchID", BranchID);
@@ -184,20 +171,16 @@ namespace DataAccessLayerr
             command.Parameters.AddWithValue("@BranchName", BranchName);
             command.Parameters.AddWithValue("@BranchBalence", BranchBalence);
 
-
-
             try
             {
                 connection.Open();
                 rowsAffected = command.ExecuteNonQuery();
-
             }
             catch (Exception ex)
             {
                 //Console.WriteLine("Error: " + ex.Message);
                 return false;
             }
-
             finally
             {
                 connection.Close();
@@ -205,9 +188,9 @@ namespace DataAccessLayerr
 
             return (rowsAffected > 0);
         }
+
         public static DataTable GetAllBranches()
         {
-
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
@@ -222,16 +205,12 @@ namespace DataAccessLayerr
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)
-
                 {
                     dt.Load(reader);
                 }
 
                 reader.Close();
-
-
             }
-
             catch (Exception ex)
             {
                 // Console.WriteLine("Error: " + ex.Message);
@@ -242,8 +221,8 @@ namespace DataAccessLayerr
             }
 
             return dt;
-
         }
+
         public static bool DeleteBranch(int BranchID)
         {
             int rowsAffected = 0;
@@ -256,13 +235,12 @@ namespace DataAccessLayerr
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@BranchID", BranchID);
-            
+
             try
             {
                 connection.Open();
 
                 rowsAffected = command.ExecuteNonQuery();
-
             }
             catch (Exception ex)
             {
@@ -270,14 +248,12 @@ namespace DataAccessLayerr
             }
             finally
             {
-
                 connection.Close();
-
             }
 
             return (rowsAffected > 0);
-
         }
+
         public static bool IsBranchExist(int BranchID)
         {
             bool isFound = false;
@@ -311,6 +287,7 @@ namespace DataAccessLayerr
 
             return isFound;
         }
+
         public static bool IsBranchExistByBranchName(string BranchName)
         {
             bool isFound = false;
@@ -344,7 +321,8 @@ namespace DataAccessLayerr
 
             return isFound;
         }
-        public static bool UpdateBalenceOFBranch(int  BranchID, double NewBalence)
+
+        public static bool UpdateBalenceOFBranch(int BranchID, double NewBalence)
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -353,27 +331,21 @@ namespace DataAccessLayerr
                                set BranchBalence = @BranchBalence
                                where BranchID = @BranchID ";
 
-
-
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@BranchID", BranchID);
             command.Parameters.AddWithValue("@BranchBalence", NewBalence);
 
-
-
             try
             {
                 connection.Open();
                 rowsAffected = command.ExecuteNonQuery();
-
             }
             catch (Exception ex)
             {
                 //Console.WriteLine("Error: " + ex.Message);
                 return false;
             }
-
             finally
             {
                 connection.Close();
@@ -381,6 +353,5 @@ namespace DataAccessLayerr
 
             return rowsAffected > 0;
         }
-
     }
 }

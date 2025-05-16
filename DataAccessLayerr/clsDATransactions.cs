@@ -297,7 +297,7 @@ namespace DataAccessLayerr
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Transactions";
+            string query = @"SELECT * FROM Transactions";
 
             SqlCommand command = new SqlCommand(query, connection);
 

@@ -10,3 +10,9 @@ C:\Users\a\source\repos\aMyBankProjectINC#\DataAccessLayerr\obj\Debug\DataAccess
 C:\Users\a\source\repos\aMyBankProjectINC#\DataAccessLayerr\obj\Debug\DataAccessLayerr.csproj.CoreCompileInputs.cache
 C:\Users\a\source\repos\aMyBankProjectINC#\DataAccessLayerr\obj\Debug\DataAccessLayerr.dll
 C:\Users\a\source\repos\aMyBankProjectINC#\DataAccessLayerr\obj\Debug\DataAccessLayerr.pdb
+D:\aMyBankProjectINC#\DataAccessLayerr\bin\Debug\DataAccessLayerr.dll
+D:\aMyBankProjectINC#\DataAccessLayerr\bin\Debug\DataAccessLayerr.pdb
+D:\aMyBankProjectINC#\DataAccessLayerr\obj\Debug\DataAccessLayerr.csproj.AssemblyReference.cache
+D:\aMyBankProjectINC#\DataAccessLayerr\obj\Debug\DataAccessLayerr.csproj.CoreCompileInputs.cache
+D:\aMyBankProjectINC#\DataAccessLayerr\obj\Debug\DataAccessLayerr.dll
+D:\aMyBankProjectINC#\DataAccessLayerr\obj\Debug\DataAccessLayerr.pdb

@@ -21,14 +21,14 @@ namespace UsersBussncessLayerLib
         private string _Email;
         private string _PhoneNumber;
         private string _Gender;
-        private string _Address;
+        private int _Address;
         private int _CountryID;
         private DateTime _DateOfBirth;
         private string _ImagePath     ;
 
         enMode eMode;
         private clsPerson1(int ID, string FName, string LName, string MName, string PhoneNumber, string Email, 
-            string Gender, string Address,int CountryID,DateTime DateOfBirth, string ImagePath)
+            string Gender, int Address,int CountryID,DateTime DateOfBirth, string ImagePath)
         {
             this._ID = ID;
             this._FName = FName;
@@ -53,7 +53,7 @@ namespace UsersBussncessLayerLib
             this._PhoneNumber = "";
             this._Email="";
             this._Gender = "";
-            this._Address = "";
+            this._Address = 0;
             this._ImagePath = "";
             this._DateOfBirth = DateTime.Now;
             this._CountryID = 0;
@@ -113,7 +113,7 @@ namespace UsersBussncessLayerLib
             set { _Gender = value; }
         }
 
-        public string Adrress 
+        public int Adrress 
         { 
             set { _Address = value; } 
             get { return _Address; }
@@ -190,7 +190,7 @@ namespace UsersBussncessLayerLib
             string PhoneNumber = "";
             string Email = "";
             string Gender = "";
-            string Address = ""; int CountryID= 0;
+            int Address = 0; int CountryID= 0;
             DateTime DateOfBirth= DateTime.Now;
             string ImagePath = "";
 
@@ -202,12 +202,30 @@ namespace UsersBussncessLayerLib
             }
             return null;
         }
-        public static clsPerson1 FindByID(int  id)
+        public static clsPerson1 FindByID(int PersonID)
         {
             //Search person into database will be here ...
+            string FirstName = "";
+            string FName = "";
+            string LName = "";
+
+            string PhoneNumber = "";
+            string Email = "";
+            string Gender = "";
+            int Address = 0; int CountryID = 0;
+            DateTime DateOfBirth = DateTime.Now;
+            string ImagePath = "";
+
+            bool isFound = clsDAPersons.GetPersonInfoByID(PersonID , ref FirstName , ref LName, ref Email, ref PhoneNumber, ref Address, ref DateOfBirth, ref CountryID, ref ImagePath, ref Gender);
+
+            if (isFound)
+            {
+                return new clsPerson1(PersonID, FirstName, LName, "", PhoneNumber, Email, Gender, Address, CountryID, DateOfBirth, ImagePath);
+            }
+
             return null;
         } 
-        public clsPerson1 FindByFName(string  FisrtName)
+        public static clsPerson1 FindByFName(string  FisrtName)
         {
             //Search person into database will be here ...
 
@@ -218,7 +236,7 @@ namespace UsersBussncessLayerLib
             string PhoneNumber = "";
             string Email = "";
             string Gender = "";
-            string Address = ""; int CountryID = 0;
+            int Address = 0 ; int CountryID = 0;
             DateTime DateOfBirth = DateTime.Now;
             string ImagePath = "";
 

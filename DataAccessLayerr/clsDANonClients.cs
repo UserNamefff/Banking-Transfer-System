@@ -34,9 +34,9 @@ namespace DataAccessLayerr
                     // The record was found
                     isFound = true;
 
-                    FullName = (string)reader["FullName"];
-                    Gender = (string)reader["Gender"];
-                    PhonNumber = (string)reader["PhonNumber"];
+                    FullName = reader.GetString(reader.GetOrdinal("FirstName"));
+                    Gender = reader.GetString(reader.GetOrdinal("Gender"));
+                    PhonNumber = reader.GetString(reader.GetOrdinal("Phone_Number"));
                     
 
 

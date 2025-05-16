@@ -9,6 +9,7 @@ namespace UsersBussncessLayerLib
 {
     public class clsNonClients
     {
+        
         enum enMode { Add = 1, Update ,Delete }
         private int     _ID;
         private string _FullName;
@@ -89,6 +90,19 @@ namespace UsersBussncessLayerLib
             return false;
         }
 
+        public static clsNonClients Find(int ID)
+        {
+            string FullName  = "";
+            string PhoneNumber = "";
+            string Gender = "";
+            
+            if(clsDANonClients.GetNonClientInfoByID(ID, ref FullName, ref PhoneNumber, ref Gender))
+            {
+                return new clsNonClients(ID,  FullName,  PhoneNumber,  Gender);
+            }
 
+            return null;
+
+        }
     }
 }

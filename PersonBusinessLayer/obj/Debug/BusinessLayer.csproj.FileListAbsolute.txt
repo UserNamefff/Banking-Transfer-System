@@ -16,3 +16,12 @@ C:\Users\a\source\repos\aMyBankProjectINC#\PersonBusinessLayer\obj\Debug\Busines
 C:\Users\a\source\repos\aMyBankProjectINC#\PersonBusinessLayer\obj\Debug\Business.EA331CBA.Up2Date
 C:\Users\a\source\repos\aMyBankProjectINC#\PersonBusinessLayer\obj\Debug\PersonBusinessLayer.dll
 C:\Users\a\source\repos\aMyBankProjectINC#\PersonBusinessLayer\obj\Debug\PersonBusinessLayer.pdb
+D:\aMyBankProjectINC#\PersonBusinessLayer\bin\Debug\PersonBusinessLayer.dll
+D:\aMyBankProjectINC#\PersonBusinessLayer\bin\Debug\PersonBusinessLayer.pdb
+D:\aMyBankProjectINC#\PersonBusinessLayer\bin\Debug\DataAccessLayerr.dll
+D:\aMyBankProjectINC#\PersonBusinessLayer\bin\Debug\DataAccessLayerr.pdb
+D:\aMyBankProjectINC#\PersonBusinessLayer\obj\Debug\BusinessLayer.csproj.AssemblyReference.cache
+D:\aMyBankProjectINC#\PersonBusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
+D:\aMyBankProjectINC#\PersonBusinessLayer\obj\Debug\Business.EA331CBA.Up2Date
+D:\aMyBankProjectINC#\PersonBusinessLayer\obj\Debug\PersonBusinessLayer.dll
+D:\aMyBankProjectINC#\PersonBusinessLayer\obj\Debug\PersonBusinessLayer.pdb

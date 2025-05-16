@@ -61,17 +61,17 @@ namespace DataAccessLayerr
             return isFound;
         }
 
-        public static bool GetCurrencyInfoByID(string CurrencyCode, ref string CurrencyName, ref int CurrencyID , ref double Rate, ref int CountryID)
+        public static bool GetCurrencyInfoByID(string CurrencyName, ref string Currencycode, ref int CurrencyID , ref double Rate, ref int CountryID)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Currencies WHERE CurrencyCode = @CurrencyCode";
+            string query = "SELECT * FROM Currencies WHERE CurrencyName = @CurrencyName";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@CurrencyCode", CurrencyCode);
+            command.Parameters.AddWithValue("@CurrencyName", CurrencyName);
 
             try
             {
@@ -83,7 +83,7 @@ namespace DataAccessLayerr
                     // The record was found
                     isFound = true;
 
-                    CurrencyName =  reader.GetString(reader.GetOrdinal("CurrencyName"));
+                    Currencycode =  reader.GetString(reader.GetOrdinal("CurrencyName"));
                     CurrencyID =  reader.GetInt32(reader.GetOrdinal("CurrencyID"));
                     Rate =Convert.ToDouble( reader.GetOrdinal("Rate"));
                     CountryID = reader.GetInt32(reader.GetOrdinal("CountryID"));
@@ -248,7 +248,7 @@ namespace DataAccessLayerr
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Currencies ";
+            string query = @"SELECT * FROM Currencies ";
 
             SqlCommand command = new SqlCommand(query, connection);
 

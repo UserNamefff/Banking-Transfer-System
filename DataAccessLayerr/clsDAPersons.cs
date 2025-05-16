@@ -11,7 +11,7 @@ namespace DataAccessLayerr
     public class clsDAPersons
     {
         public static bool GetPersonInfoByID(int ID, ref string FirstName, ref string LastName,
-                                             ref string Email, ref string Phon, ref string Address,
+                                             ref string Email, ref string Phon, ref int Address,
                                              ref DateTime DateOfBirth, ref int CountryID, ref string ImagePath, ref string Gender)
         {
             bool isFound = false;
@@ -38,9 +38,9 @@ namespace DataAccessLayerr
                     LastName = (string)reader["LastName"];
                     Email = (string)reader["Email"];
                     Phon = (string)reader["Phon"];
-                    Address = (string)reader["Address"];
+                    Address = reader.GetInt32(reader.GetOrdinal ("Address"));
                     DateOfBirth = (DateTime)reader["DateOfBirth"];
-                    CountryID = (int)reader["CountryID"];
+                    //CountryID = (int)reader["CountryID"];
 
                     //ImagePath: allows null in database so we should handle null
                     if (reader["ImagePath"] != DBNull.Value)
@@ -77,7 +77,7 @@ namespace DataAccessLayerr
         }
 
         public static bool GetPersonInfoByID(string FirstName, ref int ID , ref string LastName,
-                                             ref string Email, ref string Phon, ref string Address,
+                                             ref string Email, ref string Phon, ref int Address,
                                              ref DateTime DateOfBirth, ref int CountryID, ref string ImagePath,ref string Gender)
         {
             bool isFound = false;
@@ -104,7 +104,7 @@ namespace DataAccessLayerr
                     LastName = (string)reader["LastName"];
                     Email = (string)reader["Email"];
                     Phon = (string)reader["Phon"];
-                    Address = (string)reader["Address"];
+                    Address = (int)reader["Address"];
                     DateOfBirth = (DateTime)reader["DateOfBirth"];
                     CountryID = (int)reader["CountryID"];
 
@@ -143,7 +143,7 @@ namespace DataAccessLayerr
         }
 
         public static int AddNewPerson(string FirstName, string LastName,
-            string Email, string Phon, string Address,
+            string Email, string Phon, int Address,
             DateTime DateOfBirth, int CountryID, string ImagePath,  string Gender)
         {
             //this function will return the new Person id if succeeded and -1 if not.
@@ -151,9 +151,24 @@ namespace DataAccessLayerr
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO Persons  (FirstName,LastName ,Gender,Phon,AddressID,Email,ImagePath)
-                             VALUES (@FirstName,@LastName,@Gender,@Phon,@AddressID,@Email,@ImagePath);
-                             SELECT SCOPE_IDENTITY();";
+            string query = @"INSERT INTO [dbo].[Persons]
+           ([FirstName]
+           ,[LastName]
+           ,[Gender]
+           ,[Phon]
+           ,[Address]
+           ,[Email]
+           ,[ImagePath]
+           ,[DateOfBirth])
+     VALUES
+           (@FirstName,
+           @LastName,
+           @Gender, 
+           @Phon,
+           @Address,
+           @Email,
+           @ImagePath,
+           @DateOfBirth);SELECT SCOPE_IDENTITY();";
 
 
             Gender = "Male";
@@ -168,9 +183,9 @@ namespace DataAccessLayerr
             command.Parameters.AddWithValue("@LastName", LastName);
             command.Parameters.AddWithValue("@Email", Email);
             command.Parameters.AddWithValue("@Phon", Phon);
-            //command.Parameters.AddWithValue("@Address", Address);
+            command.Parameters.AddWithValue("@Address", Address);
             command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
-            command.Parameters.AddWithValue("@AddressID", CountryID);
+           // command.Parameters.AddWithValue("@Address", CountryID);
             command.Parameters.AddWithValue("@Gender", Gender);
 
             if (ImagePath != "" && ImagePath != null)
@@ -208,7 +223,7 @@ namespace DataAccessLayerr
         }
 
         public static bool UpdatePerson(int ID, string FirstName, string LastName,
-            string Email, string Phon, string Address, DateTime DateOfBirth, int CountryID, string ImagePath, string Gender)
+            string Email, string Phon, int Address, DateTime DateOfBirth, int CountryID, string ImagePath, string Gender)
         {
 
             int rowsAffected = 0;
@@ -219,7 +234,7 @@ namespace DataAccessLayerr
                                 LastName = @LastName, 
                                 Email = @Email, 
                                 Phon = @Phon, 
-                                AddressID = @CountryID, 
+                                Address = @Address, 
                                 DateOfBirth = @DateOfBirth,
                                 ImagePath =@ImagePath
                                 where PersonID = @PersonID";
@@ -231,9 +246,9 @@ namespace DataAccessLayerr
             command.Parameters.AddWithValue("@LastName", LastName);
             command.Parameters.AddWithValue("@Email", Email);
             command.Parameters.AddWithValue("@Phon", Phon);
-            //command.Parameters.AddWithValue("@AddressID", Address);
+            command.Parameters.AddWithValue("@Address", Address);
             command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
-            command.Parameters.AddWithValue("@AddressID", CountryID);
+            //command.Parameters.AddWithValue("@Address", CountryID);
             command.Parameters.AddWithValue("@Gender", Gender);
 
             if (ImagePath != "" && ImagePath != null)
