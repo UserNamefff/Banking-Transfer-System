@@ -16,3 +16,9 @@ D:\aMyBankProjectINC#\DataAccessLayerr\obj\Debug\DataAccessLayerr.csproj.Assembl
 D:\aMyBankProjectINC#\DataAccessLayerr\obj\Debug\DataAccessLayerr.csproj.CoreCompileInputs.cache
 D:\aMyBankProjectINC#\DataAccessLayerr\obj\Debug\DataAccessLayerr.dll
 D:\aMyBankProjectINC#\DataAccessLayerr\obj\Debug\DataAccessLayerr.pdb
+C:\Users\Smart\Source\Repos\Banking-Transfer-System\DataAccessLayerr\bin\Debug\DataAccessLayerr.dll
+C:\Users\Smart\Source\Repos\Banking-Transfer-System\DataAccessLayerr\bin\Debug\DataAccessLayerr.pdb
+C:\Users\Smart\Source\Repos\Banking-Transfer-System\DataAccessLayerr\obj\Debug\DataAccessLayerr.csproj.AssemblyReference.cache
+C:\Users\Smart\Source\Repos\Banking-Transfer-System\DataAccessLayerr\obj\Debug\DataAccessLayerr.csproj.CoreCompileInputs.cache
+C:\Users\Smart\Source\Repos\Banking-Transfer-System\DataAccessLayerr\obj\Debug\DataAccessLayerr.dll
+C:\Users\Smart\Source\Repos\Banking-Transfer-System\DataAccessLayerr\obj\Debug\DataAccessLayerr.pdb

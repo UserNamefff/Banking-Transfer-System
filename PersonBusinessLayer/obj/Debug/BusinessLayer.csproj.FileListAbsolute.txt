@@ -25,3 +25,12 @@ D:\aMyBankProjectINC#\PersonBusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCom
 D:\aMyBankProjectINC#\PersonBusinessLayer\obj\Debug\Business.EA331CBA.Up2Date
 D:\aMyBankProjectINC#\PersonBusinessLayer\obj\Debug\PersonBusinessLayer.dll
 D:\aMyBankProjectINC#\PersonBusinessLayer\obj\Debug\PersonBusinessLayer.pdb
+C:\Users\Smart\Source\Repos\Banking-Transfer-System\PersonBusinessLayer\bin\Debug\PersonBusinessLayer.dll
+C:\Users\Smart\Source\Repos\Banking-Transfer-System\PersonBusinessLayer\bin\Debug\PersonBusinessLayer.pdb
+C:\Users\Smart\Source\Repos\Banking-Transfer-System\PersonBusinessLayer\bin\Debug\DataAccessLayerr.dll
+C:\Users\Smart\Source\Repos\Banking-Transfer-System\PersonBusinessLayer\bin\Debug\DataAccessLayerr.pdb
+C:\Users\Smart\Source\Repos\Banking-Transfer-System\PersonBusinessLayer\obj\Debug\BusinessLayer.csproj.AssemblyReference.cache
+C:\Users\Smart\Source\Repos\Banking-Transfer-System\PersonBusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\Smart\Source\Repos\Banking-Transfer-System\PersonBusinessLayer\obj\Debug\Business.EA331CBA.Up2Date
+C:\Users\Smart\Source\Repos\Banking-Transfer-System\PersonBusinessLayer\obj\Debug\PersonBusinessLayer.dll
+C:\Users\Smart\Source\Repos\Banking-Transfer-System\PersonBusinessLayer\obj\Debug\PersonBusinessLayer.pdb

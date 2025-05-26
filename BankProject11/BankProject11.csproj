@@ -84,6 +84,30 @@
     <Compile Include="frmChooseUserORClient.Designer.cs">
       <DependentUpon>frmChooseUserORClient.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmReportAcounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReportAcounts.Designer.cs">
+      <DependentUpon>FrmReportAcounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmReportCurrency.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReportCurrency.Designer.cs">
+      <DependentUpon>FrmReportCurrency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmReportTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReportTransaction.Designer.cs">
+      <DependentUpon>FrmReportTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmReportUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmReportUsers.Designer.cs">
+      <DependentUpon>FrmReportUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,6 +244,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmChooseUserORClient.resx">
       <DependentUpon>frmChooseUserORClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmReportAcounts.resx">
+      <DependentUpon>FrmReportAcounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmReportCurrency.resx">
+      <DependentUpon>FrmReportCurrency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmReportTransaction.resx">
+      <DependentUpon>FrmReportTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmReportUsers.resx">
+      <DependentUpon>FrmReportUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
