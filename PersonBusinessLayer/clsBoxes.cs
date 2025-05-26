@@ -14,6 +14,7 @@ namespace UsersBussncessLayerLib
 
         public enum enMode { Add=1,Update,Delete }
         private int boxID;
+        private int _CurrencyID;
         private int userID;
         private string boxName;
         private double boxBalence;
@@ -21,8 +22,9 @@ namespace UsersBussncessLayerLib
         private string BoxType;
         private DateTime date;
 
-        public enMode eMode {  get; set; }
+        public enMode eMode      {  get; set; }
         public int BoxID         { get => boxID; set => boxID = value; }
+        public int CurrencyID    { get => _CurrencyID; set => _CurrencyID = value; }
         public int UserID        { get => userID; set => userID = value; }
         public string BoxName    { get => boxName; set => boxName = value; }
         public double BoxBalence { get => boxBalence; set => boxBalence = value; }
@@ -32,17 +34,19 @@ namespace UsersBussncessLayerLib
 
         public clsBoxes()
         {
+            eMode = enMode.Add;
             BoxID = 0;
             UserID = 0;
             BoxName = "";
             BoxBalence = 0.0;
             Revenues = 0.0;
             BoxType1 = "";
+            CurrencyID = 17;
             date =DateTime.Now;
         }
 
         public clsBoxes(int boxID, int userID, string boxName, double boxBalence, double revenues,
-            string boxType, DateTime date)
+            string boxType, DateTime date,int CurrencyID)
         {
             this.BoxID      = boxID;
             this.UserID     = userID;
@@ -50,11 +54,12 @@ namespace UsersBussncessLayerLib
             this.BoxBalence = boxBalence;
             this.Revenues   = revenues;
             this.BoxType1    = boxType;
+            this.CurrencyID = CurrencyID;
+
             this.date       = date;
             this.eMode          = enMode.Update;
 
         }
-
 
         public static int GetBoxId(int userID)
         {
@@ -72,11 +77,12 @@ namespace UsersBussncessLayerLib
             double   BoxBalence = 0.0;
             double   Revenues = 0.0;
             string   BoxType1 = "";
+            int CurrencyID = 17;
             DateTime Date= DateTime.Now;
 
-            if ((clsDABoxToUsers.GetBoxInfoByBoxID(BoxId, UserId, ref BoxName, ref BoxBalence, ref Revenues, ref BoxType1, ref Date))) 
+            if ((clsDABoxToUsers.GetBoxInfoByBoxID(BoxId, UserId, ref BoxName, ref BoxBalence, ref Revenues, ref BoxType1, ref Date,CurrencyID))) 
             {
-                return new clsBoxes(BoxId, UserId, BoxName, BoxBalence, Revenues, BoxType1, Date);
+                return new clsBoxes(BoxId, UserId, BoxName, BoxBalence, Revenues, BoxType1, Date, CurrencyID);
             }
 
            return null;
@@ -105,7 +111,7 @@ namespace UsersBussncessLayerLib
         }
         private bool _AddNewBoxToUser()
         {
-            this.BoxID = clsDABoxToUsers.AddNewBox(UserID, BoxName, BoxBalence, Revenues, BoxType1, Date);
+            this.BoxID = clsDABoxToUsers.AddNewBox(UserID, BoxName, BoxBalence, Revenues, BoxType1, Date, CurrencyID);
             return BoxID > -1 ;
         }
         private bool _UpdateBoxInfo()
@@ -126,7 +132,7 @@ namespace UsersBussncessLayerLib
             {
                 case enMode.Add:
                     {
-                        if(IsBoxExist(this.BoxID))
+                        if(!IsBoxExist(this.BoxID))
                         {
                             _AddNewBoxToUser();
                             eMode = enMode.Update;

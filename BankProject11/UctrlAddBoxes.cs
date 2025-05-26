@@ -25,10 +25,11 @@ namespace BankProject11
         {
             if (txtbBalence.Text != null && txtbBoxName.Text != null)
             {
-                box.UserID = int.Parse(txtbUserBox.Text);
+                box.UserID = clsUser.Find(cmbUsers.Text.Trim()).UserID;
+                box.CurrencyID = clsCurrency.FindCurrencyInfoByName(cmbCurrecy.Text.Trim()).CurrencyID;
                 box.BoxBalence = double.Parse(txtbBalence.Text);
-                box.BoxName = txtbBalence.Text;
-                box.BoxType1 = txtbBalence.Text;
+                box.BoxName = txtbBoxName.Text;
+                box.BoxType1 = txtbBoxType.Text;
                 return box.Save();
             }
 
@@ -39,23 +40,57 @@ namespace BankProject11
                 return false;
         }
 
-        void LoadData()
+        void _FillCurrecies()
         {
-            dgvOfBoxes.DataSource = clsBoxes.GetAllBoxes();
+            DataTable dt = new DataTable();
+
+            dt = clsCurrency.GetAllCurrencies();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                cmbCurrecy.Items.Add(row["CurrencyName"].ToString());
+            }
+
         }
 
+        void _FillUsers()
+        {
+            DataTable dt = new DataTable();
+
+            dt = clsUser.GetAllUsers();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                cmbUsers.Items.Add(row["UserName"].ToString());
+            }
+        }
+        void LoadData()
+        {
+            
+            dgvOfBoxes.DataSource = clsBoxes.GetAllBoxes();
+            _FillCurrecies();
+            _FillUsers();
+        }
+
+        void _Refreshe()
+        {
+            dgvOfBoxes.DataSource = clsBoxes.GetAllBoxes();
+            _ClearTextFields();
+        }
+         
         private void UctrlAddBoxes_Load(object sender, EventArgs e)
         {
-           // LoadData();
+            LoadData();
         }
 
         void _ClearTextFields()
         {
             txtbBoxName.Text = string.Empty;
             txtbBalence.Text = string.Empty;
-            txtbUserBox.Text = string.Empty;
+            cmbUsers.SelectedIndex = -1;
+            cmbCurrecy.SelectedIndex = -1;
             txtbBoxType.Text = string.Empty;
-            txtbID.Text = string.Empty;
+            txtbID.Text =      string.Empty;
            
         }
         private void btnAdd_Click(object sender, EventArgs e)
@@ -68,7 +103,7 @@ namespace BankProject11
 
             else
             {
-                _ClearTextFields();
+                _Refreshe();
                 MessageBox.Show("added Box successfully :-) ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
@@ -87,5 +122,21 @@ namespace BankProject11
 
             }
         }
+
+
+
+        private void dgvOfBoxes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dgvOfBoxes.Rows[e.RowIndex];
+            if (row != null)
+            {
+                txtbBalence.Text = row.Cells["BoxBalence"].Value.ToString();
+                txtbBoxName.Text = row.Cells["BoxName"].Value.ToString();
+                txtbBoxType.Text = row.Cells["BoxType"].Value.ToString();
+                txtbID.Text = row.Cells["BoxID"].Value.ToString();
+
+            }
+        
+       }
     }
 }

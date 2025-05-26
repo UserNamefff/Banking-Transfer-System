@@ -47,6 +47,8 @@
             this.Password = new System.Windows.Forms.Label();
             this.txtPassword = new Guna.UI.WinForms.GunaTextBox();
             this.ucAddPerson2 = new BankProject11.UCAddPerson();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbJOBName = new Guna.UI.WinForms.GunaComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgUsersData)).BeginInit();
             this.contextMenuStrip2.SuspendLayout();
@@ -64,7 +66,7 @@
             this.cmbBranches.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBranches.ForeColor = System.Drawing.Color.Black;
             this.cmbBranches.FormattingEnabled = true;
-            this.cmbBranches.Location = new System.Drawing.Point(866, 365);
+            this.cmbBranches.Location = new System.Drawing.Point(764, 363);
             this.cmbBranches.Name = "cmbBranches";
             this.cmbBranches.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.cmbBranches.OnHoverItemForeColor = System.Drawing.Color.White;
@@ -77,7 +79,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(866, 340);
+            this.label2.Location = new System.Drawing.Point(764, 338);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(166, 27);
             this.label2.TabIndex = 5;
@@ -245,6 +247,7 @@
             this.dgUsersData.Size = new System.Drawing.Size(1169, 245);
             this.dgUsersData.TabIndex = 30;
             this.dgUsersData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgUsersData_CellClick);
+            this.dgUsersData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgUsersData_CellContentClick);
             // 
             // contextMenuStrip2
             // 
@@ -271,7 +274,7 @@
             this.txtbUserName.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtbUserName.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtbUserName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtbUserName.Location = new System.Drawing.Point(269, 363);
+            this.txtbUserName.Location = new System.Drawing.Point(167, 361);
             this.txtbUserName.Name = "txtbUserName";
             this.txtbUserName.PasswordChar = '\0';
             this.txtbUserName.Radius = 10;
@@ -298,7 +301,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(265, 340);
+            this.label3.Location = new System.Drawing.Point(163, 338);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 24);
             this.label3.TabIndex = 34;
@@ -308,7 +311,7 @@
             // 
             this.Password.AutoSize = true;
             this.Password.Font = new System.Drawing.Font("Microsoft YaHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Password.Location = new System.Drawing.Point(587, 340);
+            this.Password.Location = new System.Drawing.Point(485, 338);
             this.Password.Name = "Password";
             this.Password.Size = new System.Drawing.Size(91, 24);
             this.Password.TabIndex = 36;
@@ -325,7 +328,7 @@
             this.txtPassword.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtPassword.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtPassword.Location = new System.Drawing.Point(584, 363);
+            this.txtPassword.Location = new System.Drawing.Point(482, 361);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Radius = 10;
@@ -342,11 +345,43 @@
             this.ucAddPerson2.TabIndex = 37;
             this.ucAddPerson2.Load += new System.EventHandler(this.ucAddPerson2_Load);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1042, 336);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 27);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "Job";
+            // 
+            // cmbJOBName
+            // 
+            this.cmbJOBName.BackColor = System.Drawing.Color.Transparent;
+            this.cmbJOBName.BaseColor = System.Drawing.Color.White;
+            this.cmbJOBName.BorderColor = System.Drawing.Color.Black;
+            this.cmbJOBName.BorderSize = 1;
+            this.cmbJOBName.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbJOBName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbJOBName.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbJOBName.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbJOBName.ForeColor = System.Drawing.Color.Black;
+            this.cmbJOBName.FormattingEnabled = true;
+            this.cmbJOBName.Location = new System.Drawing.Point(1042, 361);
+            this.cmbJOBName.Name = "cmbJOBName";
+            this.cmbJOBName.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.cmbJOBName.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.cmbJOBName.Radius = 10;
+            this.cmbJOBName.Size = new System.Drawing.Size(193, 34);
+            this.cmbJOBName.TabIndex = 38;
+            // 
             // UCAddUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cmbJOBName);
             this.Controls.Add(this.ucAddPerson2);
             this.Controls.Add(this.Password);
             this.Controls.Add(this.txtPassword);
@@ -387,5 +422,7 @@
         private System.Windows.Forms.Label Password;
         private Guna.UI.WinForms.GunaTextBox txtPassword;
         private UCAddPerson ucAddPerson2;
+        private System.Windows.Forms.Label label1;
+        private Guna.UI.WinForms.GunaComboBox cmbJOBName;
     }
 }

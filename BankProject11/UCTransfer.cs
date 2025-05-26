@@ -131,15 +131,15 @@ namespace BankProject11
             
             Transfer.Transacion_type = clsTransaction_type.Find(cmbTransferType.Text).ID;
 
-            Transfer.CurrencyID = clsCurrency.FindByCurrencyCode(cmbCurrencyName.Text).CurrencyID;
+            Transfer.CurrencyID = clsCurrency.FindCurrencyInfoByName(cmbCurrencyName.Text).CurrencyID;
             Transfer.TargeteBranchID = clsBranches.Find(cmbTargeteBranch.Text)._BranchID;
             Transfer.SourceBranchID = clsBranches.Find(cmbSourceBranch.Text)._BranchID;
 
-            Transfer.FeeAmount = 0.0;
+            Transfer.FeeAmount = Convert.ToDouble(gunaNumeric3.Value); ;
             
-            Transfer.TransferAmount = 0.0;
+            Transfer.TransferAmount = Convert.ToDouble(gunaNumeric2.Value);
             Transfer.Description = txtDescription.Text ;
-
+            Transfer.CreatedByUser = clsGlobl.user.UserID;
             if(Transfer.Save())
             {
                 MessageBox.Show("Sended transfer Successfully ! ");

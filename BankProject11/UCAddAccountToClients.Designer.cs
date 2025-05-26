@@ -39,7 +39,6 @@
             this.txtbBalence = new Guna.UI.WinForms.GunaNumeric();
             this.gunaLabel7 = new Guna.UI.WinForms.GunaLabel();
             this.gunaLabel1 = new Guna.UI.WinForms.GunaLabel();
-            this.txtClientName = new Guna.UI.WinForms.GunaTextBox();
             this.dgvAccounts = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnPrint = new Guna.UI.WinForms.GunaButton();
@@ -48,6 +47,7 @@
             this.btnUpdate = new Guna.UI.WinForms.GunaButton();
             this.btnAdd = new Guna.UI.WinForms.GunaButton();
             this.bntChosseClients = new Guna.UI.WinForms.GunaButton();
+            this.cmbClients = new Guna.UI.WinForms.GunaComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccounts)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -152,13 +152,13 @@
             this.cmbCurrency.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cmbCurrency.ForeColor = System.Drawing.Color.Black;
             this.cmbCurrency.FormattingEnabled = true;
-            this.cmbCurrency.ItemHeight = 35;
-            this.cmbCurrency.Location = new System.Drawing.Point(682, 149);
+            this.cmbCurrency.ItemHeight = 22;
+            this.cmbCurrency.Location = new System.Drawing.Point(682, 153);
             this.cmbCurrency.Name = "cmbCurrency";
             this.cmbCurrency.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.cmbCurrency.OnHoverItemForeColor = System.Drawing.Color.White;
             this.cmbCurrency.Radius = 7;
-            this.cmbCurrency.Size = new System.Drawing.Size(265, 41);
+            this.cmbCurrency.Size = new System.Drawing.Size(265, 28);
             this.cmbCurrency.TabIndex = 10;
             // 
             // gunaLabel6
@@ -209,25 +209,6 @@
             this.gunaLabel1.Size = new System.Drawing.Size(117, 24);
             this.gunaLabel1.TabIndex = 17;
             this.gunaLabel1.Text = "Client Name";
-            // 
-            // txtClientName
-            // 
-            this.txtClientName.BackColor = System.Drawing.Color.Transparent;
-            this.txtClientName.BaseColor = System.Drawing.Color.White;
-            this.txtClientName.BorderColor = System.Drawing.Color.Black;
-            this.txtClientName.BorderSize = 1;
-            this.txtClientName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtClientName.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtClientName.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txtClientName.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtClientName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtClientName.Location = new System.Drawing.Point(284, 113);
-            this.txtClientName.Name = "txtClientName";
-            this.txtClientName.PasswordChar = '\0';
-            this.txtClientName.Radius = 10;
-            this.txtClientName.SelectedText = "";
-            this.txtClientName.Size = new System.Drawing.Size(214, 37);
-            this.txtClientName.TabIndex = 16;
             // 
             // dgvAccounts
             // 
@@ -396,7 +377,7 @@
             this.bntChosseClients.Image = global::BankProject11.Properties.Resources.SearchPerson;
             this.bntChosseClients.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.bntChosseClients.ImageSize = new System.Drawing.Size(45, 45);
-            this.bntChosseClients.Location = new System.Drawing.Point(504, 97);
+            this.bntChosseClients.Location = new System.Drawing.Point(515, 97);
             this.bntChosseClients.Name = "bntChosseClients";
             this.bntChosseClients.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.bntChosseClients.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -404,20 +385,41 @@
             this.bntChosseClients.OnHoverImage = null;
             this.bntChosseClients.OnPressedColor = System.Drawing.Color.Black;
             this.bntChosseClients.Radius = 10;
-            this.bntChosseClients.Size = new System.Drawing.Size(66, 53);
+            this.bntChosseClients.Size = new System.Drawing.Size(55, 50);
             this.bntChosseClients.TabIndex = 45;
             this.bntChosseClients.Text = "Cancel";
             this.bntChosseClients.Click += new System.EventHandler(this.bntCancel_Click);
+            // 
+            // cmbClients
+            // 
+            this.cmbClients.BackColor = System.Drawing.Color.Transparent;
+            this.cmbClients.BaseColor = System.Drawing.Color.White;
+            this.cmbClients.BorderColor = System.Drawing.Color.Black;
+            this.cmbClients.BorderSize = 1;
+            this.cmbClients.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbClients.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbClients.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbClients.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbClients.ForeColor = System.Drawing.Color.Black;
+            this.cmbClients.FormattingEnabled = true;
+            this.cmbClients.ItemHeight = 22;
+            this.cmbClients.Location = new System.Drawing.Point(285, 117);
+            this.cmbClients.Name = "cmbClients";
+            this.cmbClients.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.cmbClients.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.cmbClients.Radius = 7;
+            this.cmbClients.Size = new System.Drawing.Size(224, 28);
+            this.cmbClients.TabIndex = 48;
             // 
             // UCAddAccountToClients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cmbClients);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvAccounts);
             this.Controls.Add(this.bntChosseClients);
             this.Controls.Add(this.gunaLabel1);
-            this.Controls.Add(this.txtClientName);
             this.Controls.Add(this.gunaLabel7);
             this.Controls.Add(this.txtbBalence);
             this.Controls.Add(this.gunaLabel6);
@@ -450,7 +452,6 @@
         private Guna.UI.WinForms.GunaNumeric txtbBalence;
         private Guna.UI.WinForms.GunaLabel gunaLabel7;
         private Guna.UI.WinForms.GunaLabel gunaLabel1;
-        private Guna.UI.WinForms.GunaTextBox txtClientName;
         private Guna.UI.WinForms.GunaButton bntChosseClients;
         private System.Windows.Forms.DataGridView dgvAccounts;
         private System.Windows.Forms.Panel panel1;
@@ -459,5 +460,6 @@
         private Guna.UI.WinForms.GunaButton bntCancel;
         private Guna.UI.WinForms.GunaButton btnUpdate;
         private Guna.UI.WinForms.GunaButton btnAdd;
+        private Guna.UI.WinForms.GunaComboBox cmbClients;
     }
 }

@@ -128,18 +128,6 @@
     <Compile Include="UCAddNewClients.Designer.cs">
       <DependentUpon>UCAddNewClients.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCAddPeople.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UCAddPeople.Designer.cs">
-      <DependentUpon>UCAddPeople.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UCAddPepoles.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UCAddPepoles.Designer.cs">
-      <DependentUpon>UCAddPepoles.cs</DependentUpon>
-    </Compile>
     <Compile Include="UCAddPermissionsToUsers.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -263,12 +251,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCAddNewClients.resx">
       <DependentUpon>UCAddNewClients.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UCAddPeople.resx">
-      <DependentUpon>UCAddPeople.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UCAddPepoles.resx">
-      <DependentUpon>UCAddPepoles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCAddPermissionsToUsers.resx">
       <DependentUpon>UCAddPermissionsToUsers.cs</DependentUpon>

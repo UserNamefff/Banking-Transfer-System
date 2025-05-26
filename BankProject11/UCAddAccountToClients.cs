@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using UsersBussncessLayerLib;
+using Microsoft.VisualBasic;
 
 
 namespace BankProject11
@@ -36,7 +37,7 @@ namespace BankProject11
             {
                 this.ClientID = client.ClientID;
                 this.ClientName = client.GetClientName();
-                txtClientName.Text = client.GetClientName();
+              //  txtClientName.Text = client.GetClientName();
             }
 
             Accounts = new clsManageAccounts();
@@ -47,6 +48,7 @@ namespace BankProject11
 
         void _FillCurrencyBox()
         {
+            
             DataTable dataTable = clsCurrency.GetAllCurrencies();
 
             foreach (DataRow row in dataTable.Rows)
@@ -60,9 +62,11 @@ namespace BankProject11
         {
             Accounts.PineCode = txtbPinCode.Text;
             Accounts.Balence = (double)txtbBalence.Value;
-            Accounts.CurrencyID = clsCurrency.FindByCurrencyCode(cmbCurrency.Text.ToString()).CurrencyID;
+            Accounts.CurrencyID = clsCurrency.FindCurrencyInfoByName(cmbCurrency.Text.Trim()).CurrencyID;
             Accounts.AccountNumber = txtbAccountNumbet.Text;
             Accounts.Type_Account = txtbAccount_type.Text;
+            Accounts.CreatedByUsers = clsGlobl.user.UserID;
+            Accounts.Save();
             Accounts.ClientID = this.GetClientID();
 
 
@@ -77,9 +81,25 @@ namespace BankProject11
             return ClientID;
         }
 
+
+        private void _Fill()
+        {
+            DataTable dataTable = clsClient.GetAllClients();
+
+            if (dataTable != null)
+            {
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    cmbClients.Items.Add(row["ClientID"].ToString());
+                }
+            }
+        }
         private void UCAddAccountToClients_Load(object sender, EventArgs e)
         {
+            _Fill();
             _FillCurrencyBox();
+            dgvAccounts.DataSource = clsManageAccounts.GetAllClients();
+            
         }
 
         private void txtbAccount_type_TextChanged(object sender, EventArgs e)
@@ -94,7 +114,10 @@ namespace BankProject11
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            if(this._Save())
+            {
+                MessageBox.Show("Added Successfully :-) ","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
         }
     }
 }

@@ -48,6 +48,23 @@ namespace UsersBussncessLayerLib
             eMode = enMode.eEmpty;
             return null;    
         }
+
+        public static clsClient FindByPerosnID(int ClientID)
+        {
+            int PersonID = 0;
+            //int ClientID = 0;
+            string ClientType = "";
+
+            bool isFound = clsDAClients.GetClientInfoByPersonID(PersonID , ref ClientID, ref ClientType);
+
+            if (isFound)
+            {
+                return new clsClient(PersonID, ClientID, ClientType);
+            }
+            eMode = enMode.eEmpty;
+            return null;
+        }
+
         public static bool IsExistCleint(int ClientID)
         {
             return clsDAClients.IsClientExist(ClientID);
@@ -57,12 +74,19 @@ namespace UsersBussncessLayerLib
             //Updating data into database will be here ...
             return clsDAClients.UpdateClient(this.ClientID,this.PersonID,this.ClientType);
         }
-        private bool _Delete()
+        public bool _Delete()
         {
             //Deleting data from database will be here ...
 
             return clsDAClients.DeleteClient(this.ClientID);
         }
+
+        public bool DeleteByPersonID()
+        {
+            //Deleting data from database will be here ...
+
+            return clsDAClients.DeleteClientByPersonID(this.ClientID);
+        } 
         public static DataTable GetAllClients()
         {
             return clsDAClients.GetAllClients();
@@ -126,6 +150,8 @@ namespace UsersBussncessLayerLib
             }
             return false;
         }
+
+        
 
 
     }

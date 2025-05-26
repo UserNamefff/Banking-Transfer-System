@@ -63,7 +63,8 @@ namespace UsersBussncessLayerLib
         
         public int ID
         {
-            get{return _ID; }
+            get{return _ID;   }
+            set { _ID = value;}
         }
         
         public string FName

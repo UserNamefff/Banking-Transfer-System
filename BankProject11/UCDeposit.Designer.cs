@@ -30,13 +30,11 @@
         {
             this.NRAmount = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.cbxAcountNO = new Guna.UI.WinForms.GunaComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbxClassDeposit = new Guna.UI.WinForms.GunaComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.bntCancel = new Guna.UI.WinForms.GunaButton();
-            this.btnDeposit = new Guna.UI.WinForms.GunaButton();
+            this.btDeposit = new Guna.UI.WinForms.GunaButton();
+            this.btnCancel = new Guna.UI.WinForms.GunaButton();
+            this.cbxAcountNO = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.NRAmount)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,9 +45,9 @@
             0,
             0,
             0});
-            this.NRAmount.Location = new System.Drawing.Point(484, 220);
+            this.NRAmount.Location = new System.Drawing.Point(480, 220);
             this.NRAmount.Name = "NRAmount";
-            this.NRAmount.Size = new System.Drawing.Size(258, 24);
+            this.NRAmount.Size = new System.Drawing.Size(262, 24);
             this.NRAmount.TabIndex = 22;
             // 
             // label2
@@ -61,24 +59,6 @@
             this.label2.TabIndex = 23;
             this.label2.Text = "Amount";
             // 
-            // cbxAcountNO
-            // 
-            this.cbxAcountNO.BackColor = System.Drawing.Color.Transparent;
-            this.cbxAcountNO.BaseColor = System.Drawing.Color.White;
-            this.cbxAcountNO.BorderColor = System.Drawing.Color.Silver;
-            this.cbxAcountNO.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbxAcountNO.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxAcountNO.FocusedColor = System.Drawing.Color.Empty;
-            this.cbxAcountNO.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cbxAcountNO.ForeColor = System.Drawing.Color.Black;
-            this.cbxAcountNO.FormattingEnabled = true;
-            this.cbxAcountNO.Location = new System.Drawing.Point(483, 174);
-            this.cbxAcountNO.Name = "cbxAcountNO";
-            this.cbxAcountNO.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.cbxAcountNO.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.cbxAcountNO.Size = new System.Drawing.Size(259, 31);
-            this.cbxAcountNO.TabIndex = 24;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -87,33 +67,6 @@
             this.label1.Size = new System.Drawing.Size(75, 17);
             this.label1.TabIndex = 25;
             this.label1.Text = "Acount NO";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(393, 266);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 17);
-            this.label3.TabIndex = 28;
-            this.label3.Text = "Deposit Class";
-            // 
-            // cbxClassDeposit
-            // 
-            this.cbxClassDeposit.BackColor = System.Drawing.Color.Transparent;
-            this.cbxClassDeposit.BaseColor = System.Drawing.Color.White;
-            this.cbxClassDeposit.BorderColor = System.Drawing.Color.Silver;
-            this.cbxClassDeposit.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbxClassDeposit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxClassDeposit.FocusedColor = System.Drawing.Color.Empty;
-            this.cbxClassDeposit.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cbxClassDeposit.ForeColor = System.Drawing.Color.Black;
-            this.cbxClassDeposit.FormattingEnabled = true;
-            this.cbxClassDeposit.Location = new System.Drawing.Point(484, 258);
-            this.cbxClassDeposit.Name = "cbxClassDeposit";
-            this.cbxClassDeposit.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.cbxClassDeposit.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.cbxClassDeposit.Size = new System.Drawing.Size(259, 31);
-            this.cbxClassDeposit.TabIndex = 27;
             // 
             // label4
             // 
@@ -125,71 +78,81 @@
             this.label4.TabIndex = 31;
             this.label4.Text = "Deposit";
             // 
-            // bntCancel
+            // btDeposit
             // 
-            this.bntCancel.AnimationHoverSpeed = 0.07F;
-            this.bntCancel.AnimationSpeed = 0.03F;
-            this.bntCancel.BackColor = System.Drawing.Color.Transparent;
-            this.bntCancel.BaseColor = System.Drawing.Color.Gray;
-            this.bntCancel.BorderColor = System.Drawing.Color.DarkGray;
-            this.bntCancel.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.bntCancel.FocusedColor = System.Drawing.Color.Empty;
-            this.bntCancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.bntCancel.ForeColor = System.Drawing.Color.White;
-            this.bntCancel.Image = global::BankProject11.Properties.Resources._27836_approve_block_cancel_delete_reject_icon__1_;
-            this.bntCancel.ImageSize = new System.Drawing.Size(50, 50);
-            this.bntCancel.Location = new System.Drawing.Point(603, 348);
-            this.bntCancel.Name = "bntCancel";
-            this.bntCancel.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.bntCancel.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.bntCancel.OnHoverForeColor = System.Drawing.Color.White;
-            this.bntCancel.OnHoverImage = null;
-            this.bntCancel.OnPressedColor = System.Drawing.Color.Black;
-            this.bntCancel.Radius = 10;
-            this.bntCancel.Size = new System.Drawing.Size(139, 66);
-            this.bntCancel.TabIndex = 30;
-            this.bntCancel.Text = "Cancel";
+            this.btDeposit.AnimationHoverSpeed = 0.07F;
+            this.btDeposit.AnimationSpeed = 0.03F;
+            this.btDeposit.BackColor = System.Drawing.Color.Transparent;
+            this.btDeposit.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btDeposit.BorderColor = System.Drawing.Color.DarkGray;
+            this.btDeposit.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btDeposit.FocusedColor = System.Drawing.Color.Empty;
+            this.btDeposit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btDeposit.ForeColor = System.Drawing.Color.Black;
+            this.btDeposit.Image = null;
+            this.btDeposit.ImageSize = new System.Drawing.Size(55, 55);
+            this.btDeposit.Location = new System.Drawing.Point(480, 359);
+            this.btDeposit.Name = "btDeposit";
+            this.btDeposit.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.btDeposit.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btDeposit.OnHoverForeColor = System.Drawing.Color.White;
+            this.btDeposit.OnHoverImage = null;
+            this.btDeposit.OnPressedColor = System.Drawing.Color.Black;
+            this.btDeposit.Radius = 10;
+            this.btDeposit.Size = new System.Drawing.Size(141, 51);
+            this.btDeposit.TabIndex = 70;
+            this.btDeposit.Text = "Deposit";
+            this.btDeposit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btDeposit.Click += new System.EventHandler(this.btDeposit_Click);
             // 
-            // btnDeposit
+            // btnCancel
             // 
-            this.btnDeposit.AnimationHoverSpeed = 0.07F;
-            this.btnDeposit.AnimationSpeed = 0.03F;
-            this.btnDeposit.BackColor = System.Drawing.Color.Transparent;
-            this.btnDeposit.BaseColor = System.Drawing.Color.Gray;
-            this.btnDeposit.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnDeposit.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnDeposit.FocusedColor = System.Drawing.Color.Empty;
-            this.btnDeposit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnDeposit.ForeColor = System.Drawing.Color.White;
-            this.btnDeposit.Image = global::BankProject11.Properties.Resources.remove;
-            this.btnDeposit.ImageSize = new System.Drawing.Size(50, 50);
-            this.btnDeposit.Location = new System.Drawing.Point(456, 348);
-            this.btnDeposit.Name = "btnDeposit";
-            this.btnDeposit.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.btnDeposit.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnDeposit.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnDeposit.OnHoverImage = null;
-            this.btnDeposit.OnPressedColor = System.Drawing.Color.Black;
-            this.btnDeposit.Radius = 10;
-            this.btnDeposit.Size = new System.Drawing.Size(139, 66);
-            this.btnDeposit.TabIndex = 29;
-            this.btnDeposit.Text = "Deposit";
+            this.btnCancel.AnimationHoverSpeed = 0.07F;
+            this.btnCancel.AnimationSpeed = 0.03F;
+            this.btnCancel.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancel.BaseColor = System.Drawing.Color.Red;
+            this.btnCancel.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnCancel.FocusedColor = System.Drawing.Color.Empty;
+            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnCancel.ForeColor = System.Drawing.Color.Black;
+            this.btnCancel.Image = null;
+            this.btnCancel.ImageSize = new System.Drawing.Size(55, 55);
+            this.btnCancel.Location = new System.Drawing.Point(629, 359);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.btnCancel.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnCancel.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnCancel.OnHoverImage = null;
+            this.btnCancel.OnPressedColor = System.Drawing.Color.Black;
+            this.btnCancel.Radius = 10;
+            this.btnCancel.Size = new System.Drawing.Size(141, 51);
+            this.btnCancel.TabIndex = 71;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // cbxAcountNO
+            // 
+            this.cbxAcountNO.FormattingEnabled = true;
+            this.cbxAcountNO.Location = new System.Drawing.Point(480, 180);
+            this.cbxAcountNO.Name = "cbxAcountNO";
+            this.cbxAcountNO.Size = new System.Drawing.Size(262, 24);
+            this.cbxAcountNO.TabIndex = 72;
             // 
             // UCDeposit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.bntCancel);
-            this.Controls.Add(this.btnDeposit);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.cbxClassDeposit);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.cbxAcountNO);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btDeposit);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.NRAmount);
             this.Name = "UCDeposit";
             this.Size = new System.Drawing.Size(1239, 606);
+            this.Load += new System.EventHandler(this.UCDeposit_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NRAmount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -198,13 +161,11 @@
 
         #endregion
         private System.Windows.Forms.Label label2;
-        private Guna.UI.WinForms.GunaComboBox cbxAcountNO;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private Guna.UI.WinForms.GunaComboBox cbxClassDeposit;
         protected internal System.Windows.Forms.NumericUpDown NRAmount;
-        private Guna.UI.WinForms.GunaButton bntCancel;
-        private Guna.UI.WinForms.GunaButton btnDeposit;
         private System.Windows.Forms.Label label4;
+        private Guna.UI.WinForms.GunaButton btDeposit;
+        private Guna.UI.WinForms.GunaButton btnCancel;
+        private System.Windows.Forms.ComboBox cbxAcountNO;
     }
 }

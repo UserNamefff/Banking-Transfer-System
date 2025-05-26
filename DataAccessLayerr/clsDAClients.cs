@@ -41,7 +41,57 @@ namespace DataAccessLayerr
                     PersonID = (int)reader["PersonID"];
                     
 
+                }
+                else
+                {
+                    // The record was not found
+                    isFound = false;
+                }
 
+                reader.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
+        public static bool GetClientInfoByPersonID(int PersonID , ref int ClientID, ref string TypeClient)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT * FROM Clients WHERE PersonID = @PersonID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // The record was found
+                    isFound = true;
+
+
+
+                    TypeClient = (string)reader["TypeClient"];
+                    //ClientID = (int)reader["ClientID"];
+                    ClientID = (int)reader["ClientID"];
 
 
                 }
@@ -67,6 +117,7 @@ namespace DataAccessLayerr
 
             return isFound;
         }
+
 
         public static int AddNewClient(int PersonID, string TypeClient)
         {
@@ -165,7 +216,13 @@ namespace DataAccessLayerr
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Clients";
+
+            
+
+            string query = @"SELECT Clients.ClientID, Clients.TypeClient, Persons.FirstName, Persons.LastName, Accounts.AccountNumber
+FROM     Clients INNER JOIN
+                  Accounts ON Clients.ClientID = Accounts.ClientID INNER JOIN
+                  Persons ON Clients.PersonID = Persons.PersonID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -234,6 +291,44 @@ namespace DataAccessLayerr
             return (rowsAffected > 0);
 
         }
+
+
+        public static bool DeleteClientByPersonID(int PerosnID)
+        {
+
+            int rowsAffected = 0;
+
+            SqlConnection connection = new SqlConnection("");
+
+            string query = @"Delete Clients 
+                                where PerosnID = @PerosnID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@PerosnID", PerosnID);
+
+            try
+            {
+                connection.Open();
+
+                rowsAffected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                // Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return (rowsAffected > 0);
+
+        }
+
 
         public static bool IsClientExist(int ClientID)
         {

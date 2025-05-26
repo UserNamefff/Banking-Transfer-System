@@ -352,8 +352,8 @@
             this.btnPrint.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.ForeColor = System.Drawing.Color.White;
             this.btnPrint.Image = global::BankProject11.Properties.Resources._44993_print_icon__1_;
-            this.btnPrint.ImageSize = new System.Drawing.Size(45, 45);
-            this.btnPrint.Location = new System.Drawing.Point(581, 12);
+            this.btnPrint.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnPrint.Location = new System.Drawing.Point(581, 18);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnPrint.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -361,7 +361,7 @@
             this.btnPrint.OnHoverImage = null;
             this.btnPrint.OnPressedColor = System.Drawing.Color.Black;
             this.btnPrint.Radius = 10;
-            this.btnPrint.Size = new System.Drawing.Size(134, 57);
+            this.btnPrint.Size = new System.Drawing.Size(134, 50);
             this.btnPrint.TabIndex = 4;
             this.btnPrint.Text = "Print";
             // 
@@ -377,8 +377,8 @@
             this.btnDelete.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Image = global::BankProject11.Properties.Resources._27874_delete_remove_icon;
-            this.btnDelete.ImageSize = new System.Drawing.Size(45, 45);
-            this.btnDelete.Location = new System.Drawing.Point(440, 12);
+            this.btnDelete.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnDelete.Location = new System.Drawing.Point(440, 18);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnDelete.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -386,7 +386,7 @@
             this.btnDelete.OnHoverImage = null;
             this.btnDelete.OnPressedColor = System.Drawing.Color.Black;
             this.btnDelete.Radius = 10;
-            this.btnDelete.Size = new System.Drawing.Size(134, 57);
+            this.btnDelete.Size = new System.Drawing.Size(134, 50);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete";
             // 
@@ -402,8 +402,8 @@
             this.bntCancel.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bntCancel.ForeColor = System.Drawing.Color.White;
             this.bntCancel.Image = global::BankProject11.Properties.Resources._27836_approve_block_cancel_delete_reject_icon__1_;
-            this.bntCancel.ImageSize = new System.Drawing.Size(45, 45);
-            this.bntCancel.Location = new System.Drawing.Point(155, 12);
+            this.bntCancel.ImageSize = new System.Drawing.Size(30, 30);
+            this.bntCancel.Location = new System.Drawing.Point(155, 18);
             this.bntCancel.Name = "bntCancel";
             this.bntCancel.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.bntCancel.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -411,7 +411,7 @@
             this.bntCancel.OnHoverImage = null;
             this.bntCancel.OnPressedColor = System.Drawing.Color.Black;
             this.bntCancel.Radius = 10;
-            this.bntCancel.Size = new System.Drawing.Size(132, 57);
+            this.bntCancel.Size = new System.Drawing.Size(132, 50);
             this.bntCancel.TabIndex = 2;
             this.bntCancel.Text = "Cancel";
             // 
@@ -427,8 +427,8 @@
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Image = global::BankProject11.Properties.Resources._27883_refresh_sync_synchronize_icon;
-            this.btnUpdate.ImageSize = new System.Drawing.Size(45, 45);
-            this.btnUpdate.Location = new System.Drawing.Point(294, 12);
+            this.btnUpdate.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnUpdate.Location = new System.Drawing.Point(294, 18);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnUpdate.OnHoverBorderColor = System.Drawing.Color.Gray;
@@ -436,7 +436,7 @@
             this.btnUpdate.OnHoverImage = null;
             this.btnUpdate.OnPressedColor = System.Drawing.Color.Black;
             this.btnUpdate.Radius = 10;
-            this.btnUpdate.Size = new System.Drawing.Size(138, 57);
+            this.btnUpdate.Size = new System.Drawing.Size(138, 50);
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "Update";
             // 
@@ -452,8 +452,8 @@
             this.btnAdd.Font = new System.Drawing.Font("Microsoft JhengHei UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Image = global::BankProject11.Properties.Resources.remove;
-            this.btnAdd.ImageSize = new System.Drawing.Size(45, 45);
-            this.btnAdd.Location = new System.Drawing.Point(25, 12);
+            this.btnAdd.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnAdd.Location = new System.Drawing.Point(25, 18);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnAdd.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -461,7 +461,7 @@
             this.btnAdd.OnHoverImage = null;
             this.btnAdd.OnPressedColor = System.Drawing.Color.Black;
             this.btnAdd.Radius = 10;
-            this.btnAdd.Size = new System.Drawing.Size(121, 57);
+            this.btnAdd.Size = new System.Drawing.Size(121, 50);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Add";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);

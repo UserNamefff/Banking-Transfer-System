@@ -16,7 +16,7 @@ namespace DataAccessLayerr
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Currencys WHERE CurrencyID = @CurrencyID";
+            string query = "SELECT * FROM Currencies WHERE CurrencyID = @CurrencyID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -33,7 +33,7 @@ namespace DataAccessLayerr
                     isFound = true;
 
                     CurrencyCode = (string)reader["CurrencyCode"];
-                    Rate = (double)reader["Rate"];
+                    Rate = Convert.ToDouble(reader["Rate"]);
                     CountryID   = (int)reader["CountryID"];
 
                     
@@ -61,7 +61,62 @@ namespace DataAccessLayerr
             return isFound;
         }
 
-        public static bool GetCurrencyInfoByID(string CurrencyName, ref string Currencycode, ref int CurrencyID , ref double Rate, ref int CountryID)
+        public static bool GetCurrencyInfoByCode(string Currencycode , ref string CurrencyName, ref int CurrencyID , ref double Rate, ref int CountryID)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT * FROM Currencies WHERE Currencycode = @Currencycode";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@Currencycode", Currencycode);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // The record was found
+                    isFound = true;
+
+                    CurrencyName = reader.GetString(reader.GetOrdinal("CurrencyName"));
+                    CurrencyID = reader.GetInt32(reader.GetOrdinal("CurrencyID"));
+                    Rate = Convert.ToDouble(reader.GetOrdinal("Rate"));
+                    CountryID = reader.GetInt32(reader.GetOrdinal("CountryID"));
+
+
+
+
+
+                }
+                else
+                {
+                    // The record was not found
+                    isFound = false;
+                }
+
+                reader.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
+        public static bool GetCurrencyInfoByName(string CurrencyName, ref string Currencycode, ref int CurrencyID , ref double Rate, ref int CountryID)
         {
             bool isFound = false;
 

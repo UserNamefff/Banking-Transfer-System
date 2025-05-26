@@ -16,7 +16,7 @@ namespace BankProject11
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmBank());
+            Application.Run(new frmLogIn());
         }
     }
 }

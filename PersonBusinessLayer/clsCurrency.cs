@@ -110,18 +110,34 @@ namespace UsersBussncessLayerLib
             
         }
 
+        public static clsCurrency FindCurrencyInfoByName(string CurrencyName)
+        {
+             int    CurrencyID = 0;
+            int CountryID = 0;
+            string CurrencyCode = "";
+            //string CurrencyName = "";
+            double Rate = 0.0;
+
+
+            if (clsDACurrencies.GetCurrencyInfoByName(CurrencyName, ref CurrencyCode, ref CurrencyID,  ref Rate, ref CountryID))
+            {
+                return new clsCurrency(CurrencyID, CurrencyName, CurrencyCode, Rate, CountryID);
+            }
+            return null;
+
+        }
 
 
         public static clsCurrency FindByCurrencyCode (string Code)
         {
-             int    CurrencyID = 0;
+            int    CurrencyID = 0;
             int CountryID = 0;
             string CurrencyName = "";
             string CurrencyCode = "";
             double Rate = 0.0;
 
 
-            if (clsDACurrencies.GetCurrencyInfoByID(Code, ref CurrencyName, ref CurrencyID, ref Rate, ref CountryID))
+            if (clsDACurrencies.GetCurrencyInfoByCode(Code, ref CurrencyName, ref CurrencyID, ref Rate, ref CountryID))
             {
                 return new clsCurrency(CurrencyID, CurrencyName, CurrencyCode, Rate, CountryID);
             }

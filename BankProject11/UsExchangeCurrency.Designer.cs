@@ -28,21 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cmbConvert_From = new Guna.UI.WinForms.GunaComboBox();
             this.cmbConvert_To = new Guna.UI.WinForms.GunaComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblConvertResult = new System.Windows.Forms.Label();
-            this.gunaNumeric1 = new Guna.UI.WinForms.GunaNumeric();
+            this.numricAmount = new Guna.UI.WinForms.GunaNumeric();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.gunaContextMenuStrip1 = new Guna.UI.WinForms.GunaContextMenuStrip();
-            this.updateRateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.othersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnPrint = new Guna.UI.WinForms.GunaButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.gunaContextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbConvert_From
@@ -64,6 +63,7 @@
             this.cmbConvert_From.Radius = 10;
             this.cmbConvert_From.Size = new System.Drawing.Size(283, 31);
             this.cmbConvert_From.TabIndex = 0;
+            this.cmbConvert_From.SelectedIndexChanged += new System.EventHandler(this.cmbConvert_From_SelectedIndexChanged);
             // 
             // cmbConvert_To
             // 
@@ -128,25 +128,25 @@
             this.lblConvertResult.TabIndex = 63;
             this.lblConvertResult.Text = "?????????";
             // 
-            // gunaNumeric1
+            // numricAmount
             // 
-            this.gunaNumeric1.BackColor = System.Drawing.Color.Transparent;
-            this.gunaNumeric1.BaseColor = System.Drawing.Color.White;
-            this.gunaNumeric1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.gunaNumeric1.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.gunaNumeric1.ButtonForeColor = System.Drawing.Color.White;
-            this.gunaNumeric1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gunaNumeric1.ForeColor = System.Drawing.Color.Black;
-            this.gunaNumeric1.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.gunaNumeric1.Location = new System.Drawing.Point(407, 299);
-            this.gunaNumeric1.Maximum = ((long)(99999999999));
-            this.gunaNumeric1.Minimum = ((long)(0));
-            this.gunaNumeric1.Name = "gunaNumeric1";
-            this.gunaNumeric1.Radius = 10;
-            this.gunaNumeric1.Size = new System.Drawing.Size(283, 30);
-            this.gunaNumeric1.TabIndex = 64;
-            this.gunaNumeric1.Text = "Amount";
-            this.gunaNumeric1.Value = ((long)(0));
+            this.numricAmount.BackColor = System.Drawing.Color.Transparent;
+            this.numricAmount.BaseColor = System.Drawing.Color.White;
+            this.numricAmount.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.numricAmount.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.numricAmount.ButtonForeColor = System.Drawing.Color.White;
+            this.numricAmount.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.numricAmount.ForeColor = System.Drawing.Color.Black;
+            this.numricAmount.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.numricAmount.Location = new System.Drawing.Point(407, 299);
+            this.numricAmount.Maximum = ((long)(99999999999));
+            this.numricAmount.Minimum = ((long)(0));
+            this.numricAmount.Name = "numricAmount";
+            this.numricAmount.Radius = 10;
+            this.numricAmount.Size = new System.Drawing.Size(283, 30);
+            this.numricAmount.TabIndex = 64;
+            this.numricAmount.Text = "Amount";
+            this.numricAmount.Value = ((long)(0));
             // 
             // label3
             // 
@@ -161,46 +161,41 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ContextMenuStrip = this.gunaContextMenuStrip1;
-            this.dataGridView1.Location = new System.Drawing.Point(87, 594);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.Location = new System.Drawing.Point(87, 529);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 26;
-            this.dataGridView1.Size = new System.Drawing.Size(1380, 194);
+            this.dataGridView1.Size = new System.Drawing.Size(1380, 299);
             this.dataGridView1.TabIndex = 66;
-            // 
-            // gunaContextMenuStrip1
-            // 
-            this.gunaContextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.gunaContextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.updateRateToolStripMenuItem,
-            this.othersToolStripMenuItem});
-            this.gunaContextMenuStrip1.Name = "gunaContextMenuStrip1";
-            this.gunaContextMenuStrip1.RenderStyle.ArrowColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.gunaContextMenuStrip1.RenderStyle.BorderColor = System.Drawing.Color.Gainsboro;
-            this.gunaContextMenuStrip1.RenderStyle.ColorTable = null;
-            this.gunaContextMenuStrip1.RenderStyle.RoundedEdges = true;
-            this.gunaContextMenuStrip1.RenderStyle.SelectionArrowColor = System.Drawing.Color.White;
-            this.gunaContextMenuStrip1.RenderStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.gunaContextMenuStrip1.RenderStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.gunaContextMenuStrip1.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro;
-            this.gunaContextMenuStrip1.RenderStyle.TextRenderingHint = Guna.UI.WinForms.DrawingTextRenderingHint.SystemDefault;
-            this.gunaContextMenuStrip1.Size = new System.Drawing.Size(162, 52);
-            // 
-            // updateRateToolStripMenuItem
-            // 
-            this.updateRateToolStripMenuItem.Name = "updateRateToolStripMenuItem";
-            this.updateRateToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
-            this.updateRateToolStripMenuItem.Text = "Update Rate";
-            // 
-            // othersToolStripMenuItem
-            // 
-            this.othersToolStripMenuItem.Name = "othersToolStripMenuItem";
-            this.othersToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
-            this.othersToolStripMenuItem.Text = "Others";
             // 
             // btnPrint
             // 
@@ -227,6 +222,7 @@
             this.btnPrint.TabIndex = 68;
             this.btnPrint.Text = "Convert";
             this.btnPrint.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // UsExchangeCurrency
             // 
@@ -235,7 +231,7 @@
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.gunaNumeric1);
+            this.Controls.Add(this.numricAmount);
             this.Controls.Add(this.lblConvertResult);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -244,8 +240,8 @@
             this.Controls.Add(this.cmbConvert_From);
             this.Name = "UsExchangeCurrency";
             this.Size = new System.Drawing.Size(1578, 880);
+            this.Load += new System.EventHandler(this.UsExchangeCurrency_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.gunaContextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,10 +257,7 @@
         private System.Windows.Forms.Label lblConvertResult;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private Guna.UI.WinForms.GunaContextMenuStrip gunaContextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem updateRateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem othersToolStripMenuItem;
         private Guna.UI.WinForms.GunaButton btnPrint;
-        private Guna.UI.WinForms.GunaNumeric gunaNumeric1;
+        private Guna.UI.WinForms.GunaNumeric numricAmount;
     }
 }

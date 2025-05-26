@@ -50,6 +50,7 @@
     <Compile Include="clsDACities.cs" />
     <Compile Include="clsDAClients.cs" />
     <Compile Include="clsDACurrencies.cs" />
+    <Compile Include="clsDAJobs.cs" />
     <Compile Include="clsDANonClients.cs" />
     <Compile Include="clsDAPersons.cs" />
     <Compile Include="clsDARemittanceTransfer.cs" />

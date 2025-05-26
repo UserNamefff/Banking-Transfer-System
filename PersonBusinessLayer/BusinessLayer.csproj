@@ -45,6 +45,7 @@
     <Compile Include="clsBranches.cs" />
     <Compile Include="clsCities.cs" />
     <Compile Include="clsClient.cs" />
+    <Compile Include="clsJobs.cs" />
     <Compile Include="clsManageAccounts.cs" />
     <Compile Include="clsCountry.cs" />
     <Compile Include="clsCurrency.cs" />

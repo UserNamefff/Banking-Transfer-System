@@ -223,6 +223,7 @@
             this.permissionToolStripMenuItem.Name = "permissionToolStripMenuItem";
             this.permissionToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
             this.permissionToolStripMenuItem.Text = "Permission";
+            this.permissionToolStripMenuItem.Click += new System.EventHandler(this.permissionToolStripMenuItem_Click);
             // 
             // toolStripSeparator11
             // 
@@ -390,49 +391,50 @@
             this.messagesToolStripMenuItem.Name = "messagesToolStripMenuItem";
             this.messagesToolStripMenuItem.Size = new System.Drawing.Size(160, 81);
             this.messagesToolStripMenuItem.Text = "Currency";
+            this.messagesToolStripMenuItem.Click += new System.EventHandler(this.messagesToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(284, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(244, 6);
             // 
             // exchangeToolStripMenuItem
             // 
             this.exchangeToolStripMenuItem.Image = global::BankProject11.Properties.Resources._1889190_currency_currency_exchange_exchange_dollar_euro_icon;
             this.exchangeToolStripMenuItem.Name = "exchangeToolStripMenuItem";
-            this.exchangeToolStripMenuItem.Size = new System.Drawing.Size(287, 66);
+            this.exchangeToolStripMenuItem.Size = new System.Drawing.Size(247, 28);
             this.exchangeToolStripMenuItem.Text = "Exchange Currency";
             this.exchangeToolStripMenuItem.Click += new System.EventHandler(this.exchangeToolStripMenuItem_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(284, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(244, 6);
             // 
             // sellCurrenciesToolStripMenuItem
             // 
             this.sellCurrenciesToolStripMenuItem.Image = global::BankProject11.Properties.Resources.icons8_sell_100__1_;
             this.sellCurrenciesToolStripMenuItem.Name = "sellCurrenciesToolStripMenuItem";
-            this.sellCurrenciesToolStripMenuItem.Size = new System.Drawing.Size(287, 66);
+            this.sellCurrenciesToolStripMenuItem.Size = new System.Drawing.Size(247, 28);
             this.sellCurrenciesToolStripMenuItem.Text = "Sell Currency";
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(284, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(244, 6);
             // 
             // buyCurrenciesToolStripMenuItem
             // 
             this.buyCurrenciesToolStripMenuItem.Image = global::BankProject11.Properties.Resources.icons8_buy_100;
             this.buyCurrenciesToolStripMenuItem.Name = "buyCurrenciesToolStripMenuItem";
-            this.buyCurrenciesToolStripMenuItem.Size = new System.Drawing.Size(287, 66);
+            this.buyCurrenciesToolStripMenuItem.Size = new System.Drawing.Size(247, 28);
             this.buyCurrenciesToolStripMenuItem.Text = "Buy Currency";
             this.buyCurrenciesToolStripMenuItem.Click += new System.EventHandler(this.buyCurrenciesToolStripMenuItem_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(284, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(244, 6);
             // 
             // reportsToolStripMenuItem
             // 
@@ -512,6 +514,8 @@
             this.tabControlMain.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControlMain_DrawItem);
             this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.tabControlMain_SelectedIndexChanged_1);
             this.tabControlMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tabControlMain_MouseDown);
+            this.tabControlMain.MouseLeave += new System.EventHandler(this.tabControlMain_MouseLeave);
+            this.tabControlMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.tabControlMain_MouseMove);
             // 
             // TimerToTime
             // 

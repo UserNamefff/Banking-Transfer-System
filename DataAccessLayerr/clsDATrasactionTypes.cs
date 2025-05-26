@@ -29,10 +29,10 @@ namespace DataAccessLayerr
 
                 SqlDataReader reader = command.ExecuteReader();
 
-                if (reader.HasRows)
+                if (reader.Read())
                 {
                     isFound = true;
-                    Transaction_typeID = (int)reader["Transaction_typeID"];
+                    Transaction_typeID = reader.GetInt32(reader.GetOrdinal("Transaction_typeID"));
                 }
 
                 reader.Close();

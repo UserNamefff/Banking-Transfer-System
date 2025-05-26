@@ -22,21 +22,7 @@ namespace BankProject11
             Region = new clsRegions();
         }
 
-        private void gunaComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-
-
-        }
 
         private bool _AddRegion()
         {
@@ -68,6 +54,11 @@ namespace BankProject11
         private void bntCancel_Click(object sender, EventArgs e)
         {
             ClearTextFielde();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

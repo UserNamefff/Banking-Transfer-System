@@ -12,7 +12,7 @@ namespace DataAccessLayerr
    public class clsDABoxToUsers
     {
 
-        public static bool GetBoxInfoByBoxID(int BoxID, int UserID, ref string BoxName ,ref double BoxBalence, ref double Revenues,ref string BoxType, ref DateTime Date)
+        public static bool GetBoxInfoByBoxID(int BoxID, int UserID, ref string BoxName ,ref double BoxBalence, ref double Revenues,ref string BoxType, ref DateTime Date,int CurrencyID)
         {
             bool isFound = false;
 
@@ -35,10 +35,11 @@ namespace DataAccessLayerr
                     isFound = true;
 
                     BoxName = (string)reader["BoxName"];
-                    BoxBalence = (double)reader["BoxBalence"];
-                    Revenues = (int)reader["Revenues"];
+                    BoxBalence = Convert.ToDouble(reader["BoxBalence"]);
+                    Revenues = Convert.ToDouble(reader["Revenues"]);
                     BoxType = (string)reader["BoxType"];
-                    Date = (DateTime)reader["Date"];
+                    //Date = (DateTime)reader["Date"];
+                    CurrencyID = (int)reader["CurrencyID"];
                     
 
                 }
@@ -65,7 +66,7 @@ namespace DataAccessLayerr
             return isFound;
         }
 
-        public static bool GetBoxInfoByBoxID(string BoxName, int UserID, ref int BoxID , ref double BoxBalence, ref double Revenues, ref string BoxType, ref DateTime Date)
+        public static bool GetBoxInfoByBoxName(string BoxName, int UserID, ref int BoxID , ref double BoxBalence, ref double Revenues, ref string BoxType, ref DateTime Date)
         {
             bool isFound = false;
 
@@ -119,7 +120,7 @@ namespace DataAccessLayerr
         }
 
 
-        public static int AddNewBox( int UserID,string BoxName,  double BoxBalence,  double Revenues,  string BoxType, DateTime Date)
+        public static int AddNewBox( int UserID,string BoxName, double BoxBalence,  double Revenues,  string BoxType, DateTime Date,int CurrencyID = 17)
         {
             //this function will return the new Box id if succeeded and -1 if not.
 
@@ -127,17 +128,33 @@ namespace DataAccessLayerr
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO Boxes (BoxName ,BoxBalence ,Revenues ,BoxType,Date)
-                                    Values (@BoxName ,@BoxBalence ,@Revenues ,@BoxType,@Date);SELECT SCOPE_IDENTITY();";
+            string query = @"INSERT INTO [Boxes]
+           ([BoxName]
+           ,[BoxBalence]
+           ,[UserID]
+           ,[Revenues]
+           ,[BoxType]
+           ,[FK_CurrencyBox]
+           ,[CurrencyID])
+     VALUES
+           (@BoxName, 
+           @BoxBalence, 
+           @UserID,
+           @Revenues, 
+           @BoxType, 
+           @FK_CurrencyBox, 
+           @CurrencyID);SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
 
 
             command.Parameters.AddWithValue("@BoxName", BoxName);
+            command.Parameters.AddWithValue("@UserID", UserID);
             command.Parameters.AddWithValue("@BoxBalence", BoxBalence);
             command.Parameters.AddWithValue("@Revenues", Revenues);
             command.Parameters.AddWithValue("@BoxType", BoxType);
-            command.Parameters.AddWithValue("@Date", Date);
+            command.Parameters.AddWithValue("@CurrencyID", CurrencyID);
+            command.Parameters.AddWithValue("@FK_CurrencyBox", CurrencyID);
             
 
             try
@@ -179,8 +196,7 @@ namespace DataAccessLayerr
                                 BoxName = @BoxName ,
                                 BoxBalence = @BoxBalence,
                                 Revenues = @Revenues,
-                                BoxType =@BoxType,
-                                Date = @Date 
+                                BoxType =@BoxType
                                 where BoxID = @BoxID ";
 
 
@@ -321,15 +337,16 @@ namespace DataAccessLayerr
             int BoxID = 0;
             SqlConnection conn = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "Select BoxID From Boxes WHERE UserID =@UserID ";
+            string query = "Select * From Boxes WHERE UserID =@UserID ";
             SqlCommand comm = new SqlCommand(query, conn);
+            comm.Parameters.AddWithValue("@UserID", UserID);
 
             try
             {
                 conn.Open();
                 SqlDataReader reader = comm.ExecuteReader();
 
-                if (reader.HasRows)
+                if (reader.Read())
                 {
                     BoxID = (int)reader["BoxID"];
                 }

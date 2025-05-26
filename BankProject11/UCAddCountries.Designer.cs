@@ -56,13 +56,14 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(427, 449);
+            this.dataGridView1.Location = new System.Drawing.Point(374, 449);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 26;
-            this.dataGridView1.Size = new System.Drawing.Size(920, 275);
+            this.dataGridView1.Size = new System.Drawing.Size(805, 275);
             this.dataGridView1.TabIndex = 24;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // panel1
             // 
@@ -70,10 +71,10 @@
             this.panel1.Controls.Add(this.bntCancel);
             this.panel1.Controls.Add(this.btnUpdate);
             this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Location = new System.Drawing.Point(427, 354);
+            this.panel1.Location = new System.Drawing.Point(374, 354);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(3);
-            this.panel1.Size = new System.Drawing.Size(920, 89);
+            this.panel1.Size = new System.Drawing.Size(805, 89);
             this.panel1.TabIndex = 22;
             // 
             // btnPrint
@@ -89,7 +90,7 @@
             this.btnPrint.ForeColor = System.Drawing.Color.White;
             this.btnPrint.Image = global::BankProject11.Properties.Resources._44993_print_icon__1_;
             this.btnPrint.ImageSize = new System.Drawing.Size(55, 55);
-            this.btnPrint.Location = new System.Drawing.Point(642, 17);
+            this.btnPrint.Location = new System.Drawing.Point(562, 17);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnPrint.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -97,7 +98,7 @@
             this.btnPrint.OnHoverImage = null;
             this.btnPrint.OnPressedColor = System.Drawing.Color.Black;
             this.btnPrint.Radius = 10;
-            this.btnPrint.Size = new System.Drawing.Size(159, 66);
+            this.btnPrint.Size = new System.Drawing.Size(139, 66);
             this.btnPrint.TabIndex = 4;
             this.btnPrint.Text = "Print";
             // 
@@ -114,7 +115,7 @@
             this.bntCancel.ForeColor = System.Drawing.Color.White;
             this.bntCancel.Image = global::BankProject11.Properties.Resources._27836_approve_block_cancel_delete_reject_icon__1_;
             this.bntCancel.ImageSize = new System.Drawing.Size(50, 50);
-            this.bntCancel.Location = new System.Drawing.Point(309, 14);
+            this.bntCancel.Location = new System.Drawing.Point(270, 14);
             this.bntCancel.Name = "bntCancel";
             this.bntCancel.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.bntCancel.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -122,7 +123,7 @@
             this.bntCancel.OnHoverImage = null;
             this.bntCancel.OnPressedColor = System.Drawing.Color.Black;
             this.bntCancel.Radius = 10;
-            this.bntCancel.Size = new System.Drawing.Size(159, 66);
+            this.bntCancel.Size = new System.Drawing.Size(139, 66);
             this.bntCancel.TabIndex = 2;
             this.bntCancel.Text = "Cancel";
             // 
@@ -139,7 +140,7 @@
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Image = global::BankProject11.Properties.Resources._27883_refresh_sync_synchronize_icon;
             this.btnUpdate.ImageSize = new System.Drawing.Size(50, 50);
-            this.btnUpdate.Location = new System.Drawing.Point(477, 14);
+            this.btnUpdate.Location = new System.Drawing.Point(417, 14);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnUpdate.OnHoverBorderColor = System.Drawing.Color.Gray;
@@ -147,7 +148,7 @@
             this.btnUpdate.OnHoverImage = null;
             this.btnUpdate.OnPressedColor = System.Drawing.Color.Black;
             this.btnUpdate.Radius = 10;
-            this.btnUpdate.Size = new System.Drawing.Size(159, 66);
+            this.btnUpdate.Size = new System.Drawing.Size(139, 66);
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "Update";
             // 
@@ -164,7 +165,7 @@
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Image = global::BankProject11.Properties.Resources.Add1;
             this.btnAdd.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnAdd.Location = new System.Drawing.Point(145, 14);
+            this.btnAdd.Location = new System.Drawing.Point(127, 14);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.btnAdd.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -172,7 +173,7 @@
             this.btnAdd.OnHoverImage = null;
             this.btnAdd.OnPressedColor = System.Drawing.Color.Black;
             this.btnAdd.Radius = 10;
-            this.btnAdd.Size = new System.Drawing.Size(154, 66);
+            this.btnAdd.Size = new System.Drawing.Size(135, 66);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Add";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -181,7 +182,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(517, 235);
+            this.label2.Location = new System.Drawing.Point(452, 235);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(136, 24);
             this.label2.TabIndex = 21;
@@ -191,7 +192,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(517, 181);
+            this.label1.Location = new System.Drawing.Point(452, 181);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(114, 24);
             this.label1.TabIndex = 20;
@@ -209,12 +210,12 @@
             this.txtbCountryName.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.errorProvider1.SetIconPadding(this.txtbCountryName, 2);
             this.errorProvider2.SetIconPadding(this.txtbCountryName, 2);
-            this.txtbCountryName.Location = new System.Drawing.Point(681, 222);
+            this.txtbCountryName.Location = new System.Drawing.Point(596, 222);
             this.txtbCountryName.Name = "txtbCountryName";
             this.txtbCountryName.PasswordChar = '\0';
             this.txtbCountryName.Radius = 10;
             this.txtbCountryName.SelectedText = "";
-            this.txtbCountryName.Size = new System.Drawing.Size(413, 45);
+            this.txtbCountryName.Size = new System.Drawing.Size(361, 45);
             this.txtbCountryName.TabIndex = 19;
             this.txtbCountryName.Validating += new System.ComponentModel.CancelEventHandler(this.txtbCountryName_Validating);
             // 
@@ -228,13 +229,13 @@
             this.txtbCountrtyNO.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtbCountrtyNO.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtbCountrtyNO.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtbCountrtyNO.Location = new System.Drawing.Point(681, 171);
+            this.txtbCountrtyNO.Location = new System.Drawing.Point(596, 171);
             this.txtbCountrtyNO.Name = "txtbCountrtyNO";
             this.txtbCountrtyNO.PasswordChar = '\0';
             this.txtbCountrtyNO.Radius = 10;
             this.txtbCountrtyNO.ReadOnly = true;
             this.txtbCountrtyNO.SelectedText = "";
-            this.txtbCountrtyNO.Size = new System.Drawing.Size(413, 45);
+            this.txtbCountrtyNO.Size = new System.Drawing.Size(361, 45);
             this.txtbCountrtyNO.TabIndex = 18;
             this.txtbCountrtyNO.TextChanged += new System.EventHandler(this.txtbCountrtyNO_TextChanged);
             // 
@@ -243,7 +244,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 17F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.Firebrick;
-            this.label4.Location = new System.Drawing.Point(754, 46);
+            this.label4.Location = new System.Drawing.Point(660, 46);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(197, 35);
             this.label4.TabIndex = 28;
@@ -253,7 +254,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(517, 286);
+            this.label3.Location = new System.Drawing.Point(452, 286);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(129, 24);
             this.label3.TabIndex = 30;
@@ -269,12 +270,12 @@
             this.txtbCountryCode.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtbCountryCode.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtbCountryCode.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtbCountryCode.Location = new System.Drawing.Point(681, 273);
+            this.txtbCountryCode.Location = new System.Drawing.Point(596, 273);
             this.txtbCountryCode.Name = "txtbCountryCode";
             this.txtbCountryCode.PasswordChar = '\0';
             this.txtbCountryCode.Radius = 10;
             this.txtbCountryCode.SelectedText = "";
-            this.txtbCountryCode.Size = new System.Drawing.Size(413, 45);
+            this.txtbCountryCode.Size = new System.Drawing.Size(361, 45);
             this.txtbCountryCode.TabIndex = 29;
             this.txtbCountryCode.Validating += new System.ComponentModel.CancelEventHandler(this.txtbCountryName_Validating);
             // 
@@ -302,7 +303,7 @@
             // 
             // UCAddCountries
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
             this.Controls.Add(this.label3);
@@ -315,7 +316,7 @@
             this.Controls.Add(this.txtbCountryName);
             this.Controls.Add(this.txtbCountrtyNO);
             this.Name = "UCAddCountries";
-            this.Size = new System.Drawing.Size(1803, 831);
+            this.Size = new System.Drawing.Size(1578, 831);
             this.Load += new System.EventHandler(this.UCAddCountries_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);

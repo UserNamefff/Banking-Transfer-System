@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace UsersBussncessLayerLib
 {
-     static class clsGlobl
+    public static class clsGlobl
      {
        public static clsUser user;
-        
+       public  enum EnPermisions { Transactions = 8}
+       static clsGlobl()
+       {
+            //user = new clsUser();
+       }
 
     }
 }

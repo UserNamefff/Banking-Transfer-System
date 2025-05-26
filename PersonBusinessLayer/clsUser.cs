@@ -70,6 +70,7 @@ namespace UsersBussncessLayerLib
             _UserName = UserName;
             _Password = Password;
             _Permissions = Permissions;
+			this._UserID = UserID;
             this._JobID = JobID;
             this._BranchID = BranchID;
             this._PersonID = PersonID;
@@ -106,6 +107,7 @@ namespace UsersBussncessLayerLib
 		public int UserID
         {
             get { return _UserID; }
+			set { _UserID = value; }
 			
         }
         public string UserName
@@ -210,6 +212,14 @@ namespace UsersBussncessLayerLib
             //Deleting data from database will be here ...
 		  return clsUsersAccessData.DeleteUser(this._UserID);
         }
+		public void Delete(int UserID)
+		{
+			this._UserID = UserID;
+
+            _Delete();
+
+        }
+
         public static clsUser Find(int UserId)
         {
 
@@ -250,6 +260,26 @@ namespace UsersBussncessLayerLib
             else
                 return null;
         }
+
+        public static clsUser Find(string UserName)
+        {
+            int _UserID = 0;
+            int PersonID = 0;
+
+            //string _EncryptedPassword ="";
+            int Permissions = 0;
+            int JobID = 0;
+            int BranchID = 0;
+            bool IsActive = false;
+			string Password = "";
+
+            if (clsUsersAccessData.GetUserInfoByUserName(UserName,  ref PersonID, ref _UserID, ref Password, ref Permissions, ref JobID, ref BranchID, ref IsActive))
+                return new clsUser(_UserID, PersonID, UserName, Password, Permissions, JobID, BranchID, IsActive);
+
+            else
+                return null;
+        }
+
         public static DataTable GetAllUsers()
         {
 			// get all user from database will be here ..

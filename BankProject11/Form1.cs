@@ -24,6 +24,7 @@ namespace BankProject11
         TabPage tPfrmAddUser;
         TabPage tPfrmAddRemittenceTransfer;
         TabPage tPfrmDepositeOrWithdraw;
+        TabPage tPfrmPermsissions;
 
         public frmBank()
         {
@@ -106,7 +107,7 @@ namespace BankProject11
         {
             tPfrmAddPerson = new TabPage();
             
-            AddTabPage(tPfrmAddPerson, " Add Person ", new UCAddPepoles());
+            //AddTabPage(tPfrmAddPerson, " Add Person ", new UCAddPepoles());
 
         }
 
@@ -140,8 +141,8 @@ namespace BankProject11
             tPfrmAddBoxes = new TabPage();
             AddTabPage(tPfrmAddBoxes, "Add Boxes ", new UctrlAddBoxes());
         }
-        
-        
+
+
         private void SetupTabControl()
         {
             tabControlMain.DrawMode = TabDrawMode.OwnerDrawFixed;
@@ -149,22 +150,23 @@ namespace BankProject11
             tabControlMain.MouseDown += tabControlMain_MouseDown;
         }
 
-        // إغلاق التبويب مع تأكيد
+        // Show confirmation and close tab if confirmed
         private void CloseTab(int index)
         {
-            if (MessageBox.Show("هل تريد إغلاق هذا التبويب؟", "تأكيد",
-                MessageBoxButtons.YesNo) == DialogResult.Yes)
+            var result = MessageBox.Show("هل تريد إغلاق هذا التبويب؟", "تأكيد", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes && index >= 0 && index < tabControlMain.TabPages.Count)
             {
                 tabControlMain.TabPages.RemoveAt(index);
             }
         }
 
-        // التعامل مع النقر على زر الإغلاق
+        // Handle click on the close button area of a tab
         private void tabControlMain_MouseDown(object sender, MouseEventArgs e)
         {
             for (int i = 0; i < tabControlMain.TabPages.Count; i++)
             {
                 var tabRect = tabControlMain.GetTabRect(i);
+                // Defined close button rect relative to tabRect only once
                 var closeButtonRect = new Rectangle(tabRect.Right - 20, tabRect.Top + 4, 16, 16);
 
                 if (closeButtonRect.Contains(e.Location))
@@ -175,36 +177,68 @@ namespace BankProject11
             }
         }
 
-        // رسم التبويب وزر الإغلاق
+        // Draw tab header with close button
         private void tabControlMain_DrawItem(object sender, DrawItemEventArgs e)
         {
-
             var tabPage = tabControlMain.TabPages[e.Index];
             var tabRect = tabControlMain.GetTabRect(e.Index);
 
-            // رسم خلفية التبويب
-            e.Graphics.FillRectangle(Brushes.Snow , e.Bounds);
+            // Fill tab background with system color for better UI consistency
+            using (var backgroundBrush = new SolidBrush(SystemColors.ControlLightLight))
+            {
+                e.Graphics.FillRectangle(backgroundBrush, e.Bounds);
+            }
 
-            // رسم نص التبويب
-            TextRenderer.DrawText(e.Graphics, tabPage.Text, tabPage.Font,
-                tabRect, tabPage.ForeColor, TextFormatFlags.Left);
+            // Draw tab text with padding to avoid overlapping the close button
+            var textRect = new Rectangle(tabRect.Left + 2, tabRect.Top + 2, tabRect.Width - 22, tabRect.Height - 4);
+            TextRenderer.DrawText(e.Graphics, tabPage.Text, tabPage.Font, textRect, tabPage.ForeColor, TextFormatFlags.Left | TextFormatFlags.VerticalCenter);
 
-            // رسم زر الإغلاق (X)
-            Rectangle closeButtonRect = new Rectangle(tabRect.Right - 20, tabRect.Top + 4, 16, 16);
-            
-
-
-            e.Graphics.DrawString("X", this.Font, Brushes.Black, closeButtonRect);
+            // Draw close button (X)
+            var closeButtonRect = new Rectangle(tabRect.Right - 20, tabRect.Top + 4, 16, 16);
+            TextRenderer.DrawText(e.Graphics, "×", this.Font, closeButtonRect, Color.Black, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
         }
 
+        // Helper to add tab pages with a control inside
+        private void AddTabPage(TabPage tabPage, string title, Control contentControl)
+        {
+            tabPage.Text = title;
+            contentControl.Dock = DockStyle.Fill;
+            tabPage.Controls.Add(contentControl);
+            tabControlMain.TabPages.Add(tabPage);
+            tabControlMain.SelectedTab = tabPage;
+        }
+
+        // Menu handlers
         private void depositeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tPfrmDepositeOrWithdraw = new TabPage();
-
+            var tPfrmDepositeOrWithdraw = new TabPage();
             AddTabPage(tPfrmDepositeOrWithdraw, "Deposite Or Withdraw", new DepositeOrWithdraw());
         }
 
+        private void permissionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var tPfrmPermissions = new TabPage();
+            AddTabPage(tPfrmPermissions, "Permissions", new UCAddPermissionsToUsers());
+        }
+
+        // Empty event handler, consider removing if unused
         private void reportsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO: Implement report functionality or remove this method
+        }
+
+   
+        private void messagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabControlMain_MouseLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabControlMain_MouseMove(object sender, MouseEventArgs e)
         {
 
         }

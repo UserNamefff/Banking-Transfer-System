@@ -37,8 +37,9 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.bntCancel = new Guna.UI.WinForms.GunaButton();
-            this.btnDeposit = new Guna.UI.WinForms.GunaButton();
+            this.btnWithdrawt = new Guna.UI.WinForms.GunaButton();
+            this.btnCancel = new Guna.UI.WinForms.GunaButton();
+            this.lblCurrentAmount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.NRAmount)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,9 +56,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(441, 310);
+            this.label3.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            this.label3.Location = new System.Drawing.Point(360, 304);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 17);
+            this.label3.Size = new System.Drawing.Size(59, 27);
             this.label3.TabIndex = 37;
             this.label3.Text = "Note";
             // 
@@ -78,13 +80,15 @@
             this.cbxAcountNO.OnHoverItemForeColor = System.Drawing.Color.White;
             this.cbxAcountNO.Size = new System.Drawing.Size(259, 31);
             this.cbxAcountNO.TabIndex = 34;
+            this.cbxAcountNO.SelectedIndexChanged += new System.EventHandler(this.cbxAcountNO_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(441, 269);
+            this.label2.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            this.label2.Location = new System.Drawing.Point(360, 263);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 17);
+            this.label2.Size = new System.Drawing.Size(89, 27);
             this.label2.TabIndex = 33;
             this.label2.Text = "Amount";
             // 
@@ -126,81 +130,98 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(441, 229);
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            this.label1.Location = new System.Drawing.Point(360, 225);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 17);
+            this.label1.Size = new System.Drawing.Size(165, 27);
             this.label1.TabIndex = 35;
-            this.label1.Text = "Acount NO";
+            this.label1.Text = "Acount Number";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(871, 227);
+            this.label5.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            this.label5.Location = new System.Drawing.Point(862, 219);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 17);
+            this.label5.Size = new System.Drawing.Size(56, 27);
             this.label5.TabIndex = 43;
             this.label5.Text = "Date";
             // 
-            // bntCancel
+            // btnWithdrawt
             // 
-            this.bntCancel.AnimationHoverSpeed = 0.07F;
-            this.bntCancel.AnimationSpeed = 0.03F;
-            this.bntCancel.BackColor = System.Drawing.Color.Transparent;
-            this.bntCancel.BaseColor = System.Drawing.Color.Gray;
-            this.bntCancel.BorderColor = System.Drawing.Color.DarkGray;
-            this.bntCancel.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.bntCancel.FocusedColor = System.Drawing.Color.Empty;
-            this.bntCancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.bntCancel.ForeColor = System.Drawing.Color.White;
-            this.bntCancel.Image = global::BankProject11.Properties.Resources._27836_approve_block_cancel_delete_reject_icon__1_;
-            this.bntCancel.ImageSize = new System.Drawing.Size(50, 50);
-            this.bntCancel.Location = new System.Drawing.Point(676, 395);
-            this.bntCancel.Name = "bntCancel";
-            this.bntCancel.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.bntCancel.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.bntCancel.OnHoverForeColor = System.Drawing.Color.White;
-            this.bntCancel.OnHoverImage = null;
-            this.bntCancel.OnPressedColor = System.Drawing.Color.Black;
-            this.bntCancel.Radius = 10;
-            this.bntCancel.Size = new System.Drawing.Size(153, 66);
-            this.bntCancel.TabIndex = 39;
-            this.bntCancel.Text = "Cancel";
+            this.btnWithdrawt.AnimationHoverSpeed = 0.07F;
+            this.btnWithdrawt.AnimationSpeed = 0.03F;
+            this.btnWithdrawt.BackColor = System.Drawing.Color.Transparent;
+            this.btnWithdrawt.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnWithdrawt.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnWithdrawt.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnWithdrawt.FocusedColor = System.Drawing.Color.Empty;
+            this.btnWithdrawt.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F);
+            this.btnWithdrawt.ForeColor = System.Drawing.Color.Black;
+            this.btnWithdrawt.Image = null;
+            this.btnWithdrawt.ImageSize = new System.Drawing.Size(55, 55);
+            this.btnWithdrawt.Location = new System.Drawing.Point(534, 509);
+            this.btnWithdrawt.Name = "btnWithdrawt";
+            this.btnWithdrawt.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
+            this.btnWithdrawt.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnWithdrawt.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnWithdrawt.OnHoverImage = null;
+            this.btnWithdrawt.OnPressedColor = System.Drawing.Color.Black;
+            this.btnWithdrawt.Radius = 10;
+            this.btnWithdrawt.Size = new System.Drawing.Size(141, 51);
+            this.btnWithdrawt.TabIndex = 69;
+            this.btnWithdrawt.Text = "Withdraw";
+            this.btnWithdrawt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnWithdrawt.Click += new System.EventHandler(this.btnWithdrawt_Click);
             // 
-            // btnDeposit
+            // btnCancel
             // 
-            this.btnDeposit.AnimationHoverSpeed = 0.07F;
-            this.btnDeposit.AnimationSpeed = 0.03F;
-            this.btnDeposit.BackColor = System.Drawing.Color.Transparent;
-            this.btnDeposit.BaseColor = System.Drawing.Color.Gray;
-            this.btnDeposit.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnDeposit.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnDeposit.FocusedColor = System.Drawing.Color.Empty;
-            this.btnDeposit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnDeposit.ForeColor = System.Drawing.Color.White;
-            this.btnDeposit.Image = global::BankProject11.Properties.Resources.remove;
-            this.btnDeposit.ImageSize = new System.Drawing.Size(50, 50);
-            this.btnDeposit.Location = new System.Drawing.Point(504, 395);
-            this.btnDeposit.Name = "btnDeposit";
-            this.btnDeposit.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
-            this.btnDeposit.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnDeposit.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnDeposit.OnHoverImage = null;
-            this.btnDeposit.OnPressedColor = System.Drawing.Color.Black;
-            this.btnDeposit.Radius = 10;
-            this.btnDeposit.Size = new System.Drawing.Size(153, 66);
-            this.btnDeposit.TabIndex = 38;
-            this.btnDeposit.Text = "Withdraw";
+            this.btnCancel.AnimationHoverSpeed = 0.07F;
+            this.btnCancel.AnimationSpeed = 0.03F;
+            this.btnCancel.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancel.BaseColor = System.Drawing.Color.Red;
+            this.btnCancel.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnCancel.FocusedColor = System.Drawing.Color.Empty;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft YaHei UI", 14F);
+            this.btnCancel.ForeColor = System.Drawing.Color.Black;
+            this.btnCancel.Image = null;
+            this.btnCancel.ImageSize = new System.Drawing.Size(55, 55);
+            this.btnCancel.Location = new System.Drawing.Point(681, 509);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.OnHoverBaseColor = System.Drawing.Color.Red;
+            this.btnCancel.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnCancel.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnCancel.OnHoverImage = null;
+            this.btnCancel.OnPressedColor = System.Drawing.Color.Black;
+            this.btnCancel.Radius = 10;
+            this.btnCancel.Size = new System.Drawing.Size(141, 51);
+            this.btnCancel.TabIndex = 70;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblCurrentAmount
+            // 
+            this.lblCurrentAmount.AutoSize = true;
+            this.lblCurrentAmount.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F);
+            this.lblCurrentAmount.ForeColor = System.Drawing.Color.Green;
+            this.lblCurrentAmount.Location = new System.Drawing.Point(878, 280);
+            this.lblCurrentAmount.Name = "lblCurrentAmount";
+            this.lblCurrentAmount.Size = new System.Drawing.Size(161, 25);
+            this.lblCurrentAmount.TabIndex = 72;
+            this.lblCurrentAmount.Text = "Current Amount";
             // 
             // UCWithdraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblCurrentAmount);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnWithdrawt);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.txtbNotes);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.bntCancel);
-            this.Controls.Add(this.btnDeposit);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbxAcountNO);
@@ -208,6 +229,7 @@
             this.Controls.Add(this.NRAmount);
             this.Name = "UCWithdraw";
             this.Size = new System.Drawing.Size(1377, 670);
+            this.Load += new System.EventHandler(this.UCWithdraw_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NRAmount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -217,8 +239,6 @@
         #endregion
 
         private System.Windows.Forms.Label label4;
-        private Guna.UI.WinForms.GunaButton bntCancel;
-        private Guna.UI.WinForms.GunaButton btnDeposit;
         private System.Windows.Forms.Label label3;
         private Guna.UI.WinForms.GunaComboBox cbxAcountNO;
         private System.Windows.Forms.Label label2;
@@ -227,5 +247,8 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
+        private Guna.UI.WinForms.GunaButton btnWithdrawt;
+        private Guna.UI.WinForms.GunaButton btnCancel;
+        private System.Windows.Forms.Label lblCurrentAmount;
     }
 }

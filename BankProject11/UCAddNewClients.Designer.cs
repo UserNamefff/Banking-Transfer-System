@@ -40,8 +40,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvOfClients = new System.Windows.Forms.DataGridView();
             this.gunaElipse1 = new Guna.UI.WinForms.GunaElipse(this.components);
-            this.ucAddPerson1 = new BankProject11.UCAddPerson();
             this.btnAddAccounts = new Guna.UI.WinForms.GunaButton();
+            this.ucAddPerson1 = new BankProject11.UCAddPerson();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOfClients)).BeginInit();
             this.SuspendLayout();
@@ -49,11 +49,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Old Antic Bold", 14F, System.Drawing.FontStyle.Bold);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.Red;
             this.label4.Location = new System.Drawing.Point(625, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(368, 47);
+            this.label4.Size = new System.Drawing.Size(246, 29);
             this.label4.TabIndex = 37;
             this.label4.Text = "Add Clients Acounts";
             // 
@@ -66,7 +66,7 @@
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Location = new System.Drawing.Point(332, 385);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(761, 77);
+            this.panel1.Size = new System.Drawing.Size(761, 81);
             this.panel1.TabIndex = 36;
             // 
             // btnPrint
@@ -81,8 +81,8 @@
             this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnPrint.ForeColor = System.Drawing.Color.White;
             this.btnPrint.Image = global::BankProject11.Properties.Resources._44993_print_icon__1_;
-            this.btnPrint.ImageSize = new System.Drawing.Size(55, 55);
-            this.btnPrint.Location = new System.Drawing.Point(599, 9);
+            this.btnPrint.ImageSize = new System.Drawing.Size(33, 33);
+            this.btnPrint.Location = new System.Drawing.Point(606, 14);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnPrint.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -90,7 +90,7 @@
             this.btnPrint.OnHoverImage = null;
             this.btnPrint.OnPressedColor = System.Drawing.Color.Black;
             this.btnPrint.Radius = 10;
-            this.btnPrint.Size = new System.Drawing.Size(141, 60);
+            this.btnPrint.Size = new System.Drawing.Size(141, 48);
             this.btnPrint.TabIndex = 4;
             this.btnPrint.Text = "Print";
             // 
@@ -106,8 +106,8 @@
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Image = global::BankProject11.Properties.Resources._27874_delete_remove_icon;
-            this.btnDelete.ImageSize = new System.Drawing.Size(50, 50);
-            this.btnDelete.Location = new System.Drawing.Point(452, 9);
+            this.btnDelete.ImageSize = new System.Drawing.Size(33, 33);
+            this.btnDelete.Location = new System.Drawing.Point(459, 14);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnDelete.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -115,7 +115,7 @@
             this.btnDelete.OnHoverImage = null;
             this.btnDelete.OnPressedColor = System.Drawing.Color.Black;
             this.btnDelete.Radius = 10;
-            this.btnDelete.Size = new System.Drawing.Size(141, 60);
+            this.btnDelete.Size = new System.Drawing.Size(141, 48);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -132,8 +132,8 @@
             this.bntCancel.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bntCancel.ForeColor = System.Drawing.Color.White;
             this.bntCancel.Image = global::BankProject11.Properties.Resources._27836_approve_block_cancel_delete_reject_icon__1_;
-            this.bntCancel.ImageSize = new System.Drawing.Size(50, 50);
-            this.bntCancel.Location = new System.Drawing.Point(160, 9);
+            this.bntCancel.ImageSize = new System.Drawing.Size(33, 33);
+            this.bntCancel.Location = new System.Drawing.Point(167, 14);
             this.bntCancel.Name = "bntCancel";
             this.bntCancel.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.bntCancel.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -141,7 +141,7 @@
             this.bntCancel.OnHoverImage = null;
             this.bntCancel.OnPressedColor = System.Drawing.Color.Black;
             this.bntCancel.Radius = 10;
-            this.bntCancel.Size = new System.Drawing.Size(139, 60);
+            this.bntCancel.Size = new System.Drawing.Size(139, 48);
             this.bntCancel.TabIndex = 2;
             this.bntCancel.Text = "Cancel";
             // 
@@ -157,8 +157,8 @@
             this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Image = global::BankProject11.Properties.Resources._27883_refresh_sync_synchronize_icon;
-            this.btnUpdate.ImageSize = new System.Drawing.Size(50, 50);
-            this.btnUpdate.Location = new System.Drawing.Point(307, 9);
+            this.btnUpdate.ImageSize = new System.Drawing.Size(33, 33);
+            this.btnUpdate.Location = new System.Drawing.Point(314, 14);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnUpdate.OnHoverBorderColor = System.Drawing.Color.Gray;
@@ -166,7 +166,7 @@
             this.btnUpdate.OnHoverImage = null;
             this.btnUpdate.OnPressedColor = System.Drawing.Color.Black;
             this.btnUpdate.Radius = 10;
-            this.btnUpdate.Size = new System.Drawing.Size(139, 60);
+            this.btnUpdate.Size = new System.Drawing.Size(139, 48);
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "Update";
             // 
@@ -182,8 +182,8 @@
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Image = global::BankProject11.Properties.Resources.remove;
-            this.btnAdd.ImageSize = new System.Drawing.Size(50, 50);
-            this.btnAdd.Location = new System.Drawing.Point(13, 9);
+            this.btnAdd.ImageSize = new System.Drawing.Size(33, 33);
+            this.btnAdd.Location = new System.Drawing.Point(20, 14);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnAdd.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -191,7 +191,7 @@
             this.btnAdd.OnHoverImage = null;
             this.btnAdd.OnPressedColor = System.Drawing.Color.Black;
             this.btnAdd.Radius = 10;
-            this.btnAdd.Size = new System.Drawing.Size(139, 60);
+            this.btnAdd.Size = new System.Drawing.Size(139, 48);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Add";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -241,19 +241,12 @@
             this.dgvOfClients.RowTemplate.Height = 26;
             this.dgvOfClients.Size = new System.Drawing.Size(1069, 325);
             this.dgvOfClients.TabIndex = 38;
+            this.dgvOfClients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOfClients_CellClick);
+            this.dgvOfClients.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOfClients_CellContentClick);
             // 
             // gunaElipse1
             // 
             this.gunaElipse1.TargetControl = this;
-            // 
-            // ucAddPerson1
-            // 
-            this.ucAddPerson1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ucAddPerson1.Location = new System.Drawing.Point(235, 72);
-            this.ucAddPerson1.Name = "ucAddPerson1";
-            this.ucAddPerson1.Size = new System.Drawing.Size(1121, 212);
-            this.ucAddPerson1.TabIndex = 41;
-            this.ucAddPerson1.Load += new System.EventHandler(this.ucAddPerson1_Load);
             // 
             // btnAddAccounts
             // 
@@ -282,6 +275,15 @@
             this.btnAddAccounts.Text = "Add Accounts";
             this.btnAddAccounts.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.btnAddAccounts.Click += new System.EventHandler(this.btnAddAccounts_Click);
+            // 
+            // ucAddPerson1
+            // 
+            this.ucAddPerson1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ucAddPerson1.Location = new System.Drawing.Point(235, 72);
+            this.ucAddPerson1.Name = "ucAddPerson1";
+            this.ucAddPerson1.Size = new System.Drawing.Size(1121, 212);
+            this.ucAddPerson1.TabIndex = 41;
+            this.ucAddPerson1.Load += new System.EventHandler(this.ucAddPerson1_Load);
             // 
             // UCAddNewClients
             // 

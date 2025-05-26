@@ -24,6 +24,7 @@ namespace BankProject11
             DataTable dt = new DataTable();
             User = new clsUser();
             UCperson = new UCAddPerson();
+            
 
             InitializeComponent();
         }
@@ -33,7 +34,7 @@ namespace BankProject11
         }
         private void UCAddUsers_Load(object sender, EventArgs e)
         {
-             dt = new DataTable();
+            dt = new DataTable();
             dt = clsBranches.GetAllBranches();
             foreach(DataRow dr in dt.Rows)
             {
@@ -44,6 +45,25 @@ namespace BankProject11
 
                 
         }
+
+       
+        void _FillJobs()
+        {
+            DataTable dt= clsJobs.GetAllJobs();
+
+            if (dt != null)
+            {
+                foreach (DataRow dr in dt.Rows)
+                {
+                    cmbJOBName.Items.Add(dr["JobName"].ToString());
+                }
+
+                cmbJOBName.SelectedIndex = 0;
+            }
+
+        }
+
+
         void _FillDataGrideView()
         {
             DataTable dt = clsUser.GetAllUsers();
@@ -63,15 +83,13 @@ namespace BankProject11
         private void ucAddPerson2_Load(object sender, EventArgs e)
         {
             _FillDataGrideView();
+            _FillJobs();
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             User.UserName = txtbUserName.Text;
             User.Password = txtPassword.Text;
-            User.JobID = 0;
-
-
-            
+            User.JobID = clsJobs.Find(cmbJOBName.Text).JobID;
 
             User.IsActive = true;
             
@@ -85,6 +103,7 @@ namespace BankProject11
                 {
                     MessageBox.Show("Added User Successfully -:) ");
                     _FillDataGrideView();
+                    ClearBoxes();
                 }
 
             }
@@ -110,10 +129,14 @@ namespace BankProject11
         private void btnDelete_Click(object sender, EventArgs e)
         {
 
-            //dt.Rows.RemoveAt(dataGridView1.SelectedRows[0].Index);
-            
-            //dt.AcceptChanges();
-            //_Refrish();
+                dt.Rows.RemoveAt(dgUsersData.SelectedRows[0].Index);
+
+
+                    dt.AcceptChanges();
+                _Refrish();
+                    //_Refrish();
+
+
 
 
         }
@@ -125,7 +148,7 @@ namespace BankProject11
                 DataGridViewRow row = dgUsersData.Rows[e.RowIndex];
                 txtbUserName .Text = row.Cells["UserName"].Value.ToString();
                 txtPassword .Text = row.Cells["Password"].Value.ToString();
-                ucAddPerson2.FillBoxes(Convert.ToInt32(row.Cells["PersonID"].Value));
+                ucAddPerson2.FillBoxes(Convert.ToInt32(row.Cells["UserID"].Value));
             }
         }
 
@@ -139,6 +162,11 @@ namespace BankProject11
         private void bntCancel_Click(object sender, EventArgs e)
         {
             ClearBoxes();
+        }
+
+        private void dgUsersData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

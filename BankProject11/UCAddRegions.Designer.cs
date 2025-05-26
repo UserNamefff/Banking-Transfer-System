@@ -48,18 +48,18 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(173, 392);
+            this.dataGridView1.Location = new System.Drawing.Point(151, 392);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 26;
-            this.dataGridView1.Size = new System.Drawing.Size(1255, 203);
+            this.dataGridView1.Size = new System.Drawing.Size(1098, 203);
             this.dataGridView1.TabIndex = 16;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label3.Location = new System.Drawing.Point(387, 219);
+            this.label3.Location = new System.Drawing.Point(339, 219);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 24);
             this.label3.TabIndex = 15;
@@ -71,11 +71,10 @@
             this.panel1.Controls.Add(this.bntCancel);
             this.panel1.Controls.Add(this.gunaButton2);
             this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Location = new System.Drawing.Point(305, 295);
+            this.panel1.Location = new System.Drawing.Point(267, 295);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(863, 81);
+            this.panel1.Size = new System.Drawing.Size(755, 81);
             this.panel1.TabIndex = 14;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // gunaButton4
             // 
@@ -90,7 +89,7 @@
             this.gunaButton4.ForeColor = System.Drawing.Color.White;
             this.gunaButton4.Image = global::BankProject11.Properties.Resources._27874_delete_remove_icon;
             this.gunaButton4.ImageSize = new System.Drawing.Size(50, 50);
-            this.gunaButton4.Location = new System.Drawing.Point(629, 13);
+            this.gunaButton4.Location = new System.Drawing.Point(550, 13);
             this.gunaButton4.Name = "gunaButton4";
             this.gunaButton4.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.gunaButton4.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -98,7 +97,7 @@
             this.gunaButton4.OnHoverImage = null;
             this.gunaButton4.OnPressedColor = System.Drawing.Color.Black;
             this.gunaButton4.Radius = 10;
-            this.gunaButton4.Size = new System.Drawing.Size(145, 54);
+            this.gunaButton4.Size = new System.Drawing.Size(127, 54);
             this.gunaButton4.TabIndex = 3;
             this.gunaButton4.Text = "Delete";
             // 
@@ -115,7 +114,7 @@
             this.bntCancel.ForeColor = System.Drawing.Color.White;
             this.bntCancel.Image = global::BankProject11.Properties.Resources._27836_approve_block_cancel_delete_reject_icon__1_;
             this.bntCancel.ImageSize = new System.Drawing.Size(50, 50);
-            this.bntCancel.Location = new System.Drawing.Point(293, 13);
+            this.bntCancel.Location = new System.Drawing.Point(256, 13);
             this.bntCancel.Name = "bntCancel";
             this.bntCancel.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.bntCancel.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -123,7 +122,7 @@
             this.bntCancel.OnHoverImage = null;
             this.bntCancel.OnPressedColor = System.Drawing.Color.Black;
             this.bntCancel.Radius = 10;
-            this.bntCancel.Size = new System.Drawing.Size(144, 54);
+            this.bntCancel.Size = new System.Drawing.Size(126, 54);
             this.bntCancel.TabIndex = 2;
             this.bntCancel.Text = "Cancel";
             this.bntCancel.Click += new System.EventHandler(this.bntCancel_Click);
@@ -141,7 +140,7 @@
             this.gunaButton2.ForeColor = System.Drawing.Color.White;
             this.gunaButton2.Image = global::BankProject11.Properties.Resources._27883_refresh_sync_synchronize_icon;
             this.gunaButton2.ImageSize = new System.Drawing.Size(50, 50);
-            this.gunaButton2.Location = new System.Drawing.Point(461, 13);
+            this.gunaButton2.Location = new System.Drawing.Point(403, 13);
             this.gunaButton2.Name = "gunaButton2";
             this.gunaButton2.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.gunaButton2.OnHoverBorderColor = System.Drawing.Color.Gray;
@@ -149,7 +148,7 @@
             this.gunaButton2.OnHoverImage = null;
             this.gunaButton2.OnPressedColor = System.Drawing.Color.Black;
             this.gunaButton2.Radius = 10;
-            this.gunaButton2.Size = new System.Drawing.Size(142, 54);
+            this.gunaButton2.Size = new System.Drawing.Size(124, 54);
             this.gunaButton2.TabIndex = 1;
             this.gunaButton2.Text = "Update";
             // 
@@ -166,7 +165,7 @@
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Image = global::BankProject11.Properties.Resources.remove;
             this.btnAdd.ImageSize = new System.Drawing.Size(50, 50);
-            this.btnAdd.Location = new System.Drawing.Point(127, 13);
+            this.btnAdd.Location = new System.Drawing.Point(111, 13);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnAdd.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -174,7 +173,7 @@
             this.btnAdd.OnHoverImage = null;
             this.btnAdd.OnPressedColor = System.Drawing.Color.Black;
             this.btnAdd.Radius = 10;
-            this.btnAdd.Size = new System.Drawing.Size(143, 54);
+            this.btnAdd.Size = new System.Drawing.Size(125, 54);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Add";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -183,7 +182,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label2.Location = new System.Drawing.Point(387, 170);
+            this.label2.Location = new System.Drawing.Point(339, 170);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 24);
             this.label2.TabIndex = 13;
@@ -193,7 +192,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label1.Location = new System.Drawing.Point(387, 116);
+            this.label1.Location = new System.Drawing.Point(339, 116);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(105, 24);
             this.label1.TabIndex = 12;
@@ -210,12 +209,12 @@
             this.txtbBranchName.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtbBranchName.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtbBranchName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtbBranchName.Location = new System.Drawing.Point(545, 158);
+            this.txtbBranchName.Location = new System.Drawing.Point(477, 158);
             this.txtbBranchName.Name = "txtbBranchName";
             this.txtbBranchName.PasswordChar = '\0';
             this.txtbBranchName.Radius = 10;
             this.txtbBranchName.SelectedText = "";
-            this.txtbBranchName.Size = new System.Drawing.Size(410, 45);
+            this.txtbBranchName.Size = new System.Drawing.Size(359, 45);
             this.txtbBranchName.TabIndex = 11;
             // 
             // txtbRegionNO
@@ -229,13 +228,13 @@
             this.txtbRegionNO.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtbRegionNO.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtbRegionNO.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtbRegionNO.Location = new System.Drawing.Point(545, 107);
+            this.txtbRegionNO.Location = new System.Drawing.Point(477, 107);
             this.txtbRegionNO.Name = "txtbRegionNO";
             this.txtbRegionNO.PasswordChar = '\0';
             this.txtbRegionNO.Radius = 10;
             this.txtbRegionNO.ReadOnly = true;
             this.txtbRegionNO.SelectedText = "";
-            this.txtbRegionNO.Size = new System.Drawing.Size(410, 45);
+            this.txtbRegionNO.Size = new System.Drawing.Size(359, 45);
             this.txtbRegionNO.TabIndex = 10;
             // 
             // gunaComboBox1
@@ -253,20 +252,19 @@
             this.gunaComboBox1.ForeColor = System.Drawing.Color.Black;
             this.gunaComboBox1.FormattingEnabled = true;
             this.gunaComboBox1.IntegralHeight = false;
-            this.gunaComboBox1.Location = new System.Drawing.Point(545, 212);
+            this.gunaComboBox1.Location = new System.Drawing.Point(477, 212);
             this.gunaComboBox1.Name = "gunaComboBox1";
             this.gunaComboBox1.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.gunaComboBox1.OnHoverItemForeColor = System.Drawing.Color.White;
             this.gunaComboBox1.Radius = 10;
-            this.gunaComboBox1.Size = new System.Drawing.Size(410, 31);
+            this.gunaComboBox1.Size = new System.Drawing.Size(359, 31);
             this.gunaComboBox1.TabIndex = 9;
-            this.gunaComboBox1.SelectedIndexChanged += new System.EventHandler(this.gunaComboBox1_SelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 17F, System.Drawing.FontStyle.Bold);
-            this.label4.Location = new System.Drawing.Point(569, 18);
+            this.label4.Location = new System.Drawing.Point(498, 18);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(197, 35);
             this.label4.TabIndex = 18;
@@ -274,7 +272,7 @@
             // 
             // UCAddRegions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dataGridView1);
@@ -286,7 +284,7 @@
             this.Controls.Add(this.txtbRegionNO);
             this.Controls.Add(this.gunaComboBox1);
             this.Name = "UCAddRegions";
-            this.Size = new System.Drawing.Size(1529, 622);
+            this.Size = new System.Drawing.Size(1338, 622);
             this.Load += new System.EventHandler(this.UCAddRegions_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);

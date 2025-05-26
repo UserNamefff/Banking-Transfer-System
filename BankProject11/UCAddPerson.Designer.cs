@@ -54,8 +54,12 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gunaPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             this.SuspendLayout();
             // 
             // label6
@@ -131,6 +135,7 @@
             this.txtbPhon.Size = new System.Drawing.Size(273, 43);
             this.txtbPhon.TabIndex = 23;
             this.txtbPhon.TextChanged += new System.EventHandler(this.txtbPhon_TextChanged);
+            this.txtbPhon.Validating += new System.ComponentModel.CancelEventHandler(this.txtbPhon_Validating);
             // 
             // label3
             // 
@@ -191,6 +196,7 @@
             this.txtbEmail.Size = new System.Drawing.Size(273, 43);
             this.txtbEmail.TabIndex = 19;
             this.txtbEmail.TextChanged += new System.EventHandler(this.txtbEmail_TextChanged);
+            this.txtbEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtbEmail_Validating);
             // 
             // label1
             // 
@@ -225,10 +231,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::BankProject11.Properties.Resources.Male_512;
-            this.pictureBox1.Location = new System.Drawing.Point(850, 38);
+            this.pictureBox1.Location = new System.Drawing.Point(889, 38);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Padding = new System.Windows.Forms.Padding(3);
-            this.pictureBox1.Size = new System.Drawing.Size(208, 108);
+            this.pictureBox1.Size = new System.Drawing.Size(122, 110);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 30;
             this.pictureBox1.TabStop = false;
@@ -394,6 +400,14 @@
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
+            // 
             // UCAddPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -421,11 +435,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtbFistName);
             this.Name = "UCAddPerson";
-            this.Size = new System.Drawing.Size(1083, 211);
+            this.Size = new System.Drawing.Size(1202, 211);
             this.Load += new System.EventHandler(this.UCAddPerson_Load);
             this.gunaPanel1.ResumeLayout(false);
             this.gunaPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -458,5 +474,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ErrorProvider errorProvider2;
     }
 }

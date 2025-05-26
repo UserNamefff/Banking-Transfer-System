@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Security.Principal;
+using System.CodeDom;
 
 namespace DataAccessLayerr
 {
@@ -39,12 +40,26 @@ namespace DataAccessLayerr
                     AccountID = (int)reader["AccountID"];
                     PinCode = (string)reader["PinCode"];
                     ClientID = (int)reader["ClientID"];
-                    Account_type = (int)reader["Account_type"];
-                    Balence = (double)reader["Balence"];
-                    CurrenryID = (int)reader["CurrenryID"];
+                   // Account_type = (int)reader["Account_type"];
+                    Balence = Convert.ToDouble(reader["Balence"]);
+                    CurrenryID = (int)reader["CurrencyID"];
                     CreatedByUser = (int)reader["CreatedByUser"];
                     Created_Date = (DateTime)reader["Created_Date"];
-                  
+                    /*
+                     
+                      [AccountID]
+      ,[AccountNumber]
+      ,[Account_type]
+      ,[]
+      ,[ClientID]
+      ,[PinCode]
+      ,[Balence]
+      ,[Created_Date]
+      ,[CreatedByUser]
+  FROM [dbo].[Accounts]
+
+                     */
+
 
 
                 }
@@ -60,7 +75,7 @@ namespace DataAccessLayerr
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                
                 isFound = false;
             }
             finally
@@ -130,23 +145,41 @@ namespace DataAccessLayerr
         {
             //this function will return the new Account id if succeeded and -1 if not.
             string AccountNumbr = "";
-             int Accountid = 0;
+            int Accountid = 0;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             //string query = @"INSERT INTO Accounts (ClientID, AccountNumber,Account_type,CurrenryID,Balence,CreatedByUser,Created_Date) Values 
             //                                (@ClientID, @AccountNumber,@Account_type,@CurrenryID,@Balence,@CreatedByUser,@Created_Date); ";
 
-            string query = @"INSERT INTO Accounts  (AccountNumber,Account_type,CurrencyID  ,ClientID,PinCode ,Balence ,Created_Date  ,CreatedByUser)
-                              VALUES (@AccountNumber ,@Account_type ,@CurrencyID ,@ClientID,@PinCode,@Balence ,@Created_Date ,@CreatedByUser ); SELECT SCOPE_IDENTITY();";
+            //string query = @"INSERT INTO Accounts  (AccountNumber,Account_type,CurrencyID  ,ClientID,PinCode ,Balence ,Created_Date  ,CreatedByUser)
+            //                  VALUES (@AccountNumber ,@Account_type ,@CurrencyID ,@ClientID,@PinCode,@Balence ,@Created_Date ,@CreatedByUser ); SELECT SCOPE_IDENTITY();";
 
+            string query = @"INSERT INTO [Accounts]
+           ([AccountNumber]
+           ,[Account_type]
+           ,[CurrencyID]
+           ,[ClientID]
+           ,[PinCode]
+           ,[Balence]
+           ,[Created_Date]
+           ,[CreatedByUser])
+     VALUES
+           (@AccountNumber, 
+			@Account_type,
+			@CurrencyID, 
+			@ClientID, 
+			@PinCode, 
+			@Balence,
+			@Created_Date, 
+			@CreatedByUser);SELECT SCOPE_IDENTITY();";
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@ClientID", ClientID);
             command.Parameters.AddWithValue("@AccountNumber", AccountNumber);
             command.Parameters.AddWithValue("@PinCode", PinCode);
             command.Parameters.AddWithValue("@Account_type", Account_type);
-            command.Parameters.AddWithValue("@CurrenryID", CurrenryID);
+            command.Parameters.AddWithValue("@CurrencyID", CurrenryID);
             command.Parameters.AddWithValue("@Balence", Balence);
             command.Parameters.AddWithValue("@CreatedByUser", CreatedByUser);
             command.Parameters.AddWithValue("@Created_Date", Created_Date);
@@ -197,18 +230,20 @@ namespace DataAccessLayerr
                                 CreatedByUser=@CreatedByUser,
                                 Created_Date =@Created_Date, PinCode=@PinCode
 
-                                where AccountID = @AccountID ";
+                                where AccountNumber = @AccountNumber ";
 
 
 
             SqlCommand command = new SqlCommand(query, connection);
 
+            command.Parameters.AddWithValue("@ClientID", ClientID);
             command.Parameters.AddWithValue("@AccountID", AccountID);
             command.Parameters.AddWithValue("@PinCode", PinCode);
             command.Parameters.AddWithValue("@AccountNumber", AccountNumber);
-            command.Parameters.AddWithValue("@Documente_Type", Account_type);
+            //command.Parameters.AddWithValue("@Documente_Type", Account_type);
             command.Parameters.AddWithValue("@CurrenryID", CurrenryID);
             command.Parameters.AddWithValue("@Balence", Balence);
+            command.Parameters.AddWithValue("@Account_type", Account_type);
             command.Parameters.AddWithValue("@CreatedByUser", CreatedByUser);
             command.Parameters.AddWithValue("@Created_Date", Created_Date);
 
@@ -233,6 +268,45 @@ namespace DataAccessLayerr
 
             return (rowsAffected > 0);
         }
+
+        public static bool UpdateAccountBalence( string AccountNumber, double Balence)
+        {
+
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            //ClientID, ,,,
+            string query = @"Update  Accounts  
+                            set  Balence = @Balence
+                                  where AccountNumber = @AccountNumber ";
+
+
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+           
+            command.Parameters.AddWithValue("@AccountNumber", AccountNumber.Trim());
+            command.Parameters.AddWithValue("@Balence", Balence);
+           
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+            return (rowsAffected > 0);
+        }
+
         public static DataTable GetAllAccounts()
         {
 

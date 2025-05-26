@@ -25,7 +25,7 @@ namespace DataAccessLayerr
 
         public static bool GetTransactionInfoByTransactionID(int TransactionNumber,ref int TransactionID, ref int SenderID, ref int RecierverID,ref int SourceBranchID,
             ref int TargeteBranchID, ref int  Transaction_Status_ID, ref int Transaction_type
-            , ref double FeeAmount , ref int CurrencyID , ref double TransferAmount , ref DateTime Date_Transaction,ref bool isSenderClient, ref bool isRecierverClient,ref int ClientRecierverID,ref int ClientSenderID, ref string Description)
+            , ref double FeeAmount , ref int CurrencyID , ref double TransferAmount , ref DateTime Date_Transaction,ref bool isSenderClient, ref bool isRecierverClient, ref string Description,ref int CreatedBy)
         {
             bool isFound = false;
 
@@ -48,26 +48,35 @@ namespace DataAccessLayerr
                     isFound = true;
                     
                     Transaction_Status_ID = (int)reader["Transaction_Status_ID"];
-                    FeeAmount = (double)reader["FeeAmount"];
+                    FeeAmount = Convert.ToDouble( reader["FeeAmount"]);
                     CurrencyID = (int)reader["CurrencyID"];
                     SenderID = (int)reader["SenderID"];
                     RecierverID = (int)reader["RecierverID"];
                     SourceBranchID = (int)reader["SourceBranchID"];
                     TargeteBranchID = (int)reader["TargeteBranchID"];
                     Transaction_type = (int)reader["Transaction_type"];
-                    TransferAmount = (double)reader["TransferAmount"];
+                    TransferAmount = Convert.ToDouble(reader["TransferAmount"]);
                     Date_Transaction = (DateTime)reader["Date_Transaction"];
-                    ClientSenderID = (int)reader["TargeteBranchID"];
-                    ClientRecierverID = (int)reader["ClientRecierverID"];
+                    CreatedBy = (int)reader["CreatedBy"];
+                    
+                    //ClientRecierverID = (int)reader["ClientRecierverID"];
+
+                    if(reader["Description"] != DBNull.Value)
+                    {
                     Description = (string)reader["Description"];
 
+                    }
+                    else
+                    {
+                        Description = "";
+                    }
 
-                   //  
-                    IsRecordNull(ref TargeteBranchID);
+
+                        //  
+                        IsRecordNull(ref TargeteBranchID);
                     IsRecordNull(ref SourceBranchID);
                     IsRecordNull(ref RecierverID);
-                    IsRecordNull(ref ClientRecierverID);
-                    IsRecordNull(ref ClientSenderID);
+                   
 
                 }
                 else
@@ -95,7 +104,8 @@ namespace DataAccessLayerr
         
         public static int AddNewTransaction( int TransactionNumber,  int SenderID,  int RecierverID,  int SourceBranchID,
              int TargeteBranchID, int  Transaction_Status_ID,  int Transaction_type
-            ,  double FeeAmount, int CurrencyID,  double TransferAmount,  DateTime Date_Transaction, bool isClientRecierver, bool isClientSender, int ClientRecierverID, int ClientSenderID, string Description)
+            ,  double FeeAmount, int CurrencyID,  double TransferAmount,  DateTime Date_Transaction, bool isClientRecierver, bool isClientSender,
+             string Description, int CreatedBy)
         {
             //this function will return the new Transaction id if succeeded and -1 if not.
 
@@ -120,17 +130,14 @@ namespace DataAccessLayerr
                ,Transaction_type
                ,isClientRecierver
                ,isClientSender
-               ,ClientSenderID
-               ,ClientRecierverID
-               ,Description)
+               ,Description,CreatedBy)
          VALUES (@TransactionNumber,@SenderID,@RecierverID, @SourceBranchID,@TargeteBranchID, @Transaction_Status_ID, 
 			    @TransferAmount, @FeeAmount,@CurrencyID,@Date_Transaction,@Transaction_type, 
-			    @isClientRecierver, @isClientSender,@ClientSenderID,@ClientRecierverID,@Description)";
+			    @isClientRecierver, @isClientSender,@Description,@CreatedBy)";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            IsRecordNull(ref ClientRecierverID);
-            IsRecordNull(ref ClientSenderID);
+            
             IsRecordNull(ref TargeteBranchID);
             IsRecordNull(ref SenderID);
             IsRecordNull(ref RecierverID);
@@ -147,9 +154,9 @@ namespace DataAccessLayerr
             command.Parameters.AddWithValue("@TransferAmount", TransferAmount);
             command.Parameters.AddWithValue("@Date_Transaction", Date_Transaction);
             command.Parameters.AddWithValue("@Transaction_type",  Transaction_type);
+            command.Parameters.AddWithValue("@CreatedBy", CreatedBy);
             
-            command.Parameters.AddWithValue("@ClientSenderID", ClientSenderID);
-            command.Parameters.AddWithValue("@ClientRecierverID", ClientRecierverID);
+           
             command.Parameters.AddWithValue("@isClientSender", isClientSender);
             command.Parameters.AddWithValue("@isClientRecierver", isClientRecierver);
         
@@ -187,7 +194,7 @@ namespace DataAccessLayerr
 
         public static bool UpdateTransaction(int TransactionID,  int TransactionNumber,  int SenderID,  int RecierverID,  int SourceBranchID,
              int TargeteBranchID, int  Transaction_Status_ID,  int Transaction_type
-            ,  double FeeAmount, int CurrencyID,  double TransferAmount,  DateTime Date_Transaction, bool isClientRecierver, bool isClientSender, int ClientRecierverID, int ClientSenderID,  string Description)
+            ,  double FeeAmount, int CurrencyID,  double TransferAmount,  DateTime Date_Transaction, bool isClientRecierver, bool isClientSender,   string Description, int CreatedBy)
         {
 
             int rowsAffected = 0;
@@ -205,8 +212,9 @@ namespace DataAccessLayerr
                                 CurrencyID = @CurrencyID,Transaction_type =@Transaction_type,
                                 Date_Transaction = @Date_Transaction ,
                                 Description = @Description , isClientSender=@isClientSender ,
-                                isClientRecierver =@isClientRecierver ,
-                                ClientSenderID=@ClientSenderID ,ClientRecierverID=@ClientRecierverID
+                                isClientRecierver =@isClientRecierver 
+                                CreatedBy = @CreatedBy
+                               
 
                                 where TransactionID = @TransactionID ";
 
@@ -214,8 +222,7 @@ namespace DataAccessLayerr
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            IsRecordNull(ref ClientRecierverID);
-            IsRecordNull(ref ClientSenderID);
+            
             IsRecordNull(ref TargeteBranchID);
             IsRecordNull(ref SenderID);
             IsRecordNull(ref RecierverID);
@@ -229,11 +236,10 @@ namespace DataAccessLayerr
             command.Parameters.AddWithValue("@TargeteBranchID", TargeteBranchID);
             command.Parameters.AddWithValue("@SourceBranchID", SourceBranchID);
             command.Parameters.AddWithValue("@TransferAmount", TransferAmount);
-            command.Parameters.AddWithValue("@ClientSenderID", ClientSenderID);
-            command.Parameters.AddWithValue("@ClientRecierverID", ClientRecierverID);
             command.Parameters.AddWithValue("@isClientSender", isClientSender);
             command.Parameters.AddWithValue("@isClientRecierver", isClientRecierver);
             command.Parameters.AddWithValue("@Transaction_type", Transaction_type);
+            command.Parameters.AddWithValue("@CreatedBy", CreatedBy);
 
             command.Parameters.AddWithValue("@Date_Transaction", Date_Transaction);
             command.Parameters.AddWithValue("@Description", Description);

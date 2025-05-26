@@ -56,7 +56,8 @@
             // 
             this.txtbSenderPhone.BackColor = System.Drawing.Color.Transparent;
             this.txtbSenderPhone.BaseColor = System.Drawing.Color.White;
-            this.txtbSenderPhone.BorderColor = System.Drawing.SystemColors.ButtonShadow;
+            this.txtbSenderPhone.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtbSenderPhone.BorderSize = 1;
             this.txtbSenderPhone.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtbSenderPhone.FocusedBaseColor = System.Drawing.Color.White;
             this.txtbSenderPhone.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
@@ -84,7 +85,8 @@
             // 
             this.txtbRecierverName.BackColor = System.Drawing.Color.Transparent;
             this.txtbRecierverName.BaseColor = System.Drawing.Color.White;
-            this.txtbRecierverName.BorderColor = System.Drawing.SystemColors.ButtonShadow;
+            this.txtbRecierverName.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtbRecierverName.BorderSize = 1;
             this.txtbRecierverName.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtbRecierverName.FocusedBaseColor = System.Drawing.Color.White;
             this.txtbRecierverName.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
@@ -112,7 +114,8 @@
             // 
             this.txtbRecierverPhone.BackColor = System.Drawing.Color.Transparent;
             this.txtbRecierverPhone.BaseColor = System.Drawing.Color.White;
-            this.txtbRecierverPhone.BorderColor = System.Drawing.SystemColors.ButtonShadow;
+            this.txtbRecierverPhone.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtbRecierverPhone.BorderSize = 1;
             this.txtbRecierverPhone.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtbRecierverPhone.FocusedBaseColor = System.Drawing.Color.White;
             this.txtbRecierverPhone.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
@@ -140,7 +143,8 @@
             // 
             this.txtbSenderName.BackColor = System.Drawing.Color.Transparent;
             this.txtbSenderName.BaseColor = System.Drawing.Color.White;
-            this.txtbSenderName.BorderColor = System.Drawing.SystemColors.ButtonShadow;
+            this.txtbSenderName.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.txtbSenderName.BorderSize = 1;
             this.txtbSenderName.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtbSenderName.FocusedBaseColor = System.Drawing.Color.White;
             this.txtbSenderName.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));

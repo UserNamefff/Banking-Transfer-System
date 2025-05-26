@@ -38,21 +38,21 @@
             this.addToUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gunaTextBox1 = new Guna.UI.WinForms.GunaTextBox();
             this.txtbID = new Guna.UI.WinForms.GunaTextBox();
             this.lblID = new Guna.UI.WinForms.GunaLabel();
             this.gunaLabel1 = new Guna.UI.WinForms.GunaLabel();
             this.txtbBoxName = new Guna.UI.WinForms.GunaTextBox();
             this.gunaLabel3 = new Guna.UI.WinForms.GunaLabel();
-            this.txtbUserBox = new Guna.UI.WinForms.GunaTextBox();
             this.gunaLabel4 = new Guna.UI.WinForms.GunaLabel();
             this.txtbBalence = new Guna.UI.WinForms.GunaTextBox();
             this.gunaLabel2 = new Guna.UI.WinForms.GunaLabel();
             this.txtbBoxType = new Guna.UI.WinForms.GunaTextBox();
-            this.btnChooseUser = new Guna.UI.WinForms.GunaButton();
             this.gunaLabel5 = new Guna.UI.WinForms.GunaLabel();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.notifyIcon2 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.cmbUsers = new Guna.UI.WinForms.GunaComboBox();
+            this.cmbCurrecy = new Guna.UI.WinForms.GunaComboBox();
+            this.gunaLabel6 = new Guna.UI.WinForms.GunaLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOfBoxes)).BeginInit();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -62,21 +62,22 @@
             // 
             this.dgvOfBoxes.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvOfBoxes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOfBoxes.Location = new System.Drawing.Point(75, 382);
+            this.dgvOfBoxes.Location = new System.Drawing.Point(279, 394);
             this.dgvOfBoxes.Name = "dgvOfBoxes";
             this.dgvOfBoxes.RowHeadersWidth = 51;
             this.dgvOfBoxes.RowTemplate.Height = 26;
-            this.dgvOfBoxes.Size = new System.Drawing.Size(1222, 290);
+            this.dgvOfBoxes.Size = new System.Drawing.Size(1069, 290);
             this.dgvOfBoxes.TabIndex = 39;
+            this.dgvOfBoxes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOfBoxes_CellClick);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnUpdate);
             this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Location = new System.Drawing.Point(416, 300);
+            this.panel1.Location = new System.Drawing.Point(577, 312);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(558, 76);
+            this.panel1.Size = new System.Drawing.Size(488, 76);
             this.panel1.TabIndex = 40;
             // 
             // btnDelete
@@ -91,8 +92,8 @@
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Image = global::BankProject11.Properties.Resources._27874_delete_remove_icon;
-            this.btnDelete.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnDelete.Location = new System.Drawing.Point(229, 12);
+            this.btnDelete.ImageSize = new System.Drawing.Size(33, 33);
+            this.btnDelete.Location = new System.Drawing.Point(200, 12);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnDelete.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -100,7 +101,7 @@
             this.btnDelete.OnHoverImage = null;
             this.btnDelete.OnPressedColor = System.Drawing.Color.Black;
             this.btnDelete.Radius = 10;
-            this.btnDelete.Size = new System.Drawing.Size(151, 51);
+            this.btnDelete.Size = new System.Drawing.Size(132, 51);
             this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Delete";
             // 
@@ -116,8 +117,8 @@
             this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
             this.btnUpdate.Image = global::BankProject11.Properties.Resources._27883_refresh_sync_synchronize_icon;
-            this.btnUpdate.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnUpdate.Location = new System.Drawing.Point(386, 12);
+            this.btnUpdate.ImageSize = new System.Drawing.Size(33, 33);
+            this.btnUpdate.Location = new System.Drawing.Point(338, 12);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnUpdate.OnHoverBorderColor = System.Drawing.Color.Gray;
@@ -125,7 +126,7 @@
             this.btnUpdate.OnHoverImage = null;
             this.btnUpdate.OnPressedColor = System.Drawing.Color.Black;
             this.btnUpdate.Radius = 10;
-            this.btnUpdate.Size = new System.Drawing.Size(149, 51);
+            this.btnUpdate.Size = new System.Drawing.Size(130, 51);
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "Update";
             // 
@@ -141,8 +142,8 @@
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Image = global::BankProject11.Properties.Resources.remove;
-            this.btnAdd.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnAdd.Location = new System.Drawing.Point(96, 12);
+            this.btnAdd.ImageSize = new System.Drawing.Size(33, 33);
+            this.btnAdd.Location = new System.Drawing.Point(84, 12);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(143)))), ((int)(((byte)(255)))));
             this.btnAdd.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -150,7 +151,7 @@
             this.btnAdd.OnHoverImage = null;
             this.btnAdd.OnPressedColor = System.Drawing.Color.Black;
             this.btnAdd.Radius = 10;
-            this.btnAdd.Size = new System.Drawing.Size(126, 51);
+            this.btnAdd.Size = new System.Drawing.Size(110, 51);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Add";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -183,23 +184,6 @@
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(157, 24);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
-            // gunaTextBox1
-            // 
-            this.gunaTextBox1.BaseColor = System.Drawing.Color.White;
-            this.gunaTextBox1.BorderColor = System.Drawing.Color.Silver;
-            this.gunaTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.gunaTextBox1.FocusedBaseColor = System.Drawing.Color.White;
-            this.gunaTextBox1.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.gunaTextBox1.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.gunaTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gunaTextBox1.Location = new System.Drawing.Point(-22, -19);
-            this.gunaTextBox1.Name = "gunaTextBox1";
-            this.gunaTextBox1.PasswordChar = '\0';
-            this.gunaTextBox1.SelectedText = "";
-            this.gunaTextBox1.Size = new System.Drawing.Size(183, 34);
-            this.gunaTextBox1.TabIndex = 42;
-            this.gunaTextBox1.Text = "gunaTextBox1";
-            // 
             // txtbID
             // 
             this.txtbID.BackColor = System.Drawing.Color.Transparent;
@@ -211,20 +195,20 @@
             this.txtbID.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtbID.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtbID.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtbID.Location = new System.Drawing.Point(230, 122);
+            this.txtbID.Location = new System.Drawing.Point(414, 134);
             this.txtbID.Name = "txtbID";
             this.txtbID.PasswordChar = '\0';
             this.txtbID.Radius = 10;
             this.txtbID.ReadOnly = true;
             this.txtbID.SelectedText = "";
-            this.txtbID.Size = new System.Drawing.Size(347, 34);
+            this.txtbID.Size = new System.Drawing.Size(304, 34);
             this.txtbID.TabIndex = 43;
             // 
             // lblID
             // 
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.lblID.Location = new System.Drawing.Point(95, 128);
+            this.lblID.Location = new System.Drawing.Point(296, 140);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(83, 27);
             this.lblID.TabIndex = 44;
@@ -234,7 +218,7 @@
             // 
             this.gunaLabel1.AutoSize = true;
             this.gunaLabel1.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.gunaLabel1.Location = new System.Drawing.Point(95, 167);
+            this.gunaLabel1.Location = new System.Drawing.Point(296, 179);
             this.gunaLabel1.Name = "gunaLabel1";
             this.gunaLabel1.Size = new System.Drawing.Size(111, 27);
             this.gunaLabel1.TabIndex = 47;
@@ -251,12 +235,12 @@
             this.txtbBoxName.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtbBoxName.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtbBoxName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtbBoxName.Location = new System.Drawing.Point(230, 162);
+            this.txtbBoxName.Location = new System.Drawing.Point(414, 174);
             this.txtbBoxName.Name = "txtbBoxName";
             this.txtbBoxName.PasswordChar = '\0';
             this.txtbBoxName.Radius = 10;
             this.txtbBoxName.SelectedText = "";
-            this.txtbBoxName.Size = new System.Drawing.Size(347, 34);
+            this.txtbBoxName.Size = new System.Drawing.Size(304, 34);
             this.txtbBoxName.TabIndex = 46;
             this.txtbBoxName.TextChanged += new System.EventHandler(this.txtbBoxName_TextChanged);
             // 
@@ -264,36 +248,17 @@
             // 
             this.gunaLabel3.AutoSize = true;
             this.gunaLabel3.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.gunaLabel3.Location = new System.Drawing.Point(672, 122);
+            this.gunaLabel3.Location = new System.Drawing.Point(801, 134);
             this.gunaLabel3.Name = "gunaLabel3";
             this.gunaLabel3.Size = new System.Drawing.Size(97, 27);
             this.gunaLabel3.TabIndex = 51;
             this.gunaLabel3.Text = "User Box";
             // 
-            // txtbUserBox
-            // 
-            this.txtbUserBox.BackColor = System.Drawing.Color.Transparent;
-            this.txtbUserBox.BaseColor = System.Drawing.Color.White;
-            this.txtbUserBox.BorderColor = System.Drawing.Color.Black;
-            this.txtbUserBox.BorderSize = 1;
-            this.txtbUserBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtbUserBox.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtbUserBox.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txtbUserBox.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtbUserBox.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtbUserBox.Location = new System.Drawing.Point(790, 122);
-            this.txtbUserBox.Name = "txtbUserBox";
-            this.txtbUserBox.PasswordChar = '\0';
-            this.txtbUserBox.Radius = 10;
-            this.txtbUserBox.SelectedText = "";
-            this.txtbUserBox.Size = new System.Drawing.Size(347, 34);
-            this.txtbUserBox.TabIndex = 50;
-            // 
             // gunaLabel4
             // 
             this.gunaLabel4.AutoSize = true;
             this.gunaLabel4.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.gunaLabel4.Location = new System.Drawing.Point(673, 162);
+            this.gunaLabel4.Location = new System.Drawing.Point(802, 214);
             this.gunaLabel4.Name = "gunaLabel4";
             this.gunaLabel4.Size = new System.Drawing.Size(85, 27);
             this.gunaLabel4.TabIndex = 49;
@@ -310,19 +275,19 @@
             this.txtbBalence.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtbBalence.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtbBalence.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtbBalence.Location = new System.Drawing.Point(790, 162);
+            this.txtbBalence.Location = new System.Drawing.Point(904, 214);
             this.txtbBalence.Name = "txtbBalence";
             this.txtbBalence.PasswordChar = '\0';
             this.txtbBalence.Radius = 10;
             this.txtbBalence.SelectedText = "";
-            this.txtbBalence.Size = new System.Drawing.Size(347, 34);
+            this.txtbBalence.Size = new System.Drawing.Size(304, 34);
             this.txtbBalence.TabIndex = 48;
             // 
             // gunaLabel2
             // 
             this.gunaLabel2.AutoSize = true;
             this.gunaLabel2.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
-            this.gunaLabel2.Location = new System.Drawing.Point(97, 206);
+            this.gunaLabel2.Location = new System.Drawing.Point(298, 218);
             this.gunaLabel2.Name = "gunaLabel2";
             this.gunaLabel2.Size = new System.Drawing.Size(100, 27);
             this.gunaLabel2.TabIndex = 53;
@@ -339,45 +304,20 @@
             this.txtbBoxType.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtbBoxType.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtbBoxType.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtbBoxType.Location = new System.Drawing.Point(230, 202);
+            this.txtbBoxType.Location = new System.Drawing.Point(414, 214);
             this.txtbBoxType.Name = "txtbBoxType";
             this.txtbBoxType.PasswordChar = '\0';
             this.txtbBoxType.Radius = 10;
             this.txtbBoxType.SelectedText = "";
-            this.txtbBoxType.Size = new System.Drawing.Size(347, 34);
+            this.txtbBoxType.Size = new System.Drawing.Size(304, 34);
             this.txtbBoxType.TabIndex = 52;
-            // 
-            // btnChooseUser
-            // 
-            this.btnChooseUser.AnimationHoverSpeed = 0.07F;
-            this.btnChooseUser.AnimationSpeed = 0.03F;
-            this.btnChooseUser.BackColor = System.Drawing.Color.Transparent;
-            this.btnChooseUser.BaseColor = System.Drawing.Color.Transparent;
-            this.btnChooseUser.BorderColor = System.Drawing.Color.Transparent;
-            this.btnChooseUser.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnChooseUser.FocusedColor = System.Drawing.Color.Empty;
-            this.btnChooseUser.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnChooseUser.ForeColor = System.Drawing.Color.White;
-            this.btnChooseUser.Image = global::BankProject11.Properties.Resources.AddPerson_32;
-            this.btnChooseUser.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.btnChooseUser.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnChooseUser.Location = new System.Drawing.Point(1145, 115);
-            this.btnChooseUser.Name = "btnChooseUser";
-            this.btnChooseUser.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnChooseUser.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnChooseUser.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnChooseUser.OnHoverImage = null;
-            this.btnChooseUser.OnPressedColor = System.Drawing.Color.Black;
-            this.btnChooseUser.Radius = 10;
-            this.btnChooseUser.Size = new System.Drawing.Size(57, 39);
-            this.btnChooseUser.TabIndex = 4;
             // 
             // gunaLabel5
             // 
             this.gunaLabel5.AutoSize = true;
             this.gunaLabel5.Font = new System.Drawing.Font("Microsoft YaHei", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gunaLabel5.ForeColor = System.Drawing.Color.Red;
-            this.gunaLabel5.Location = new System.Drawing.Point(586, 10);
+            this.gunaLabel5.Location = new System.Drawing.Point(726, 22);
             this.gunaLabel5.Name = "gunaLabel5";
             this.gunaLabel5.Size = new System.Drawing.Size(112, 43);
             this.gunaLabel5.TabIndex = 54;
@@ -393,27 +333,77 @@
             this.notifyIcon2.Text = "notifyIcon2";
             this.notifyIcon2.Visible = true;
             // 
+            // cmbUsers
+            // 
+            this.cmbUsers.BackColor = System.Drawing.Color.Transparent;
+            this.cmbUsers.BaseColor = System.Drawing.Color.White;
+            this.cmbUsers.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cmbUsers.BorderSize = 1;
+            this.cmbUsers.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbUsers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUsers.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbUsers.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbUsers.ForeColor = System.Drawing.Color.Black;
+            this.cmbUsers.FormattingEnabled = true;
+            this.cmbUsers.Location = new System.Drawing.Point(904, 130);
+            this.cmbUsers.Name = "cmbUsers";
+            this.cmbUsers.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.cmbUsers.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.cmbUsers.Radius = 10;
+            this.cmbUsers.Size = new System.Drawing.Size(304, 31);
+            this.cmbUsers.TabIndex = 55;
+            // 
+            // cmbCurrecy
+            // 
+            this.cmbCurrecy.BackColor = System.Drawing.Color.Transparent;
+            this.cmbCurrecy.BaseColor = System.Drawing.Color.White;
+            this.cmbCurrecy.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cmbCurrecy.BorderSize = 1;
+            this.cmbCurrecy.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbCurrecy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCurrecy.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbCurrecy.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbCurrecy.ForeColor = System.Drawing.Color.Black;
+            this.cmbCurrecy.FormattingEnabled = true;
+            this.cmbCurrecy.Location = new System.Drawing.Point(904, 174);
+            this.cmbCurrecy.Name = "cmbCurrecy";
+            this.cmbCurrecy.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.cmbCurrecy.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.cmbCurrecy.Radius = 10;
+            this.cmbCurrecy.Size = new System.Drawing.Size(304, 31);
+            this.cmbCurrecy.TabIndex = 57;
+            // 
+            // gunaLabel6
+            // 
+            this.gunaLabel6.AutoSize = true;
+            this.gunaLabel6.Font = new System.Drawing.Font("Microsoft YaHei", 12F);
+            this.gunaLabel6.Location = new System.Drawing.Point(801, 177);
+            this.gunaLabel6.Name = "gunaLabel6";
+            this.gunaLabel6.Size = new System.Drawing.Size(97, 27);
+            this.gunaLabel6.TabIndex = 56;
+            this.gunaLabel6.Text = "Currency";
+            // 
             // UctrlAddBoxes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cmbCurrecy);
+            this.Controls.Add(this.gunaLabel6);
+            this.Controls.Add(this.cmbUsers);
             this.Controls.Add(this.gunaLabel5);
-            this.Controls.Add(this.btnChooseUser);
             this.Controls.Add(this.gunaLabel2);
             this.Controls.Add(this.txtbBoxType);
             this.Controls.Add(this.gunaLabel3);
-            this.Controls.Add(this.txtbUserBox);
             this.Controls.Add(this.gunaLabel4);
             this.Controls.Add(this.txtbBalence);
             this.Controls.Add(this.gunaLabel1);
             this.Controls.Add(this.txtbBoxName);
             this.Controls.Add(this.lblID);
             this.Controls.Add(this.txtbID);
-            this.Controls.Add(this.gunaTextBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvOfBoxes);
             this.Name = "UctrlAddBoxes";
-            this.Size = new System.Drawing.Size(1363, 737);
+            this.Size = new System.Drawing.Size(1509, 737);
             this.Load += new System.EventHandler(this.UctrlAddBoxes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOfBoxes)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -434,20 +424,20 @@
         private System.Windows.Forms.ToolStripMenuItem addToUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private Guna.UI.WinForms.GunaTextBox gunaTextBox1;
         private Guna.UI.WinForms.GunaTextBox txtbID;
         private Guna.UI.WinForms.GunaLabel lblID;
         private Guna.UI.WinForms.GunaLabel gunaLabel1;
         private Guna.UI.WinForms.GunaTextBox txtbBoxName;
         private Guna.UI.WinForms.GunaLabel gunaLabel3;
-        private Guna.UI.WinForms.GunaTextBox txtbUserBox;
         private Guna.UI.WinForms.GunaLabel gunaLabel4;
         private Guna.UI.WinForms.GunaTextBox txtbBalence;
         private Guna.UI.WinForms.GunaLabel gunaLabel2;
         private Guna.UI.WinForms.GunaTextBox txtbBoxType;
-        private Guna.UI.WinForms.GunaButton btnChooseUser;
         private Guna.UI.WinForms.GunaLabel gunaLabel5;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.NotifyIcon notifyIcon2;
+        private Guna.UI.WinForms.GunaComboBox cmbUsers;
+        private Guna.UI.WinForms.GunaComboBox cmbCurrecy;
+        private Guna.UI.WinForms.GunaLabel gunaLabel6;
     }
 }

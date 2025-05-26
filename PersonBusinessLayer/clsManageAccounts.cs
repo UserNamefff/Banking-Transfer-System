@@ -35,9 +35,12 @@ namespace UsersBussncessLayerLib
             this._Mode = _enMode.UpdateMode;
             this._ClientID = ClientID;
             this._Balence = Balence;
+            this._AccountNumber = AccountNumber;
             this._PineCode = PineCode;
             this._Account_TypeID = Account_type;
             this._AccountID = AccountID;
+            this.CreatedByUser = CreatedByUser;
+            this._Date = Created_Date;
             //this._PersonID = PersonID;
 
         }
@@ -50,6 +53,7 @@ namespace UsersBussncessLayerLib
             this._PersonID = 0;
             this._AccountID = 0;
             this._Date = DateTime.Now;
+            this.CreatedByUser = 6;
 
         }
          
@@ -65,6 +69,12 @@ namespace UsersBussncessLayerLib
             get { return _AccountNumber; }
             set { _AccountNumber = value; }
 
+        }
+
+        public int CreatedByUsers
+        {
+            get { return CreatedByUser; }
+            set { CreatedByUser = value; }
         }
         public double Balence
         {
@@ -154,7 +164,7 @@ namespace UsersBussncessLayerLib
         private bool  Update()
         {
             //Updating data into database will be here ...
-            return clsAccountsDataAccess.UpdateAccount(this._AccountID,this._ClientID, this._AccountNumber, this._Account_TypeID, this._CurrnecyID,this.PineCode, this._Balence, this.CreatedByUser, this._Date);
+            return clsAccountsDataAccess.UpdateAccountBalence( this._AccountNumber , this._Balence);
         }
         private bool Delete()
         {
@@ -194,10 +204,10 @@ namespace UsersBussncessLayerLib
 
         }
 
-        public void Deposit(double Amount)
+        public bool Deposit(double Amount)
         {
             this._Balence += Amount;
-            Save();
+            return Save();
         }
 
         public bool WithDraw(double Amount)

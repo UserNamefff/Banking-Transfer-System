@@ -10,5 +10,6 @@ namespace DataAccessLayerr
     {
         public static string ConnectionString = "Server =.; DataBase=BankSystem;Integrated Security=True; ";
        
+
     }
 }

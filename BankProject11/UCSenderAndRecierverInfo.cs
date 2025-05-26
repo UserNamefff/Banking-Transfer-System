@@ -76,6 +76,35 @@ namespace BankProject11
 
             return false;
         }
+
+        public void Find(int ID,int Who = 1)
+        {
+            if(Who == 1)
+            {
+                clsNonClients Client =  clsNonClients.Find(ID);
+                txtbSenderPhone.Text = Client.PhoneNumber;
+                txtbSenderName.Text = Client.FullName; 
+
+            }
+
+            else
+            {
+                clsNonClients Client = clsNonClients.Find(ID);
+                txtbRecierverPhone.Text = Client.PhoneNumber;
+                txtbRecierverName.Text = Client.FullName;
+            }
+
+        }
+
+        
+        public void Clear()
+        {
+            txtbSenderPhone.Clear();
+            txtbRecierverName.Clear();
+            txtbRecierverPhone.Clear();
+            txtbSenderName.Clear();
+        }
+
         public int GetSenderID()
         {
             AddNonClient();

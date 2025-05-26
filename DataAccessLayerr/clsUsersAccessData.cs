@@ -14,13 +14,13 @@ namespace DataAccessLayerr
     {
 
         public static bool GetUserInfoByUserID(int UserID, ref int PersonID, ref string UserName,ref string Password
-            ,ref int Permissoins ,ref int JopID,ref int BranchID,ref bool IsActive)
+            ,ref int Permissoins ,ref int JobID,ref int BranchID,ref bool Status)
         {
             bool isFound = false;
             
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Users WHERE UserID = @UsertID";
+            string query = "SELECT * FROM Users WHERE UserID = @UserID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -38,13 +38,13 @@ namespace DataAccessLayerr
                     // The record was found
                     isFound = true;
 
-                    JopID = (int)reader["JopID"];
+                    JobID = (int)reader["JobID"];
                     BranchID = (int)reader["BranchID"];
                     Permissoins = (int)reader["Permissoins"];
                     Password = (string)reader["Password"];
                     UserName = (string)reader["UserName"];
                     PersonID = (int)reader["PersonID"];
-                    IsActive = (bool)reader["IsActive"];
+                    string is_ = (string)reader["Status"];
 
 
               
@@ -76,18 +76,18 @@ namespace DataAccessLayerr
         }
 
 
-        public static bool GetUserInfoByUserID( string UserName, ref int PersonID, ref int UserID, ref string Password
-           , ref int Permissoins, ref int JopID, ref int BranchID, ref bool IsActive)
+        public static bool GetUserInfoByUserName( string UserName, ref int PersonID, ref int UserID, ref string Password
+           , ref int Permissoins, ref int JobID, ref int BranchID, ref bool Status)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Users WHERE UserID = @UsertID";
+            string query = "SELECT * FROM Users WHERE UserName = @UserName";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@UserID", UserID);
+            command.Parameters.AddWithValue("@UserName", UserName);
 
 
 
@@ -101,13 +101,14 @@ namespace DataAccessLayerr
                     // The record was found
                     isFound = true;
 
-                    JopID = (int)reader["JopID"];
+                    UserID = (int)reader["UserID"];
+                    JobID = reader.GetInt32(reader.GetOrdinal("JobID"));
                     BranchID = (int)reader["BranchID"];
                     Permissoins = (int)reader["Permissoins"];
                     Password = (string)reader["Password"];
                     UserName = (string)reader["UserName"];
                     PersonID = (int)reader["PersonID"];
-                    IsActive = (bool)reader["IsActive"];
+                    //Status = (bool)reader["Status"];
 
 
 
@@ -140,17 +141,17 @@ namespace DataAccessLayerr
 
 
         public static bool GetUserInfoByUserNameAndPassword(string UserName, string Password, ref int PersonID, ref int UserID
-           , ref int Permissoins, ref int JopID, ref int BranchID, ref bool IsActive)
+           , ref int Permissoins, ref int JobID, ref int BranchID, ref bool Status)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Users WHERE UserID = @UsertID And Password = @Password ";
+            string query = "SELECT * FROM Users WHERE UserName = @UserName And Password = @Password ";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@UserID", UserID);
+            command.Parameters.AddWithValue("@UserName", UserName);
             command.Parameters.AddWithValue("@Password", Password);
 
 
@@ -165,13 +166,12 @@ namespace DataAccessLayerr
                     // The record was found
                     isFound = true;
 
-                    JopID = (int)reader["JopID"];
+                    UserID = (int)reader["UserID"];
+                    JobID = (int)reader["JobID"];
                     BranchID = (int)reader["BranchID"];
                     Permissoins = (int)reader["Permissoins"];
-                    Password = (string)reader["Password"];
-                    UserName = (string)reader["UserName"];
                     PersonID = (int)reader["PersonID"];
-                    IsActive = (bool)reader["IsActive"];
+                    string Is = reader.GetString(reader.GetOrdinal("Status"));
 
                 }
                 else
@@ -198,7 +198,7 @@ namespace DataAccessLayerr
         }
 
         public static int AddNewUser(  int PersonID,  string UserName,  string Password,
-            int Permissoins,  int JobID,  int BranchID,  bool IsActive)
+            int Permissoins,  int JobID,  int BranchID,  bool Status)
         {
 
 
@@ -208,7 +208,7 @@ namespace DataAccessLayerr
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"INSERT INTO Users (PersonID, UserName, Password, Permissoins, JobID,BranchID,Status)
-                             VALUES (@PersonID, @UserName, @Password, @Permissoins, @JobID,@BranchID,@IsActive);
+                             VALUES (@PersonID, @UserName, @Password, @Permissoins, @JobID,@BranchID,@Status);
                              SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
@@ -219,7 +219,7 @@ namespace DataAccessLayerr
             command.Parameters.AddWithValue("@Permissoins", Permissoins);
             command.Parameters.AddWithValue("@UserName", UserName);
             command.Parameters.AddWithValue("@Password", Password);
-            command.Parameters.AddWithValue("@IsActive", IsActive);
+            command.Parameters.AddWithValue("@Status", Status);
             
 
             try
@@ -251,7 +251,7 @@ namespace DataAccessLayerr
         }
 
         public static bool UpdateUser(int  UserID, int PersonID, string UserName, string Password, 
-            int Permissoins, int JopID, int BranchID, bool IsActive)
+            int Permissoins, int JobID, int BranchID, bool Status)
         {
 
             int rowsAffected = 0;
@@ -259,24 +259,24 @@ namespace DataAccessLayerr
 
             string query = @"Update  Users  
                             set PersonID = @PersonID, 
-                                JopID = @JopID, 
+                                JobID = @JobID, 
                                 BranchID = @BranchID, 
                                 Permissoins = @Permissoins, 
                                 UserName = @UserName, 
                                 Password = @Password,
-                                Status =@IsActive
+                                Status =@Status
                                 where UserID = @UserID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@UserID", UserID);
             command.Parameters.AddWithValue("@PersonID", PersonID);
-            command.Parameters.AddWithValue("@JopID", JopID);
+            command.Parameters.AddWithValue("@JobID", JobID);
             command.Parameters.AddWithValue("@BranchID", BranchID);
             command.Parameters.AddWithValue("@Permissoins", Permissoins);
             command.Parameters.AddWithValue("@UserName", UserName);
             command.Parameters.AddWithValue("@Password", Password);
-            command.Parameters.AddWithValue("@Status", IsActive);
+            command.Parameters.AddWithValue("@Status", Status);
 
            
 
@@ -311,7 +311,9 @@ namespace DataAccessLayerr
             //            From Users U INNER join  Branches B ON U.BranchID = B.BranchID  
             //            INNER join Persons P ON  U.PersonID =P.PersonID INNER JOIN Jobs J ON U.JobID = J.JobID ";
 
-            string query = @"SELECT *FROM Users";
+            string query = @"SELECT Users.UserID, Persons.FirstName, Persons.LastName, Users.UserName, Users.Password, Users.Status, Users.Permissoins, Jobs.JobName, Branches.BranchName
+                            FROM     Users INNER JOIN  Persons ON Users.PersonID = Persons.PersonID INNER JOIN
+                              Jobs ON Users.JobID = Jobs.ID INNER Join  Branches ON Users.BranchID = Branches.BranchID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
